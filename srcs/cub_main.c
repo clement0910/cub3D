@@ -6,33 +6,44 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/17 15:25:32 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/18 23:50:21 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void func(t_global *env)
+void	menu_game(t_global *env)
 {
-	int x;
-	int y;
-	mlx_mouse_get_pos(env->win.win, &x, &y);
-	//printf("x: %d| y: %d\n", x, y);
-//	Coordoonne button play: 630x 870x 345y 490y
-	//	settings: 645x 855x 520y 600y
-	//		stop 655x 845x 630y 730y
-	if (x > 630 && x < 870 && y > 345 && y < 490)
+	mlx_mouse_get_pos(env->win.win, &env->bonus.cursor.x, &env->bonus.cursor.y);
+	if (env->bonus.cursor.x > 630 && env->bonus.cursor.x < 870 && env->bonus.cursor.y > 345 && env->bonus.cursor.y < 490)
 	 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[1]->img, 0, 0);
-	else if (x > 645 && x < 855 && y > 520 && y < 600)
+	else if (env->bonus.cursor.x > 645 && env->bonus.cursor.x < 855 && env->bonus.cursor.y > 520 && env->bonus.cursor.y < 600)
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[2]->img, 0, 0);
-	else if (x > 655 && x < 845 && y > 630 && y < 730)
-		mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[3]->img, 0, 0);
+	else if (env->bonus.cursor.x > 655 && env->bonus.cursor.x < 845 && env->bonus.cursor.y > 630 && env->bonus.cursor.y < 730)
+		close_window(env, env->bonus.cursor.x, env->bonus.cursor.y);	
 	else
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[0]->img, 0, 0);
+	mlx_put_image_to_window(env->win.mlx, env->win.win, env->cursor->img, env->bonus.cursor.x, env->bonus.cursor.y);
 }
+
 int loop(t_global *env)
 {
-	func(env);
+	if (env->events.close)
+		quit_cub(env);
+	ft_memcpy(env->events.last_tab, env->events.tab, KEY_MAX); //key a gerer
+	ft_memcpy(env->events.last_tabs, env->events.tabs, BUTTON_MAX); //key
+	mlx_do_sync(env->win.mlx);
+	return (0);
+}
+
+int loop_bonus(t_global *env)
+{
+	if (env->events.close)
+		quit_cub(env);
+	ft_memcpy(env->events.last_tab, env->events.tab, KEY_MAX); //key
+	ft_memcpy(env->events.last_tabs, env->events.tabs, BUTTON_MAX); //key
+	if (env->bonus.menu)
+		menu_game(env);
 	mlx_do_sync(env->win.mlx);
 	return (0);
 }
@@ -50,7 +61,22 @@ int main(int ac, char **av)
 	900, "Cub3D");
 	if (!(env->main->menu = create_tab_xpm(env->win.mlx, 1440, 900)))
 		return (1);
-	mlx_loop_hook(env->win.mlx, loop, env);
+	if (!(env->cursor = create_xpm_image(env->win.mlx, "assets/ui/cursor/curso.xpm")))
+		return (1);
+	mlx_mouse_hide();
+	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
+	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release, &env->events); 
+	mlx_hook(env->win.win, BUTTON_PRESS, BUTTON_PRESS_MASK, button_press, &env->events);
+	mlx_hook(env->win.win, BUTTON_RELEASE, BUTTON_RELEASE_MASK, button_release, &env->events);
+	mlx_hook(env->win.win, 17, 0, quit_from_cross, &env->events);
+	env->bonus.on = true;
+	if (env->bonus.on)
+	{
+		mlx_loop_hook(env->win.mlx, loop_bonus, env);
+		env->bonus.menu = true;
+	}
+	else
+		mlx_loop_hook(env->win.mlx, loop, env);
 	mlx_loop(env->win.mlx);
 	return (0);
 }
