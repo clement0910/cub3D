@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/18 23:47:01 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 15:14:19 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ void	free_image_tab(int n, t_img **tab, void *mlx)
 		free_image(tab[x], mlx);
 		x++;
 	}
+	free(tab);
 }
 
-int		quit_from_cross(t_keys *events)
+int		quit_from_cross(t_global *env)
 {
-	events->close = true;
+	quit_cub(env);
 	return (0);
 }
 

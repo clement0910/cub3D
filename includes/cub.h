@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/19 13:34:21 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 15:05:40 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ typedef struct		s_global
 	t_status_b 		bonus;
 }					t_global;
 
-
-
 void				free_image_tab(int n, t_img **tab, void *mlx);
 void				quit_cub(t_global *env);
 t_img				**create_tab_xpm(void *mlx, int x, int y);
@@ -105,5 +103,5 @@ bool				get_button(int keycode, int x, int y, t_keys *events);
 int					button_press(int keycode, int x, int y, t_keys *events);
 int					button_release(int keycode, int x, int y, t_keys *events);
 
-int					quit_from_cross(t_keys *events);
+int					quit_from_cross(t_global *env);
 #endif

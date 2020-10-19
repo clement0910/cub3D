@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/19 13:35:17 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 15:18:29 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,19 @@ void	menu_game(t_global *env)
 		close_window(env, env->bonus.cursor.x, env->bonus.cursor.y);	
 	else
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[0]->img, 0, 0);
+	if (env->bonus.cursor.x > 1440 || env->bonus.cursor.y > 900) //cursor out of map
+		mlx_mouse_move(env->win.win, 700, 450);
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->cursor->img, env->bonus.cursor.x, env->bonus.cursor.y);
 }
 
 int loop(t_global *env)
 {
-	if (env->events.close)
-		quit_cub(env);
 	mlx_do_sync(env->win.mlx);
 	return (0);
 }
 
 int loop_bonus(t_global *env)
 {
-	if (env->events.close)
-		quit_cub(env);
 	if (env->bonus.menu)
 		menu_game(env);
 	mlx_do_sync(env->win.mlx);
@@ -64,7 +62,7 @@ int main(int ac, char **av)
 	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release, &env->events); 
 	mlx_hook(env->win.win, BUTTON_PRESS, BUTTON_PRESS_MASK, button_press, &env->events);
 	mlx_hook(env->win.win, BUTTON_RELEASE, BUTTON_RELEASE_MASK, button_release, &env->events);
-	mlx_hook(env->win.win, 17, 0, quit_from_cross, &env->events);
+	mlx_hook(env->win.win, 17, 0, quit_from_cross, env);
 	env->bonus.on = true;
 	if (env->bonus.on)
 	{

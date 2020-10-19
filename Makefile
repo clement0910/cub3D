@@ -1,0 +1,43 @@
+
+C = gcc
+
+NAME = Cub3D
+
+SRCS =	srcs/cub_main.c \
+		srcs/cub_image.c \
+		srcs/cub_other.c \
+		srcs/cub_hook.c \
+
+HEADER = -I libft/ -I minilibx/ -I includes/
+
+FLAGS =  -O3 
+
+MLX = minilibx/libmlx.dylib
+
+FW = -L minilibx -lmlx -framework OpenGL -framework AppKit
+
+LIBFT = libft/libft.a
+
+OBJ = $(SRCS:.c=.o) 
+
+%.o:%.c
+	$(C) $(FLAGS) $(HEADER) -c -o $@ $<
+
+all: $(MLX) $(NAME)
+
+$(MLX):
+	make -C minilibx/
+
+$(NAME): $(OBJ) 
+	$(C) $(FLAGS) $(LIBFT) $(FW) $(OBJ) -o $(NAME)
+
+bonus: all
+
+clean:
+	rm -rf $(OBJ)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
