@@ -40,6 +40,8 @@ SRCS	=	ft_atoi.c				\
 			ft_free_tab.c 			\
 			ft_chrcmp.c				\
 			ft_strrev.c				\
+			ft_tablen.c				\
+			ft_lstmaxlen.c 			\
 
 
 BONUS	=	ft_lstnew_bonus.c		\

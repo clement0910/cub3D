@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 14:46:15 by csapt             #+#    #+#             */
-/*   Updated: 2020/07/29 14:48:04 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 21:58:20 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_lstmaxlen(t_list **maplist)
 {
-	int		x;
+	size_t	x;
 	t_list	*temp;
 
 	x = 0;

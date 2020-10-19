@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   cub_debug.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/22 20:13:39 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 01:40:52 by csapt            ###   ########lyon.fr   */
+/*   Created: 2020/10/20 01:44:13 by csapt             #+#    #+#             */
+/*   Updated: 2020/10/20 01:46:18 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef CUB_DEBUG_H
+# define CUB_DEBUG_H
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list *temp;
+# include "libft.h"
+# include "cub_parse.h"
 
-	if (!*lst || !del)
-		return ;
-	temp = *lst;
-	while (temp)
-	{
-		(*del)(temp->content);
-		*lst = temp->next;
-		free(temp);
-		temp = *lst;
-	}
-	lst = NULL;
-}
+void				print_tab(char **tab);
+void				ft_printdata(t_parse data, t_list **maplist);
+
+#endif

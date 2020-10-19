@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/19 17:22:40 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/20 01:22:43 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ int		quit_from_cross(t_global *env)
 
 void	quit_cub(t_global *env)
 {
+	free(env->data.xpm_no);
+	free(env->data.xpm_so);
+	free(env->data.xpm_ea);
+	free(env->data.xpm_we);
+	free(env->data.sprite);
+	ft_free_tab(env->data.map);
 	free_image_tab(5, env->main->menu, env->win.mlx);
 	free_image(env->cur->img, env->win.mlx);
 	mlx_destroy_window(env->win.mlx, env->win.win);

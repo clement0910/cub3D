@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/19 17:52:24 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/20 01:45:22 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "mlx_keys.h"
 # include "cub_image.h"
 # include "cub_hook.h"
+# include "cub_parse.h"
+# include "cub_debug.h"
 
 # include <stdio.h>
 # include <sys/time.h> //FOR TIMER
@@ -71,6 +73,7 @@ typedef struct		s_global
 	t_cursor		*cur;
 	t_options		op;
 	t_options_b		opb;
+	t_parse			data;
 }					t_global;
 
 void				quit_cub(t_global *env);

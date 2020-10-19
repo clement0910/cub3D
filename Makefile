@@ -7,11 +7,16 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_image.c \
 		srcs/cub_other.c \
 		srcs/cub_hook_key.c \
-		srcs/cub_hook_button.c
+		srcs/cub_hook_button.c \
+		gnl/get_next_line.c \
+		gnl/get_next_line_utils.c \
+		srcs/cub_parse_global.c \
+		srcs/cub_parse_global_func.c \
+		srcs/cub_debug.c \
 
 HEADER = -I libft/ -I minilibx/ -I includes/
 
-FLAGS =  -O3 
+FLAGS =  -Wall -Wextra -O3 
 
 MLX = minilibx/libmlx.dylib
 
