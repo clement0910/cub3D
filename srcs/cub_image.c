@@ -6,15 +6,15 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 12:03:29 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/17 16:33:41 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 17:54:58 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-t_img	*create_image(void *mlx, int x, int y)
+t_img		*create_image(void *mlx, int x, int y)
 {
-	t_img 	*image;
+	t_img	*image;
 
 	if (!(image = malloc(sizeof(t_img))))
 		return (NULL);
@@ -23,38 +23,38 @@ t_img	*create_image(void *mlx, int x, int y)
 		free_image(image, mlx);
 		return (NULL);
 	}
-	image->addr = (int*)mlx_get_data_addr(image->img, &image->bits_per_pixel, &image->line_length,
-			&image->endian);
+	image->addr = (int*)mlx_get_data_addr(image->img, &image->bits_per_pixel,
+	&image->line_length, &image->endian);
 	image->width = x;
 	image->height = y;
 	image->line_lenght_i = image->line_length / 4;
 	return (image);
 }
 
-t_img	*create_xpm_image(void *mlx, char *tex_file)
+t_img		*create_xpm_image(void *mlx, char *tex_file)
 {
-	t_img *texture;
+	t_img	*xpm;
 
-	if (!(texture = malloc(sizeof(t_img))))
-		return(NULL);
-	if (!(texture->img = mlx_xpm_file_to_image(mlx, tex_file,
-	&texture->width, &texture->height)))
+	if (!(xpm = malloc(sizeof(t_img))))
+		return (NULL);
+	if (!(xpm->img = mlx_xpm_file_to_image(mlx, tex_file,
+	&xpm->width, &xpm->height)))
 	{
-		free_image(texture, mlx);
-		return(NULL);
+		free_image(xpm, mlx);
+		return (NULL);
 	}
-	texture->addr = (int*)mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
-	&texture->line_length, &texture->endian);
-	texture->line_lenght_i = texture->line_lenght_i / 4;
-	return(texture);
+	xpm->addr = (int*)mlx_get_data_addr(xpm->img, &xpm->bits_per_pixel,
+	&xpm->line_length, &xpm->endian);
+	xpm->line_lenght_i = xpm->line_lenght_i / 4;
+	return (xpm);
 }
 
-t_img	**create_tab_xpm(void *mlx, int x, int y)
+t_img		**create_tab_xpm(void *mlx, int x, int y)
 {
-	t_img 	**tab;
+	t_img	**tab;
 
 	if (!(tab = malloc(5 * sizeof(t_img*))))
-		return(NULL);
+		return (NULL);
 	if (!(tab[0] = create_xpm_image(mlx, "assets/ui/menu/menu.xpm")))
 	{
 		//echec d'allouer fichier.xpm;
@@ -79,7 +79,7 @@ t_img	**create_tab_xpm(void *mlx, int x, int y)
 	return (tab);
 }
 
-void	free_image(t_img *image, void *mlx)
+void		free_image(t_img *image, void *mlx)
 {
 	if (image)
 	{

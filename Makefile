@@ -6,7 +6,8 @@ NAME = Cub3D
 SRCS =	srcs/cub_main.c \
 		srcs/cub_image.c \
 		srcs/cub_other.c \
-		srcs/cub_hook.c \
+		srcs/cub_hook_key.c \
+		srcs/cub_hook_button.c
 
 HEADER = -I libft/ -I minilibx/ -I includes/
 
