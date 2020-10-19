@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/18 23:50:24 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 13:34:21 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ typedef struct		s_menu
 
 typedef	struct		s_keys
 {
-	bool			tab[KEY_MAX];
-	bool			last_tab[KEY_MAX];
-	bool			tabs[BUTTON_MAX];
-	bool			last_tabs[BUTTON_MAX];
+	bool			key[KEY_MAX];
+	bool			button[BUTTON_MAX];
+	bool			key_on[KEY_MAX];
 	bool			close;
 }					t_keys;
 
@@ -101,14 +100,10 @@ void				close_window(t_global *env, int x, int y);
 bool				get_key(int keycode, t_keys *events);
 int					key_press(int keycode, t_keys *events);
 int					key_release(int keycode, t_keys *events);
-bool				get_key_press(int keycode, t_keys *events);
-bool				get_key_release(int keycode, t_keys *events);
 
 bool				get_button(int keycode, int x, int y, t_keys *events);
 int					button_press(int keycode, int x, int y, t_keys *events);
 int					button_release(int keycode, int x, int y, t_keys *events);
-bool				get_button_press(int keycode, int x, int y, t_keys *events);
-bool				get_button_release(int keycode, int x, int y, t_keys *events);
 
 int					quit_from_cross(t_keys *events);
 #endif

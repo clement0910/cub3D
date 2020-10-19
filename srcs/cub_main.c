@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/18 23:50:21 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/19 13:35:17 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int loop(t_global *env)
 {
 	if (env->events.close)
 		quit_cub(env);
-	ft_memcpy(env->events.last_tab, env->events.tab, KEY_MAX); //key a gerer
-	ft_memcpy(env->events.last_tabs, env->events.tabs, BUTTON_MAX); //key
 	mlx_do_sync(env->win.mlx);
 	return (0);
 }
@@ -40,8 +38,6 @@ int loop_bonus(t_global *env)
 {
 	if (env->events.close)
 		quit_cub(env);
-	ft_memcpy(env->events.last_tab, env->events.tab, KEY_MAX); //key
-	ft_memcpy(env->events.last_tabs, env->events.tabs, BUTTON_MAX); //key
 	if (env->bonus.menu)
 		menu_game(env);
 	mlx_do_sync(env->win.mlx);
@@ -61,7 +57,7 @@ int main(int ac, char **av)
 	900, "Cub3D");
 	if (!(env->main->menu = create_tab_xpm(env->win.mlx, 1440, 900)))
 		return (1);
-	if (!(env->cursor = create_xpm_image(env->win.mlx, "assets/ui/cursor/curso.xpm")))
+	if (!(env->cursor = create_xpm_image(env->win.mlx, "assets/ui/cursor/cursor.xpm")))
 		return (1);
 	mlx_mouse_hide();
 	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
