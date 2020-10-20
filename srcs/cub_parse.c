@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_parse_global.c                                 :+:      :+:    :+:   */
+/*   cub_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 01:35:17 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/20 18:07:00 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			check_map(char *line, t_list **maplist)
 		x++;
 	if (line[x] == '0')
 	{
-		printf("INVALID MAP\n"); 
+		printf("INVALID MAP\n");
 		return (1);
 	}
 	else if (line[x] == '1')

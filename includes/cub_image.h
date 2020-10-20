@@ -6,12 +6,14 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:54:15 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/19 17:48:03 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/20 18:12:41 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_IMAGE_H
 # define CUB_IMAGE_H
+
+# include "libft.h"
 
 typedef	struct		s_img
 {
@@ -24,6 +26,12 @@ typedef	struct		s_img
 	int				width;
 	int				height;
 }					t_img;
+
+typedef struct		s_cursor
+{
+	t_vec2i			pos;
+	t_img			*img;
+}					t_cursor;
 
 /*
 **					CREATE IMAGE

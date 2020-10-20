@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 12:03:29 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/19 17:54:58 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/20 18:08:04 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,17 @@ void		free_image(t_img *image, void *mlx)
 			mlx_destroy_image(mlx, image->img);
 		free(image);
 	}
+}
+
+void		free_image_tab(int n, t_img **tab, void *mlx)
+{
+	int		x;
+
+	x = 0;
+	while (x < n)
+	{
+		free_image(tab[x], mlx);
+		x++;
+	}
+	free(tab);
 }

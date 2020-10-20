@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_parse_global_func.c                            :+:      :+:    :+:   */
+/*   cub_parse_func.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:52:05 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 01:30:37 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/20 18:08:25 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		parse_resolution(char *line, void *mlx, int *x, int *y)
 	*y = ft_atoi_index(line, &i);
 	if (*x == 0 || *y == 0) //Minimum / Check for neg resolution
 	{
-		ft_putendl_fd("Wrong resolution, bad characters or resolution too low !", 1);
+		ft_putendl_fd("Wrong resolution, bad characters or resolution too low !"
+		, 1);
 		ft_putendl_fd("Minimum is ... / Check your .cub", 1);
 		return (1); //Error
 	}
@@ -92,24 +93,4 @@ int		parse_xpmcolor(char *line, int *color, const char *details)
 	}
 	*color = (0 << 24 | r << 16 | g << 8 | b);
 	return (0);
-}
-
-void	filling_tab(t_parse *data, t_list **maplist)
-{
-	int		x;
-	t_list	*temp;
-
-	x = 0;
-	temp = *maplist;
-	data->xmap = ft_lstmaxlen(maplist);
-	data->map = malloc((ft_lstsize(temp) + 1) * sizeof(char*));
-	while (temp)
-	{
-		data->map[x] = ft_calloc(data->xmap + 1, sizeof(char));
-		ft_strlcpy(data->map[x], (char*)temp->content, data->xmap + 1);
-		temp = temp->next;
-		x++;
-	}
-	data->map[x] = NULL;
-	data->ymap = ft_tablen(data->map);
 }

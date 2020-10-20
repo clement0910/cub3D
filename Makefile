@@ -10,9 +10,12 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_hook_button.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
-		srcs/cub_parse_global.c \
-		srcs/cub_parse_global_func.c \
+		srcs/cub_parse.c \
+		srcs/cub_parse_func.c \
+		srcs/cub_parse_utils.c \
 		srcs/cub_debug.c \
+		srcs/cub_raycast.c \
+		srcs/cub_raycast_player.c \
 
 HEADER = -I libft/ -I minilibx/ -I includes/
 

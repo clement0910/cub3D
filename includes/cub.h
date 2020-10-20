@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 01:45:22 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/20 17:40:22 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "cub_hook.h"
 # include "cub_parse.h"
 # include "cub_debug.h"
+# include "cub_raycast.h"
+# include "cub_options.h"
 
 # include <stdio.h>
 # include <sys/time.h> //FOR TIMER
@@ -41,30 +43,6 @@ typedef struct		s_menu
 	t_img			**logo;
 }					t_menu;
 
-typedef struct		s_options_b
-{
-	bool			menu;
-	bool			resume;
-	bool			settings;
-	bool			ui;
-	bool			debug;
-	bool			on;
-}					t_options_b;
-
-typedef struct		s_options
-{
-	bool			minimap;
-	bool			ceilingandfloor;
-	bool			texture;
-	bool			fps;
-}					t_options;
-
-typedef struct		s_cursor
-{
-	t_vec2i			pos;
-	t_img			*img;
-}					t_cursor;
-
 typedef struct		s_global
 {
 	t_window		win;
@@ -74,12 +52,20 @@ typedef struct		s_global
 	t_options		op;
 	t_options_b		opb;
 	t_parse			data;
+	t_raycast		*rc;
+	t_img			*game;
 }					t_global;
 
+void				init_raystruct(t_global *env);
+
+void				control_events(t_parse *data, t_raycast *rc, t_keys events);
+void				write_rc(t_img *img, t_raycast *rc, int x, t_parse data, t_options op);
+void				main_raycast(t_global *env);
+void				start_game(t_global *env, int x, int y);
 void				quit_cub(t_global *env);
-void				close_window(t_global *env, int x, int y);
+void				quit_button(t_global *env, int x, int y);
 void				menu_game(t_global *env);
-int					quit_from_cross(t_global *env);
+int					close_window(t_global *env);
 int					loop(t_global *env);
 int					loop_bonus(t_global *env);
 
