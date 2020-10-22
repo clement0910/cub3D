@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:52:05 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:28:06 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 19:07:52 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		parse_resolution(char *line, void *mlx, int *x, int *y)
 	if (*x == 0 || *y == 0) //Minimum / Check for neg resolution
 	{
 		return_message("Resolution Too Low !", NULL);
-		return (1); //Error
+		return (1);
 	}
 	mlx_get_screen_size(mlx, &maxx, &maxy);
 	if (*x > maxx || *y > maxy)

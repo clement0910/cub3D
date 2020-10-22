@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 12:03:29 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:25:51 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 19:00:47 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_img		*create_image(void *mlx, int x, int y)
 	&image->line_length, &image->endian);
 	image->width = x;
 	image->height = y;
-	image->line_lenght_i = image->line_length / 4;
+	image->line_length_i = image->line_length / 4;
 	return (image);
 }
 
@@ -45,7 +45,7 @@ t_img		*create_xpm_image(void *mlx, char *tex_file)
 	}
 	xpm->addr = (int*)mlx_get_data_addr(xpm->img, &xpm->bits_per_pixel,
 	&xpm->line_length, &xpm->endian);
-	xpm->line_lenght_i = xpm->line_lenght_i / 4;
+	xpm->line_length_i = xpm->line_length / 4;
 	return (xpm);
 }
 

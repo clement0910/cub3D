@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:54:15 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 17:17:19 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 18:59:02 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef	struct		s_img
 	int				*addr;
 	int				bits_per_pixel;
 	int				line_length;
-	int				line_lenght_i;
+	int				line_length_i;
 	int				endian;
 	int				width;
 	int				height;

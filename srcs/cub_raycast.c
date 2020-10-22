@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 12:06:04 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:30:12 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 19:02:23 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,8 @@ void	draw_tex(t_game *g, t_parse data, int x)
 	{
 		g->rc.tex.y = (int)g->rc.texpos;
 		g->rc.texpos += g->rc.step;
-		g->rc.color = g->textures[d]->addr[g->rc.tex.y * (g->textures[d]->line_length / 4) + g->rc.tex.x];
-		//write_pixel(g, x, y, xpm[d]->addr[g->rc.tex.y * xpm[d]->line_lenght_i + g->rc.tex.x]);
-		write_pixel(g->game, x, y, g->rc.color);
+		write_pixel(g->game, x, y, g->textures[d]->addr[g->rc.tex.y *
+		g->textures[d]->line_length_i + g->rc.tex.x]);
 		y++;
 	}
 }
