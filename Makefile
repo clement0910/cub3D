@@ -11,13 +11,16 @@ SRCS =	srcs/cub_main.c \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
 		srcs/cub_parse.c \
-		srcs/cub_parse_func.c \
 		srcs/cub_parse_utils.c \
+		srcs/cub_parse_func.c \
 		srcs/cub_debug.c \
 		srcs/cub_raycast.c \
 		srcs/cub_raycast_player.c \
+		srcs/cub_init.c \
+		srcs/cub_menu.c \
+		srcs/cub_quit.c
 
-HEADER = -I libft/ -I minilibx/ -I includes/
+HEADER = -I libft/ -I minilibx/ -I includes/ 
 
 FLAGS =  -Wall -Wextra -O3 
 
@@ -26,6 +29,7 @@ MLX = minilibx/libmlx.dylib
 FW = -L minilibx -lmlx -framework OpenGL -framework AppKit
 
 LIBFT = libft/libft.a
+
 
 OBJ = $(SRCS:.c=.o) 
 

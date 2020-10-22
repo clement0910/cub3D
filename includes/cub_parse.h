@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 18:13:41 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 15:42:34 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ typedef struct	s_parse
 	char		orientation;
 	int			resx;
 	int			resy;
-	char		*xpm_no;
-	char		*xpm_ea;
-	char		*xpm_so;
-	char		*xpm_we;
+	char		*xpm[4];
 	t_colorxpm	floor;
 	t_colorxpm	ceiling;
 	//Sprite and GIF Here
 	char		*sprite;
 	char		**map;
+	char		**tex;
 	t_vec2f		player;
 }				t_parse;
 
@@ -49,8 +47,9 @@ int				parse_resolution(char *line, void *mlx, int *x, int *y);
 
 int				check_map(char *line, t_list **maplist);
 int				check_line(char *line, void *mlx, t_parse *data);
-int				cub_global_parse(int fd, t_parse *data, void *mlx);
+int				cub_parse(int fd, t_parse *data, void *mlx);
 
+void			free_parsing(t_parse *data);
 void			filling_tab(t_parse *data, t_list **maplist);
 
 #endif

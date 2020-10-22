@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 00:03:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 00:09:56 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 12:53:01 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	ft_printdata(t_parse data, t_list **maplist)
 	temp = *maplist;
 	printf("--------------------------------------\n");
 	printf("X: %d | Y: %d\n", data.resx, data.resy);
-	printf("north: %s\n", data.xpm_no);
-	printf("south: %s\n", data.xpm_so);
-	printf("east: %s\n", data.xpm_ea);
-	printf("west: %s\n", data.xpm_we);
+	printf("north: %s\n", data.xpm[NO]);
+	printf("south: %s\n", data.xpm[SO]);
+	printf("east: %s\n", data.xpm[EA]);
+	printf("west: %s\n", data.xpm[WE]);
 	printf("sprite: %s\n", data.sprite);
 	printf("ceiling: %d\n", data.ceiling.color);
 	printf("floor: %d\n", data.floor.color);

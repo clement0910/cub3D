@@ -6,43 +6,48 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 18:21:34 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 18:20:24 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	main_raycast(t_global *env)
+void	main_raycast(t_game *game, t_parse data, t_options op)
 {
 	int x;
 
 	x = 0;
-	while (x < env->data.resx)
+	while (x < data.resx)
 	{
-		write_ray(env->rc, env->data, x);
-		initialdist(env->rc, env->data);
-		dda_algo(env->rc, env->data);
-		start_draw(env->rc, env->data);
-		write_rc(env->game, env->rc, x, env->data, env->op);
+		init_ray(&game->rc, data, x);
+		init_dist(&game->rc, data);
+		dda_algo(&game->rc, data);
+		start_draw(&game->rc, data);
+		if (op.texture)
+			draw_tex(game, data, x);
+		write_rc(game, data, op, x);
 		x++;
 	}
 }
 
-void	write_rc(t_img *img, t_raycast *rc, int x, t_parse data, t_options op)
+void	write_rc(t_game *game, t_parse data, t_options op, int x)
 {
 	int y;
 
-	y = 0;
+	y = -1;
 	if (op.ceilingandfloor == false)
-		while (y++ < rc->dstart)
-			write_pixel(img, x, y, data.ceiling.color);
+		while (y++ < game->rc.dstart)
+			write_pixel(game->game, x, y, data.ceiling.color);
+	game->rc.dstart -= 1;
 	if (op.texture == false)
-		while (rc->dstart++ <= rc->dend)
-			write_pixel(img, x, rc->dstart, rc->color);
-	y = rc->dend + 1;
+		while (game->rc.dstart++ < game->rc.dend)
+			write_pixel(game->game, x, game->rc.dstart, game->rc.color);
+	y = game->rc.dend;
 	if (op.ceilingandfloor == false)
-		while (y++ < data.resy)
-			write_pixel(img, x, y, data.floor.color);
+		while (y++ < data.resy - 1)
+			write_pixel(game->game, x, y, data.floor.color);
+	//rc->dstart =- 1; GIANT MODE;
+	//Check this func
 }
 
 void	write_pixel(t_img *image, int x, int y, int color)
@@ -53,53 +58,27 @@ void	write_pixel(t_img *image, int x, int y, int color)
 	*dst = color;
 }
 
-void	quit_button(t_global *env, int x, int y)
-{
-	mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[3]->img,
-	0, 0);
-	if (get_button(MOUSE_LEFT, 0, 0, &env->events))
-		quit_cub(env);
-	mlx_put_image_to_window(env->win.mlx, env->win.win,
-	env->cur->img->img, x, y);
-}
-
-void	start_game(t_global *env, int x, int y)
-{
-	mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[1]->
-	img, 0, 0);
-	if (get_button(MOUSE_LEFT, 0, 0, &env->events))
-	{
-		env->op.game = true;
-		env->opb.menu = false;
-		//free menu !!
-	}
-	mlx_put_image_to_window(env->win.mlx, env->win.win,
-	env->cur->img->img, x, y);
-}
-
 int		close_window(t_global *env)
 {
-	quit_cub(env);
+	free_cub(env, 0);
 	return (0);
 }
 
-void	quit_cub(t_global *env)
+void	ft_free_static_tab(char **tab, int size)
 {
-	free(env->data.xpm_no);
-	free(env->data.xpm_so);
-	free(env->data.xpm_ea);
-	free(env->data.xpm_we);
-	free(env->data.sprite);
-	ft_free_tab(env->data.map);
-	free_image_tab(5, env->main->menu, env->win.mlx);
-	free_image(env->game, env->win.mlx);
-	free_image(env->cur->img, env->win.mlx);
-	mlx_destroy_window(env->win.mlx, env->win.win);
-	free(env->rc);
-	free(env->main);
-	free(env->cur);
-	free(env);
-	exit(0);
+	int x;
+
+	x = 0;
+	if (!tab)
+		return;
+	if (size == 0)
+		return ;
+	while (x < size)
+	{
+		if (tab)
+			free(tab[x]);
+		x++;
+	}
 }
 
 void	control_events(t_parse *data, t_raycast *rc, t_keys events)

@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_options.h                                      :+:      :+:    :+:   */
+/*   cub_mlx.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 17:25:37 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:24:45 by csapt            ###   ########lyon.fr   */
+/*   Created: 2020/10/21 21:24:17 by csapt             #+#    #+#             */
+/*   Updated: 2020/10/22 18:24:30 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_OPTIONS_H
-# define CUB_OPTIONS_H
+#ifndef CUB_MLX_H
+# define CUB_MLX_H
 
-# include <stdbool.h>
-
-typedef struct		s_options
+typedef	struct		s_window
 {
-	bool			minimap;
-	bool			ceilingandfloor;
-	bool			texture;
-	bool			fps;
-	bool			game;
-	bool			debug;
-	bool			ignore;
-	bool			save;
-	////////////////////
-	bool			menu;
-	bool			resume;
-	bool			settings;
-	bool			ui;
-	bool			on;
-}					t_options;
+	void			*mlx;
+	void			*win;
+}					t_window;
 
 #endif

@@ -1,22 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_debug.h                                        :+:      :+:    :+:   */
+/*   cub_parse_config.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 01:44:13 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 01:46:18 by csapt            ###   ########lyon.fr   */
+/*   Created: 2020/10/22 14:45:51 by csapt             #+#    #+#             */
+/*   Updated: 2020/10/22 18:29:11 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_DEBUG_H
-# define CUB_DEBUG_H
-
-# include "libft.h"
-# include "cub_parse.h"
-
-void				print_tab(char **tab);
-void				ft_printdata(t_parse data, t_list **maplist);
-
-#endif

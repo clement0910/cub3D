@@ -6,13 +6,13 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 12:06:04 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 18:19:55 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 18:30:12 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	write_ray(t_raycast *rc, t_parse data, int x)
+void	init_ray(t_raycast *rc, t_parse data, int x)
 {
 	rc->camx = 2 * x / (double)data.resx - 1;
 	rc->ray.x = rc->dir.x + rc->plane.x * rc->camx;
@@ -21,7 +21,7 @@ void	write_ray(t_raycast *rc, t_parse data, int x)
 	rc->map.y = (int)data.player.y;
 }
 
-void	initialdist(t_raycast *rc, t_parse data)
+void	init_dist(t_raycast *rc, t_parse data)
 {
 	rc->deltad.x = fabs(1 / rc->ray.x);
 	rc->deltad.y = fabs(1 / rc->ray.y);
@@ -88,4 +88,39 @@ void	start_draw(t_raycast *rc, t_parse data)
 		rc->color = rc->ray.y < 0 ? RED : BLUE;
 	else
 		rc->color = rc->ray.x < 0 ? YELLOW : MAGENTA;
+	if (rc->side == 0)
+		rc->wallx = data.player.y + rc->pwalld * rc->ray.y;
+	else
+		rc->wallx = data.player.x + rc->pwalld * rc->ray.x;
+	rc->wallx -= floor(rc->wallx);
+}
+
+void	draw_tex(t_game *g, t_parse data, int x)
+{
+	int		y;
+	int		d;
+
+	d = 0;
+	if (g->rc.side == 1)
+		d = g->rc.ray.y < 0 ? SO : NO;
+	else
+		d = g->rc.ray.x < 0 ? EA : WE;
+	g->rc.tex.x = (int)(g->rc.wallx * (double)g->textures[d]->width);
+	if (g->rc.side == 0 && g->rc.ray.x > 0)
+		g->rc.tex.x = g->textures[d]->width - g->rc.tex.x - 1;
+	if (g->rc.side == 1 && g->rc.ray.y < 0)
+		g->rc.tex.x = g->textures[d]->width - g->rc.tex.x - 1;
+	g->rc.step = (1.0 * (g->textures[d]->height - 1)) / g->rc.lineh;
+	g->rc.texpos = (g->rc.dstart - data.resy / 2.0 + g->rc.lineh / 2.0)
+	* g->rc.step;
+	y = g->rc.dstart;
+	while (y < g->rc.dend)
+	{
+		g->rc.tex.y = (int)g->rc.texpos;
+		g->rc.texpos += g->rc.step;
+		g->rc.color = g->textures[d]->addr[g->rc.tex.y * (g->textures[d]->line_length / 4) + g->rc.tex.x];
+		//write_pixel(g, x, y, xpm[d]->addr[g->rc.tex.y * xpm[d]->line_lenght_i + g->rc.tex.x]);
+		write_pixel(g->game, x, y, g->rc.color);
+		y++;
+	}
 }

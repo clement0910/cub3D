@@ -1,8 +1,8 @@
-R 1440 900
-NO ./Coal.xpm
-SO ./Bricks.xpm
-WE ./bark.xpm
-EA ./bookshelf.xpm
+R 800 800
+NO ./assets/textures/Coal.xpm
+SO ./assets/textures/Bricks.xpm
+WE ./assets/textures/bark.xpm
+EA ./assets/textures/bookshelf.xpm
 
 S ./greenlight.xpm
 F 64,255,0

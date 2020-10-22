@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 12:03:29 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 18:08:04 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 18:25:51 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_img		*create_xpm_image(void *mlx, char *tex_file)
 	&xpm->width, &xpm->height)))
 	{
 		free_image(xpm, mlx);
-		return (NULL);
+		return (return_message("Invalid XPM File: ", tex_file));
 	}
 	xpm->addr = (int*)mlx_get_data_addr(xpm->img, &xpm->bits_per_pixel,
 	&xpm->line_length, &xpm->endian);
@@ -49,33 +49,26 @@ t_img		*create_xpm_image(void *mlx, char *tex_file)
 	return (xpm);
 }
 
-t_img		**create_tab_xpm(void *mlx, int x, int y)
+t_img		**create_tab_xpm(void *mlx, int size, char **xpm)
 {
+	int		x;
 	t_img	**tab;
 
-	if (!(tab = malloc(5 * sizeof(t_img*))))
+	x = 0;
+	if (!xpm || ft_tablen(xpm) > size)
+		return (return_message("Invalid XPM Tab", NULL));
+	if (!(tab = malloc((size + 1) * sizeof(t_img*))))
 		return (NULL);
-	if (!(tab[0] = create_xpm_image(mlx, "assets/ui/menu/menu.xpm")))
+	while (x < size)
 	{
-		//echec d'allouer fichier.xpm;
-		return (NULL);
+		if (!(tab[x] = create_xpm_image(mlx, xpm[x])))
+		{
+			free_image_tab(x + 1, tab, mlx);
+			return (NULL);
+		}
+		x++;
 	}
-	if (!(tab[1] = create_xpm_image(mlx, "assets/ui/menu/menu_p.xpm")))
-	{
-		//echec d'allouer fichier.xpm;
-		return (NULL);
-	}
-	if (!(tab[2] = create_xpm_image(mlx, "assets/ui/menu/menu_s.xpm")))
-	{
-		//echec d'allouer fichier.xpm;
-		return (NULL);
-	}
-	if (!(tab[3] = create_xpm_image(mlx, "assets/ui/menu/menu_q.xpm")))
-	{
-		//echec d'allouer fichier.xpm;
-		return (NULL);
-	}
-	tab[4] = NULL;
+	tab[size] = NULL;
 	return (tab);
 }
 
@@ -94,6 +87,8 @@ void		free_image_tab(int n, t_img **tab, void *mlx)
 	int		x;
 
 	x = 0;
+	if (!tab)
+		return ;
 	while (x < n)
 	{
 		free_image(tab[x], mlx);

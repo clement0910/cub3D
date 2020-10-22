@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 18:07:00 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/22 14:51:28 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			check_map(char *line, t_list **maplist)
 		x++;
 	if (line[x] == '0')
 	{
-		printf("INVALID MAP\n");
+		return_message("Invalid Map in line: ", line);
 		return (1);
 	}
 	else if (line[x] == '1')
@@ -46,13 +46,13 @@ int			check_line(char *line, void *mlx, t_parse *data)
 	if (line[x] == 'R')
 		return (parse_resolution(line + x, mlx, &data->resx, &data->resy));
 	else if (line[x] == 'N' && line[x + 1] == 'O')
-		return (parse_textures(line + x, &data->xpm_no, "NORTH"));
+		return (parse_textures(line + x, &data->xpm[NO], "NORTH"));
 	else if (line[x] == 'S' && line[x + 1] == 'O')
-		return (parse_textures(line + x, &data->xpm_so, "SOUTH"));
+		return (parse_textures(line + x, &data->xpm[SO], "SOUTH"));
 	else if (line[x] == 'W' && line[x + 1] == 'E')
-		return (parse_textures(line + x, &data->xpm_we, "WEST"));
+		return (parse_textures(line + x, &data->xpm[WE], "WEST"));
 	else if (line[x] == 'E' && line[x + 1] == 'A')
-		return (parse_textures(line + x, &data->xpm_ea, "EAST"));
+		return (parse_textures(line + x, &data->xpm[EA], "EAST"));
 	else if (line[x] == 'S')
 		return (parse_textures(line + x, &data->sprite, "SPRITE"));
 	else if (line[x] == 'C')
@@ -64,10 +64,10 @@ int			check_line(char *line, void *mlx, t_parse *data)
 	return (1);
 }
 
-int			cub_global_parse(int fd, t_parse *data, void *mlx)
+int			cub_parse(int fd, t_parse *data, void *mlx)
 {
-	int		error; //Optimize;
-	int		read; //Optimize;
+	int		error;
+	int		read; 
 	char	*line;
 	t_list	*maplist;
 
@@ -83,13 +83,13 @@ int			cub_global_parse(int fd, t_parse *data, void *mlx)
 			error = check_map(line, &maplist);
 		if (error == 1)
 		{
-			ft_putendl_fd("Error in file", 1);
+			free(line);
+			ft_lstclear(&maplist, &free);
 			return (1);
 		}
 		free(line);
 	}
 	filling_tab(data, &maplist);
 	ft_lstclear(&maplist, &free);
-	ft_printdata(*data, &maplist);
 	return (0);
 }
