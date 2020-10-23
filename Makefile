@@ -18,7 +18,9 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_raycast_player.c \
 		srcs/cub_init.c \
 		srcs/cub_menu.c \
-		srcs/cub_quit.c
+		srcs/cub_quit.c \
+		srcs/cub_sprite.c \
+		srcs/cub_print_sprite.c \
 
 HEADER = -I libft/ -I minilibx/ -I includes/ 
 

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:23:38 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 17:27:43 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,28 @@ typedef struct		s_raycast
 	int				side;
 	double			odirx;
 	double			oplanex;
-
 	double			wallx;
 	t_vec2i			tex;
 	double			step;
 	double			texpos;
+
+	double			*zbuffer;
+	t_vec2d			sprite;
+	double			invdet;
+	t_vec2d			transform;
+	int				spritesx;
+	t_vec2i			spritesize;
+	t_vec2i			dstart_s;
+	t_vec2i			dend_s;
+
+	int				pre1;
+	int				pre2;
+	int				pre3;
+	int				pre4;
+	int				pre5;
+	int				pre6;
+	float			pre7;
+	int				d;
 }					t_raycast;
 
 typedef struct		s_game
@@ -50,6 +67,7 @@ typedef struct		s_game
 	t_img			*game;
 	t_img			**textures;
 	t_raycast		rc;
+	t_sprite		**sprite;
 }					t_game;
 
 typedef struct		s_cursor
@@ -91,6 +109,22 @@ void				main_raycast(t_game *game, t_parse data, t_options op);
 void				draw_tex(t_game *g, t_parse data, int x);
 void				write_pixel(t_img *image, int x, int y, int color);
 void				write_rc(t_game *game, t_parse data, t_options op, int x);
+
+/*
+**					CALCULATION SPRITE
+*/
+void				sort_sprite(t_parse data, t_game *game);
+void				sprite_matrix(t_game *game, t_parse data, int i);
+void				calcul_sprite_xy(t_game *game, t_parse data, int i,
+					int *stripe);
+	
+
+/*
+**					PRINT SPRITE				
+*/
+void				main_sprite(t_game *game, t_parse data);
+void				write_sprite(t_game *game, t_parse data, int i,
+					int *stripe);	
 
 void				control_events(t_parse *data, t_raycast *rc, t_keys events);
 

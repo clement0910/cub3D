@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 15:42:34 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 12:57:10 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define CUB_PARSE_H
 
 # include "libft.h"
+
+
+typedef struct	s_spritei
+{
+	int 		nsprite;
+	char		**xpm_sprite;
+	int			x;
+	int			y;
+}				t_spritei;
 
 typedef	struct	s_colorxpm
 {
@@ -32,10 +41,12 @@ typedef struct	s_parse
 	t_colorxpm	floor;
 	t_colorxpm	ceiling;
 	//Sprite and GIF Here
-	char		*sprite;
+	t_spritei	*info;
+	char 		*sprite;
 	char		**map;
-	char		**tex;
+	char		**tex; //in other struct
 	t_vec2f		player;
+	int			nbsprite;
 }				t_parse;
 
 /*

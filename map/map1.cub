@@ -1,4 +1,4 @@
-R 10 10
+R 100 100
 NO ./assets/textures/Coal.xpm
 SO ./assets/textures/Bricks.xpm
 WE ./assets/textures/bark.xpm

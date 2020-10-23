@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:54:15 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:59:02 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 17:21:39 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB_IMAGE_H
 
 # include "libft.h"
+# include "cub_parse.h"
 
 typedef	struct		s_img
 {
@@ -27,6 +28,17 @@ typedef	struct		s_img
 	int				height;
 }					t_img;
 
+typedef	struct		s_sprite
+{
+	double			x;
+	double			y;
+	int				spriteo;
+	double			spritedis;
+	t_img			**sprite;
+	int				nsprite;
+	int				xpm;
+}					t_sprite;
+
 /*
 **					CREATE IMAGE
 */
@@ -39,6 +51,17 @@ t_img				*create_image(void *mlx, int x, int y);
 */
 void				free_image_tab(int n, t_img **tab, void *mlx);
 void				free_image(t_img *image, void *mlx);
+
+/*
+**					CREATE SPRITE
+*/
+t_sprite 			*create_sprite(void *mlx, t_spritei spritei);
+t_sprite			**create_sprite_tab(void *mlx, t_spritei *spritei, int size);
+/*
+**					FREE SPRITE
+**/
+void				free_sprite(t_sprite *sprite, void *mlx);
+void				free_sprite_tab(t_sprite **sprite, void *mlx, int size);
 
 void				write_pixel(t_img *image, int x, int y, int color);
 #endif

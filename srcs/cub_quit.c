@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:19:21 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:32:08 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 12:01:25 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ void	free_cub(t_global *env, int ret)
 	if (env->game)
 	{
 		free_image(env->game->game, env->win.mlx);
+		free(env->game->rc.zbuffer);
 		free_image_tab(4, env->game->textures, env->win.mlx);
+		free_sprite_tab(env->game->sprite, env->win.mlx, env->data.nbsprite);
 		mlx_destroy_window(env->win.mlx, env->win.win);
 	}
 	if (env->op.on)

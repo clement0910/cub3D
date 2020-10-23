@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:07:17 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 17:30:35 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	init_raystruct(t_global *env)
 	env->game->rc.dir.y = 0;
 	env->game->rc.plane.x = 0;
 	env->game->rc.plane.y = 0.66;
+	
+	env->game->rc.pre1 = env->data.resy * 128;
+	env->game->rc.pre2 = env->data.resx / 2;
+	env->game->rc.pre3 = env->data.resy / 2;
+	env->game->rc.pre4 = env->data.resy - 1;
+	env->game->rc.pre5 = env->data.resx - 1;
 }
 
 void	init_text(t_global *env)
@@ -35,12 +41,14 @@ void	init_text(t_global *env)
 int		loop(t_global *env)
 {
 	main_raycast(env->game, env->data, env->op);
+	main_sprite(env->game, env->data);
 	if (env->events.key_on[KEY_T])
 		env->op.texture = true;
 	else
 		env->op.texture = false;
 	control_events(&env->data, &env->game->rc, env->events);
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img, 0, 0);
+	xpm_to_gif(env->game, env->data);
 	mlx_do_sync(env->win.mlx);
 	return (0);
 }
@@ -56,8 +64,10 @@ int		loop_bonus(t_global *env)
 		else
 			env->op.texture = false;
 		main_raycast(env->game, env->data, env->op);
+		main_sprite(env->game, env->data);
 		control_events(&env->data, &env->game->rc, env->events);
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img, 0, 0);
+		xpm_to_gif(env->game, env->data);
 	}
 	mlx_do_sync(env->win.mlx);
 	return (0);

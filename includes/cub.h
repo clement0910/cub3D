@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:32:34 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 12:58:45 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct		s_global
 void				init_text(t_global *env);
 void				init_raystruct(t_global *env);
 void				ft_free_static_tab(char **tab, int size);
-
+void				init_sprite(t_global *env);
 /*
 **					INIT FUNC
 */				
