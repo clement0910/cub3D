@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 17:30:35 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 22:16:36 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,34 @@
 
 void	init_raystruct(t_global *env)
 {
-	env->data.player.x = 16;
-	env->data.player.y = 16;
-	env->game->rc.dir.x = -1;
-	env->game->rc.dir.y = 0;
-	env->game->rc.plane.x = 0;
-	env->game->rc.plane.y = 0.66;
-	
+	if (env->data.orientation == 'N')
+	{
+		env->game->rc.plane.x = 0;
+		env->game->rc.plane.y = 0.66;
+		env->game->rc.dir.x = -1;
+		env->game->rc.dir.y = 0;
+	}
+	if (env->data.orientation == 'S')
+	{
+		env->game->rc.plane.x = 0;
+		env->game->rc.plane.y = -0.66;
+		env->game->rc.dir.x = 1;
+		env->game->rc.dir.y = 0;
+	}
+	if (env->data.orientation == 'W')
+	{
+		env->game->rc.plane.x = -0.66;
+		env->game->rc.plane.y = 0;
+		env->game->rc.dir.x = 0;
+		env->game->rc.dir.y = -1;
+	}
+	if (env->data.orientation == 'E')
+	{
+		env->game->rc.plane.x = 0.66;
+		env->game->rc.plane.y = 0;
+		env->game->rc.dir.x = 0;
+		env->game->rc.dir.y = 1;
+	}	
 	env->game->rc.pre1 = env->data.resy * 128;
 	env->game->rc.pre2 = env->data.resx / 2;
 	env->game->rc.pre3 = env->data.resy / 2;
@@ -84,6 +105,7 @@ int		main(int ac, char **av)
 	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
 	env->data.resy, "Cub3D");
 	init_game(env);
+	printf("map:%d\n", check_validmap(&env->data));
 	init_raystruct(env);
 	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
 	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release, &env->events);

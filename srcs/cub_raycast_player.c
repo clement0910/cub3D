@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 15:08:31 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/20 18:20:35 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 21:52:46 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,41 @@
 
 void	move_backward(t_parse *data, t_raycast *rc, double speed)
 {
-	if (data->map[(int)data->player.y]
-		[(int)(data->player.x - rc->dir.x * speed)] != '1')
+	if (data->map[(int)(data->player.x - rc->dir.x * speed)]
+		[(int)data->player.y] != '1')
 		data->player.x -= rc->dir.x * speed;
-	if (data->map[(int)(data->player.y - rc->dir.y * speed)]
-		[(int)data->player.x] != '1')
+	if (data->map[(int)data->player.x]
+		[(int)(data->player.y - rc->dir.y * speed)] != '1')
 		data->player.y -= rc->dir.y * speed;
 }
 
 void	move_forward(t_parse *data, t_raycast *rc, double speed)
 {
-	if (data->map[(int)data->player.y]
-		[(int)(data->player.x + rc->dir.x * speed)] != '1')
+	if (data->map[(int)(data->player.x + rc->dir.x * speed)]
+		[(int)data->player.y] != '1')
 		data->player.x += rc->dir.x * speed;
-	if (data->map[(int)(data->player.y + rc->dir.y * speed)]
-		[(int)data->player.x] != '1')
+	if (data->map[(int)data->player.x]
+		[(int)(data->player.y + rc->dir.y * speed)] != '1')
 		data->player.y += rc->dir.y * speed;
 }
 
 void	move_left(t_parse *data, t_raycast *rc, double speed)
 {
-	if (data->map[(int)data->player.y]
-		[(int)(data->player.x - rc->plane.x * speed)] != '1')
+	if (data->map[(int)(data->player.x - rc->plane.x * speed)]
+		[(int)data->player.y] != '1')
 		data->player.x -= rc->plane.x * speed;
-	if (data->map[(int)(data->player.y - rc->plane.y * speed)]
-		[(int)data->player.x] != '1')
+	if (data->map[(int)data->player.x]
+		[(int)(data->player.y - rc->plane.y * speed)] != '1')
 		data->player.y -= rc->plane.y * speed;
 }
 
 void	move_right(t_parse *data, t_raycast *rc, double speed)
 {
-	if (data->map[(int)data->player.y]
-		[(int)(data->player.x + rc->plane.x * speed)] != '1')
+	if (data->map[(int)(data->player.x + rc->plane.x * speed)]
+		[(int)data->player.y] != '1')
 		data->player.x += rc->plane.x * speed;
-	if (data->map[(int)(data->player.y + rc->plane.y * speed)]
-		[(int)data->player.x] != '1')
+	if (data->map[(int)data->player.x]
+		[(int)(data->player.y + rc->plane.y * speed)] != '1')
 		data->player.y += rc->plane.y * speed;
 }
 

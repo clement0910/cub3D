@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 12:58:45 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/26 16:48:56 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "cub_options.h"
 # include "cub_mlx.h"
 # include "cub_game.h"
+# include "cub_bmp.h"
 
 # include <stdio.h>
 # include <sys/time.h> //FOR TIMER
@@ -78,11 +79,16 @@ void				free_cub(t_global *env, int exit);
 **					DEBUG
 */
 void				print_tab(char **tab);
-void				ft_printdata(t_parse data, t_list **maplist);
-
+void				ft_printdata(t_parse data, t_list **maplist, t_sprite_list **sprite);
+void				print_lst(t_list **maplist);
+void				print_lst_sprite(t_sprite_list **list);
 /*
 **					PRINT MESSAGE
 */
 void				print_error(char *error, bool warn);
 void				*return_message(char *error, char *details);
+
+t_list	*malloc_textures_list(char *line, int x, int y);
+t_sprite_desc *malloc_sprite_desc(char *line, int x, int y);
+
 #endif

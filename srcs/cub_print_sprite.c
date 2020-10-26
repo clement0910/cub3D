@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 13:10:19 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 17:26:13 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/26 14:37:57 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	sort_sprite(t_parse data, t_game *game)
 	}
 }
 
-void	calcul_sprite_xy(t_game *game, t_parse data, int i, int *stripe)
+void	calcul_sprite_xy(t_game *game, t_parse data, int *stripe)
 {
 	game->rc.spritesize.y = abs((int)(data.resy / game->rc.transform.y));
 	game->rc.dstart_s.y = -game->rc.spritesize.y / 2 + game->rc.pre3;
@@ -117,7 +117,7 @@ void	main_sprite(t_game *game, t_parse data)
 	while (i >= 0)
 	{
 		sprite_matrix(game, data, i);
-		calcul_sprite_xy(game, data, i, &stripe);
+		calcul_sprite_xy(game, data, &stripe);
 		game->rc.pre6 = game->rc.spritesize.y * 128;
 		game->rc.pre7 = (float)game->sprite[i]->sprite[game->sprite[i]->xpm]->
 		height / (float)game->rc.spritesize.x / 256.f;

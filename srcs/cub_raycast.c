@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 12:06:04 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 19:02:23 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/23 21:34:11 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	dda_algo(t_raycast *rc, t_parse data)
 			rc->map.y += rc->stepy;
 			rc->side = 1;
 		}
-		if (data.map[rc->map.y][rc->map.x] == '1')
+		if (data.map[rc->map.x][rc->map.y] == '1')
 			rc->hit = 1;
 	}
 	if (rc->side == 0)

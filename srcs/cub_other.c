@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 17:20:18 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/26 17:47:43 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,64 +33,10 @@ void	main_raycast(t_game *game, t_parse data, t_options op)
 
 void	init_sprite(t_global *env)
 {
-	env->data.nbsprite = 3;
-	env->data.info = ft_calloc(env->data.nbsprite + 1, sizeof(t_spritei));
-	env->data.info[0].nsprite = 1;
-	env->data.info[0].xpm_sprite = ft_calloc(2, sizeof(char*));
-	env->data.info[0].xpm_sprite[0] = ft_strdup("./assets/textures/sprites/greenlight.xpm");
-	env->data.info[0].x = 16;
-	env->data.info[0].y = 16;
-	// ///////////////////////////
-	// env->data.info[1].nsprite = 1;
-	// env->data.info[1].xpm_sprite = ft_calloc(2, sizeof(char*));
-	// env->data.info[1].xpm_sprite[0] = ft_strdup("./assets/textures/sprites/ghost.xpm");
-	// env->data.info[1].x = 10;
-	// env->data.info[1].y = 10;
-	///////////////////////////
-	///////////////////////////
-	env->data.info[1].nsprite = 17;
-	env->data.info[1].xpm_sprite = ft_calloc(18, sizeof(char*));
-	env->data.info[1].xpm_sprite[0] = ft_strdup("./assets/textures/sprites/pika/0.xpm");
-	env->data.info[1].xpm_sprite[1] = ft_strdup("./assets/textures/sprites/pika/1.xpm");
-	env->data.info[1].xpm_sprite[2] = ft_strdup("./assets/textures/sprites/pika/2.xpm");
-	env->data.info[1].xpm_sprite[3] = ft_strdup("./assets/textures/sprites/pika/3.xpm");
-	env->data.info[1].xpm_sprite[4] = ft_strdup("./assets/textures/sprites/pika/4.xpm");
-	env->data.info[1].xpm_sprite[5] = ft_strdup("./assets/textures/sprites/pika/5.xpm");
-	env->data.info[1].xpm_sprite[6] = ft_strdup("./assets/textures/sprites/pika/6.xpm");
-	env->data.info[1].xpm_sprite[7] = ft_strdup("./assets/textures/sprites/pika/7.xpm");
-	env->data.info[1].xpm_sprite[8] = ft_strdup("./assets/textures/sprites/pika/8.xpm");
-	env->data.info[1].xpm_sprite[9] = ft_strdup("./assets/textures/sprites/pika/9.xpm");
-	env->data.info[1].xpm_sprite[10] = ft_strdup("./assets/textures/sprites/pika/10.xpm");
-	env->data.info[1].xpm_sprite[11] = ft_strdup("./assets/textures/sprites/pika/11.xpm");
-	env->data.info[1].xpm_sprite[12] = ft_strdup("./assets/textures/sprites/pika/12.xpm");
-	env->data.info[1].xpm_sprite[13] = ft_strdup("./assets/textures/sprites/pika/13.xpm");
-	env->data.info[1].xpm_sprite[14] = ft_strdup("./assets/textures/sprites/pika/14.xpm");
-	env->data.info[1].xpm_sprite[15] = ft_strdup("./assets/textures/sprites/pika/15.xpm");
-	env->data.info[1].xpm_sprite[16] = ft_strdup("./assets/textures/sprites/pika/16.xpm");
-	env->data.info[1].x = 10;
-	env->data.info[1].y = 10;
-	///////////////////////////
-	env->data.info[2].nsprite = 17;
-	env->data.info[2].xpm_sprite = ft_calloc(18, sizeof(char*));
-	env->data.info[2].xpm_sprite[0] = ft_strdup("./assets/textures/sprites/pika/0.xpm");
-	env->data.info[2].xpm_sprite[1] = ft_strdup("./assets/textures/sprites/pika/1.xpm");
-	env->data.info[2].xpm_sprite[2] = ft_strdup("./assets/textures/sprites/pika/2.xpm");
-	env->data.info[2].xpm_sprite[3] = ft_strdup("./assets/textures/sprites/pika/3.xpm");
-	env->data.info[2].xpm_sprite[4] = ft_strdup("./assets/textures/sprites/pika/4.xpm");
-	env->data.info[2].xpm_sprite[5] = ft_strdup("./assets/textures/sprites/pika/5.xpm");
-	env->data.info[2].xpm_sprite[6] = ft_strdup("./assets/textures/sprites/pika/6.xpm");
-	env->data.info[2].xpm_sprite[7] = ft_strdup("./assets/textures/sprites/pika/7.xpm");
-	env->data.info[2].xpm_sprite[8] = ft_strdup("./assets/textures/sprites/pika/8.xpm");
-	env->data.info[2].xpm_sprite[9] = ft_strdup("./assets/textures/sprites/pika/9.xpm");
-	env->data.info[2].xpm_sprite[10] = ft_strdup("./assets/textures/sprites/pika/10.xpm");
-	env->data.info[2].xpm_sprite[11] = ft_strdup("./assets/textures/sprites/pika/11.xpm");
-	env->data.info[2].xpm_sprite[12] = ft_strdup("./assets/textures/sprites/pika/12.xpm");
-	env->data.info[2].xpm_sprite[13] = ft_strdup("./assets/textures/sprites/pika/13.xpm");
-	env->data.info[2].xpm_sprite[14] = ft_strdup("./assets/textures/sprites/pika/14.xpm");
-	env->data.info[2].xpm_sprite[15] = ft_strdup("./assets/textures/sprites/pika/15.xpm");
-	env->data.info[2].xpm_sprite[16] = ft_strdup("./assets/textures/sprites/pika/16.xpm");
-	env->data.info[2].x = 17;
-	env->data.info[2].y = 17;
+	env->data.info[0].x = 10;
+	env->data.info[0].y = 10;
+	env->data.info[1].x = 17;
+	env->data.info[1].y = 17;
 }
 
 void	write_rc(t_game *game, t_parse data, t_options op, int x)

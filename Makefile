@@ -21,10 +21,12 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_quit.c \
 		srcs/cub_sprite.c \
 		srcs/cub_print_sprite.c \
+		srcs/cub_parse_map.c \
+		srcs/cub_parse_sprite.c \
 
 HEADER = -I libft/ -I minilibx/ -I includes/ 
 
-FLAGS =  -Wall -Wextra -O3 
+FLAGS =  -Werror -Wall -Wextra -O3 
 
 MLX = minilibx/libmlx.dylib
 

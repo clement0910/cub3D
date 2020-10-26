@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:54:15 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 17:21:39 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/26 16:46:54 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include "libft.h"
 # include "cub_parse.h"
+
+typedef	t_list 		t_sprite_list;
+
+typedef	struct		s_sprite_desc
+{
+	char			c;
+	t_list			*textures;
+}					t_sprite_desc;
 
 typedef	struct		s_img
 {
@@ -62,6 +70,8 @@ t_sprite			**create_sprite_tab(void *mlx, t_spritei *spritei, int size);
 **/
 void				free_sprite(t_sprite *sprite, void *mlx);
 void				free_sprite_tab(t_sprite **sprite, void *mlx, int size);
-
 void				write_pixel(t_img *image, int x, int y, int color);
+
+int					check_sprites(char *line, t_sprite_list **slist);
+void			filling_sprite(t_parse *data, t_sprite_list **slist);
 #endif

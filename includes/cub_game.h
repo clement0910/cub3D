@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 17:27:43 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/26 14:37:32 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void				write_rc(t_game *game, t_parse data, t_options op, int x);
 */
 void				sort_sprite(t_parse data, t_game *game);
 void				sprite_matrix(t_game *game, t_parse data, int i);
-void				calcul_sprite_xy(t_game *game, t_parse data, int i,
+void				calcul_sprite_xy(t_game *game, t_parse data,
 					int *stripe);
 	
 
@@ -127,5 +127,5 @@ void				write_sprite(t_game *game, t_parse data, int i,
 					int *stripe);	
 
 void				control_events(t_parse *data, t_raycast *rc, t_keys events);
-
+void				xpm_to_gif(t_game *game, t_parse data);
 #endif
