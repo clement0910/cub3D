@@ -6,13 +6,13 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/26 17:47:43 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 14:53:53 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	main_raycast(t_game *game, t_parse data, t_options op)
+void	main_raycast(t_game *game, t_parse data, t_optis op)
 {
 	int x;
 
@@ -31,15 +31,7 @@ void	main_raycast(t_game *game, t_parse data, t_options op)
 	}
 }
 
-void	init_sprite(t_global *env)
-{
-	env->data.info[0].x = 10;
-	env->data.info[0].y = 10;
-	env->data.info[1].x = 17;
-	env->data.info[1].y = 17;
-}
-
-void	write_rc(t_game *game, t_parse data, t_options op, int x)
+void	write_rc(t_game *game, t_parse data, t_optis op, int x)
 {
 	int y;
 
@@ -105,20 +97,60 @@ void	xpm_to_gif(t_game *game, t_parse data)
 	}
 }
 
-void	control_events(t_parse *data, t_raycast *rc, t_keys events)
+void	control_events(t_parse *data, t_raycast *rc, t_keys events, t_optis *op)
 {
-	if (get_key(KEY_W, &events))
-		move_forward(data, rc, 0.08);
+	float	speedtmp;
+
+	speedtmp = data->speed;
 	if (get_key(KEY_SHIFT_LEFT, &events))
-		move_forward(data, rc, 0.12);
+		speedtmp *= 2;
+	if (get_key(KEY_W, &events))
+		move_forward(data, rc, speedtmp);
 	if (get_key(KEY_S, &events))
-		move_backward(data, rc, 0.08);
+		move_backward(data, rc, speedtmp);
 	if (get_key(KEY_A, &events))
-		move_left(data, rc, 0.08);
+		move_left(data, rc, speedtmp);
 	if (get_key(KEY_D, &events))
-		move_right(data, rc, 0.08);
+		move_right(data, rc, speedtmp);
 	if (get_key(KEY_LEFT, &events))
-		rotate(rc, 0.08);
+		rotate(rc, 0.06);
 	if (get_key(KEY_RIGHT, &events))
-		rotate(rc, -0.08);
+		rotate(rc, -0.06);
+	if (events.key_on[KEY_T]) //?
+		op->texture = true;
+	else
+		op->texture = false;
+}
+
+int		check_parse(t_parse *data, t_optis *op)
+{
+	if (data->resx == 0 || data->resy == 0)
+		return(return_message_int("Resolution Error", NULL, 1));
+	if (data->floor.xpm == NULL && data->floor.color == -1)
+		return(return_message_int("Floor Error | Put texture or int", NULL, 1));
+	if (data->ceiling.xpm == NULL && data->ceiling.color == -1)
+		return(return_message_int("Ceiling Error | Put texture or int", NULL, 1));
+	if (data->xpm[NO] == NULL)
+		return(return_message_int("NO Texture not found", NULL, 1));
+	if (data->xpm[SO] == NULL)
+		return(return_message_int("SO Texture not found", NULL, 1));
+	if (data->xpm[EA] == NULL)
+		return(return_message_int("EA Texture not found", NULL, 1));
+	if (data->xpm[WE] == NULL)
+		return(return_message_int("WE Texture not found", NULL, 1));
+	if (data->map == NULL)
+		return(return_message_int("Map not found", NULL, 1));
+	if (data->nbspritei == 0)
+		return(return_message_int("Sprite Error | 1 is mandatory", NULL, 1));
+	if (data->floor.xpm && data->ceiling.xpm)
+		op->ceilflooron = true;
+	if (data->floor.xpm && data->ceiling.xpm == NULL)
+		print_error("Need ceiling to display the floor and ceiling.", true);
+	if (data->floor.xpm == NULL && data->ceiling.xpm)
+		print_error("Need floor to display the floor and ceiling.", true);
+	if (data->floor.color == -1)
+		data->floor.color = GREEN; //change color
+	if (data->ceiling.color == -1)
+		data->ceiling.color = BLUE;
+	return (0);
 }

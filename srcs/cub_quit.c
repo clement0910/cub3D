@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:19:21 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 12:01:25 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 14:34:11 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	error_cub(char *error, t_global *env)
 {
 	if (error)
 		print_error(error, false);
-	free_cub(env, 1);
+	if (env)
+		free_cub(env, 1);
 	exit(EXIT_FAILURE);
 }
 
@@ -51,10 +52,29 @@ void	*return_message(char *error, char *details)
 	return (NULL);
 }
 
+int		return_message_int(char *error, char *details, int err)
+{
+	if (error)
+	{
+		ft_putstr_fd(error, 1);
+		if (details)
+			ft_putendl_fd(details, 1);
+		else
+			write(1, "\n", 1);
+	}
+	return (err);
+}
+
 void	free_parsing(t_parse *data)
 {
+	if (!data)
+		return ;
+	free_spritei(data->s_info, data->nbspritei);
 	ft_free_static_tab(data->xpm, 4);
-	free(data->sprite);
+	free(data->floor.xpm);
+	free(data->ceiling.xpm);
+	free(data->symbol);
+	free(data->s_map);
 }
 
 void	free_cub(t_global *env, int ret)
@@ -70,6 +90,8 @@ void	free_cub(t_global *env, int ret)
 	if (env->game)
 	{
 		free_image(env->game->game, env->win.mlx);
+		free_image(env->game->ceiling, env->win.mlx);
+		free_image(env->game->floor, env->win.mlx);
 		free(env->game->rc.zbuffer);
 		free_image_tab(4, env->game->textures, env->win.mlx);
 		free_sprite_tab(env->game->sprite, env->win.mlx, env->data.nbsprite);
@@ -83,5 +105,7 @@ void	free_cub(t_global *env, int ret)
 	}
 	free(env->game);
 	free(env);
+	// while (1)
+	// 	;
 	exit(ret);
 }

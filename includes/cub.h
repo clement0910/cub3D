@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/26 16:48:56 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 12:42:03 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 # define NO 0
 # define SO 1
-# define EA 2 
+# define EA 2
 # define WE 3
 
 typedef struct		s_global
@@ -44,18 +44,22 @@ typedef struct		s_global
 	t_window		win;
 	t_menu			*main;
 	t_keys			events;
-	t_options		op;
+	t_optis			op;
 	t_parse			data;
 	t_game			*game;
 }					t_global;
 
 void				init_text(t_global *env);
-void				init_raystruct(t_global *env);
+void				init_raystruct(t_parse data, t_game *game);
+void				init_ray_so_no(t_parse data, t_game *game);
+void				init_ray_ea_we(t_parse data, t_game *game);
+void				init_precalculated_rc(t_parse data, t_game *game);
+void				print_lstmap(t_list **spritelist, t_parse *data);
 void				ft_free_static_tab(char **tab, int size);
-void				init_sprite(t_global *env);
+
 /*
 **					INIT FUNC
-*/				
+*/
 void				init_parse(t_global *env, int ac, char **av);
 void				init_bonus(t_global *env);
 void				init_game(t_global *env);
@@ -74,21 +78,24 @@ void				quit_button(t_global *env, int x, int y);
 */
 void				error_cub(char *error, t_global *env);
 void				free_cub(t_global *env, int exit);
+void				free_lst_sinfo(t_sinfo_lst **s_info);
+void				free_spritei(t_spritei *s_info, int x);
 
 /*
 **					DEBUG
 */
-void				print_tab(char **tab);
-void				ft_printdata(t_parse data, t_list **maplist, t_sprite_list **sprite);
+void				print_tab(char **tab); //review
+void				ft_printdata(t_parse data, t_list **maplist,
+					t_sinfo_lst **s_info);
 void				print_lst(t_list **maplist);
-void				print_lst_sprite(t_sprite_list **list);
+void				print_lst_sprite(t_sinfo_lst **s_info);
+void				print_spritei(t_spritei s_info);
+void				print_lstmap(t_list **spritelist, t_parse *data);
 /*
 **					PRINT MESSAGE
 */
 void				print_error(char *error, bool warn);
 void				*return_message(char *error, char *details);
-
-t_list	*malloc_textures_list(char *line, int x, int y);
-t_sprite_desc *malloc_sprite_desc(char *line, int x, int y);
+int					return_message_int(char *error, char *details, int err);
 
 #endif

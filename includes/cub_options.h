@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:25:37 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/22 18:24:45 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/27 19:28:01 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct		s_options
 {
 	bool			minimap;
 	bool			ceilingandfloor;
+	bool			ceilflooron;
 	bool			texture;
 	bool			fps;
 	bool			game;
@@ -31,6 +32,6 @@ typedef struct		s_options
 	bool			settings;
 	bool			ui;
 	bool			on;
-}					t_options;
+}					t_optis;
 
 #endif

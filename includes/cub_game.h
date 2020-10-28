@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/26 14:37:32 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 14:56:38 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct		s_raycast
 	t_vec2i			spritesize;
 	t_vec2i			dstart_s;
 	t_vec2i			dend_s;
-
 	int				pre1;
 	int				pre2;
 	int				pre3;
@@ -59,7 +58,18 @@ typedef struct		s_raycast
 	int				pre5;
 	int				pre6;
 	float			pre7;
-	int				d;
+	int				d; //change name
+
+	t_vec2f			ray0;
+	t_vec2f			ray1;
+	int				posycenter;
+	float			posz;
+	float			rowdistance;
+	t_vec2f			floorstep;
+	t_vec2f			floor;
+	t_vec2i			cell;
+	int				tx;
+	int				ty;
 }					t_raycast;
 
 typedef struct		s_game
@@ -68,6 +78,8 @@ typedef struct		s_game
 	t_img			**textures;
 	t_raycast		rc;
 	t_sprite		**sprite;
+	t_img			*ceiling;
+	t_img			*floor;
 }					t_game;
 
 typedef struct		s_cursor
@@ -105,27 +117,30 @@ void				start_draw(t_raycast *rc, t_parse data);
 /*
 **					PRINT RAYCAST
 */
-void				main_raycast(t_game *game, t_parse data, t_options op);
+void				main_raycast(t_game *game, t_parse data, t_optis op);
 void				draw_tex(t_game *g, t_parse data, int x);
 void				write_pixel(t_img *image, int x, int y, int color);
-void				write_rc(t_game *game, t_parse data, t_options op, int x);
+void				write_rc(t_game *game, t_parse data, t_optis op, int x);
 
 /*
-**					CALCULATION SPRITE
+**					CALCULATION & PRINT SPRITE
 */
 void				sort_sprite(t_parse data, t_game *game);
 void				sprite_matrix(t_game *game, t_parse data, int i);
 void				calcul_sprite_xy(t_game *game, t_parse data,
 					int *stripe);
-	
-
-/*
-**					PRINT SPRITE				
-*/
 void				main_sprite(t_game *game, t_parse data);
 void				write_sprite(t_game *game, t_parse data, int i,
-					int *stripe);	
+					int *stripe);
 
-void				control_events(t_parse *data, t_raycast *rc, t_keys events);
+/*
+**					CALCULATION & PRINT FLOOR
+*/
+void				main_floor(t_game *game, t_parse data);
+void				calcul_floor(t_game *game);
+void				calcul_floor_step(t_game *game, t_parse data, int y);
+
 void				xpm_to_gif(t_game *game, t_parse data);
+void				control_events(t_parse *data, t_raycast *rc, t_keys events,
+					t_optis *op);
 #endif

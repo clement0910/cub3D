@@ -6,41 +6,42 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:09:26 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 16:21:41 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 11:33:35 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-t_sprite *create_sprite(void *mlx, t_spritei spritei)
+t_sprite		*create_sprite(void *mlx, t_spritei s_info, int x, int y)
 {
-	t_sprite 	*sprite;
+	t_sprite	*sprite;
 
 	if (!(sprite = malloc(sizeof(t_sprite))))
 		return (NULL);
-	if (!(sprite->sprite = create_tab_xpm(mlx, spritei.nsprite,
-		spritei.xpm_sprite)))
+	if (!(sprite->sprite = create_tab_xpm(mlx, s_info.nsprite,
+		s_info.xpm_sprite)))
 		return (NULL);
-	sprite->x = spritei.x;
-	sprite->y = spritei.y;
-	sprite->nsprite = spritei.nsprite;
+	sprite->x = x;
+	sprite->y = y;
+	sprite->nsprite = s_info.nsprite;
 	sprite->xpm = 0;
 	return (sprite);
 }
 
-t_sprite	**create_sprite_tab(void *mlx, t_spritei *spritei, int size)
+t_sprite		**create_sprite_tab(void *mlx, t_spritem *s_map, int size)
 {
 	int			x;
 	t_sprite	**sprite;
 
 	x = 0;
-	if (!spritei)
+	if (!s_map) //tablen?
 		return (return_message("Invalid Sprite Info", NULL));
 	if (!(sprite = malloc((size + 1) * sizeof(t_sprite*))))
-		return(NULL);
+		return (NULL);
 	while (x < size)
 	{
-		if (!(sprite[x] = create_sprite(mlx, spritei[x])))
+		if (!(sprite[x] = create_sprite(mlx, s_map[x].s_info,
+		s_map[x].x, s_map[x].y)))
 		{
 			free_sprite_tab(sprite, mlx, x + 1);
 			return (NULL);
@@ -51,17 +52,17 @@ t_sprite	**create_sprite_tab(void *mlx, t_spritei *spritei, int size)
 	return (sprite);
 }
 
-void	free_sprite(t_sprite *sprite, void *mlx)
+void		free_sprite(t_sprite *sprite, void *mlx)
 {
 	if (sprite)
 	{
-		if(sprite->sprite)
+		if (sprite->sprite)
 			free_image_tab(sprite->nsprite, sprite->sprite, mlx);
 		free(sprite);
 	}
 }
 
-void	free_sprite_tab(t_sprite **sprite, void *mlx, int size)
+void		free_sprite_tab(t_sprite **sprite, void *mlx, int size)
 {
 	int		x;
 

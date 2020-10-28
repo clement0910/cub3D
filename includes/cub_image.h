@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:54:15 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/26 16:46:54 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 13:18:58 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 
 # include "libft.h"
 # include "cub_parse.h"
-
-typedef	t_list 		t_sprite_list;
-
-typedef	struct		s_sprite_desc
-{
-	char			c;
-	t_list			*textures;
-}					t_sprite_desc;
 
 typedef	struct		s_img
 {
@@ -63,15 +55,13 @@ void				free_image(t_img *image, void *mlx);
 /*
 **					CREATE SPRITE
 */
-t_sprite 			*create_sprite(void *mlx, t_spritei spritei);
-t_sprite			**create_sprite_tab(void *mlx, t_spritei *spritei, int size);
+t_sprite			*create_sprite(void *mlx, t_spritei spritei, int x, int y);
+t_sprite			**create_sprite_tab(void *mlx, t_spritem *s_map, int size);
 /*
 **					FREE SPRITE
-**/
+*/
 void				free_sprite(t_sprite *sprite, void *mlx);
 void				free_sprite_tab(t_sprite **sprite, void *mlx, int size);
-void				write_pixel(t_img *image, int x, int y, int color);
 
-int					check_sprites(char *line, t_sprite_list **slist);
-void			filling_sprite(t_parse *data, t_sprite_list **slist);
+void				write_pixel(t_img *image, int x, int y, int color);
 #endif

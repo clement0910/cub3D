@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:52:05 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/24 07:00:29 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 14:22:41 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ int		parse_resolution(char *line, void *mlx, int *x, int *y)
 	i = 1;
 	*x = ft_atoi_index(line, &i);
 	*y = ft_atoi_index(line, &i);
-	if (*x == 0 || *y == 0) //Minimum / Check for neg resolution
+	if (*x < 100 || *y < 100)
 	{
-		return_message("Resolution Too Low !", NULL);
-		return (1);
+		print_error("Resolution Too Low | Set to 100x100", true);
+		*x = 100;
+		*y = 100;
+		return (0);
 	}
 	mlx_get_screen_size(mlx, &maxx, &maxy);
 	if (*x > maxx || *y > maxy)
@@ -53,7 +55,10 @@ int		parse_textures(char *line, char **textures, const char *dir)
 		'\0')
 			y++;
 		if (!(*textures = ft_substr(line, x, y - x)))
+		{
+			//error here
 			return (1);
+		}
 	}
 	else
 	{
@@ -63,7 +68,7 @@ int		parse_textures(char *line, char **textures, const char *dir)
 	return (0);
 }
 
-int		parse_xpmcolor(char *line, int *color, const char *details)
+int		parse_xpmcolor(char *line, t_colorxpm *color, const char *details)
 {
 	int		x;
 	int		r;
@@ -71,8 +76,13 @@ int		parse_xpmcolor(char *line, int *color, const char *details)
 	int		b;
 
 	x = 1;
-	while ((line[x] >= 9 && line[x] <= 13) || line[x] == 32)
+	while (((line[x] >= 9 && line[x] <= 13) || line[x] == 32)
+			&& line[x] != '\0')
 		x++;
+	if (line[x] == '\0')
+		return(return_message_int((char*)details, " not found.", 1));
+	if (line[x] == '.' && line[x + 1] == '/')
+		return (parse_textures(line, &color->xpm, details));
 	r = ft_atoi_index(line, &x);
 	while ((line[x] >= 9 && line[x] <= 13) || line[x] == 32 || line[x] == ',')
 		x++;
@@ -85,6 +95,6 @@ int		parse_xpmcolor(char *line, int *color, const char *details)
 		return_message("Wrong color parameters for ", (char*)details);
 		return (1);
 	}
-	*color = (0 << 24 | r << 16 | g << 8 | b);
+	color->color = (0 << 24 | r << 16 | g << 8 | b);
 	return (0);
 }

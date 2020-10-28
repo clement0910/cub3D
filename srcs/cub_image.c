@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 12:03:29 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 17:29:51 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/27 11:43:04 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_img		**create_tab_xpm(void *mlx, int size, char **xpm)
 	t_img	**tab;
 
 	x = 0;
-	if (!xpm || ft_tablen(xpm) > size)
+	if (!xpm)
 		return (return_message("Invalid XPM Tab", NULL));
 	if (!(tab = malloc((size + 1) * sizeof(t_img*))))
 		return (NULL);

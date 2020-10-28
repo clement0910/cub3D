@@ -6,48 +6,11 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/23 22:16:36 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 13:34:26 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-void	init_raystruct(t_global *env)
-{
-	if (env->data.orientation == 'N')
-	{
-		env->game->rc.plane.x = 0;
-		env->game->rc.plane.y = 0.66;
-		env->game->rc.dir.x = -1;
-		env->game->rc.dir.y = 0;
-	}
-	if (env->data.orientation == 'S')
-	{
-		env->game->rc.plane.x = 0;
-		env->game->rc.plane.y = -0.66;
-		env->game->rc.dir.x = 1;
-		env->game->rc.dir.y = 0;
-	}
-	if (env->data.orientation == 'W')
-	{
-		env->game->rc.plane.x = -0.66;
-		env->game->rc.plane.y = 0;
-		env->game->rc.dir.x = 0;
-		env->game->rc.dir.y = -1;
-	}
-	if (env->data.orientation == 'E')
-	{
-		env->game->rc.plane.x = 0.66;
-		env->game->rc.plane.y = 0;
-		env->game->rc.dir.x = 0;
-		env->game->rc.dir.y = 1;
-	}	
-	env->game->rc.pre1 = env->data.resy * 128;
-	env->game->rc.pre2 = env->data.resx / 2;
-	env->game->rc.pre3 = env->data.resy / 2;
-	env->game->rc.pre4 = env->data.resy - 1;
-	env->game->rc.pre5 = env->data.resx - 1;
-}
 
 void	init_text(t_global *env)
 {
@@ -61,14 +24,20 @@ void	init_text(t_global *env)
 
 int		loop(t_global *env)
 {
+	if (env->op.ceilflooron) //?
+	{
+		if (env->events.key_on[KEY_F])
+			env->op.ceilingandfloor = false;
+		else
+			env->op.ceilingandfloor = true;
+	}
+	if (env->op.ceilingandfloor)
+		main_floor(env->game, env->data);
 	main_raycast(env->game, env->data, env->op);
 	main_sprite(env->game, env->data);
-	if (env->events.key_on[KEY_T])
-		env->op.texture = true;
-	else
-		env->op.texture = false;
-	control_events(&env->data, &env->game->rc, env->events);
-	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img, 0, 0);
+	control_events(&env->data, &env->game->rc, env->events, &env->op);
+	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
+	, 0, 0);
 	xpm_to_gif(env->game, env->data);
 	mlx_do_sync(env->win.mlx);
 	return (0);
@@ -80,14 +49,11 @@ int		loop_bonus(t_global *env)
 		menu_game(env);
 	if (env->op.game)
 	{
-		if (env->events.key_on[KEY_T])
-			env->op.texture = true;
-		else
-			env->op.texture = false;
 		main_raycast(env->game, env->data, env->op);
 		main_sprite(env->game, env->data);
-		control_events(&env->data, &env->game->rc, env->events);
-		mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img, 0, 0);
+		control_events(&env->data, &env->game->rc, env->events, &env->op);
+		mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
+		, 0, 0);
 		xpm_to_gif(env->game, env->data);
 	}
 	mlx_do_sync(env->win.mlx);
@@ -100,17 +66,19 @@ int		main(int ac, char **av)
 
 	if (!(env = ft_calloc(1, sizeof(t_global))))
 		error_cub("Allocation", env);
+	env->win.mlx = mlx_init(); //?
 	init_parse(env, ac, av);
-	env->win.mlx = mlx_init();
 	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
 	env->data.resy, "Cub3D");
 	init_game(env);
-	printf("map:%d\n", check_validmap(&env->data));
-	init_raystruct(env);
+	init_raystruct(env->data, env->game);
 	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
-	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release, &env->events);
-	mlx_hook(env->win.win, BUTTON_PRESS, BUTTON_PRESS_MASK, button_press, &env->events);
-	mlx_hook(env->win.win, BUTTON_RELEASE, BUTTON_RELEASE_MASK, button_release, &env->events);
+	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release,
+	&env->events);
+	mlx_hook(env->win.win, BUTTON_PRESS, BUTTON_PRESS_MASK, button_press,
+	&env->events);
+	mlx_hook(env->win.win, BUTTON_RELEASE, BUTTON_RELEASE_MASK, button_release,
+	&env->events);
 	mlx_hook(env->win.win, 17, 0, close_window, env);
 	if (env->op.on)
 		mlx_loop_hook(env->win.mlx, loop_bonus, env);

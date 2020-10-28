@@ -2,3 +2,4 @@ a.out.dSYM/Contents/Resources/DWARF/a.out
 a.out
 .DS_Store
 a.out.dSYM/Contents/Info.plist
+*.o

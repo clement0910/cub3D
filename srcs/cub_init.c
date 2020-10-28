@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/26 17:46:05 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 14:50:09 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_options(int ac, char **av, t_global *env)
 		env->op.ignore = true;
 	else
 	{
-		ft_putendl_fd("Use ./Cub3D -help for more info.", 1);
+		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
 		error_cub("Command", env);
 	}
 }
@@ -62,14 +62,21 @@ void	init_game(t_global *env)
 	if (!(env->game->game = create_image(env->win.mlx, env->data.resx,
 		env->data.resy)))
 		error_cub("Allocation", env);
+	if (env->data.floor.xpm != NULL)
+		if (!(env->game->floor = create_xpm_image(env->win.mlx,
+		env->data.floor.xpm)))
+			error_cub("Allocation", env);
+	if (env->data.ceiling.xpm != NULL)
+		if (!(env->game->ceiling = create_xpm_image(env->win.mlx,
+		env->data.ceiling.xpm)))
+			error_cub("Allocation", env);
 	ft_bzero(&env->game->rc, sizeof(env->game->rc));
 	if (!(env->game->rc.zbuffer = malloc(env->data.resx * sizeof(double))))
 		error_cub("Allocation", env);
 	if (!(env->game->textures = create_tab_xpm(env->win.mlx, 4, env->data.xpm)))
 		error_cub("Allocation", env);
-	init_sprite(env);
 	if (!(env->game->sprite = create_sprite_tab(env->win.mlx,
-	env->data.info, env->data.nbsprite)))
+	env->data.s_map, env->data.nbsprite)))
 		error_cub("Allocation", env);
 	if (env->data.resx == 1440 && env->data.resy == 900)
 		init_bonus(env);
@@ -86,7 +93,14 @@ void	init_parse(t_global *env, int ac, char **av)
 		error_cub("Memory", env);
 	}
 	ft_bzero(&env->data, sizeof(t_parse));
+	env->data.floor.xpm = NULL; //?
+	env->data.ceiling.xpm = NULL;
+	env->data.floor.color = -1;
+	env->data.ceiling.color = -1;
+	env->data.speed = 0.08;
 	if (cub_parse(fd, &env->data, env->win.mlx) == 1)
+		error_cub("Parse", env);
+	if (check_parse(&env->data, &env->op) == 1)
 		error_cub("Parse", env);
 	if (close(fd) == -1)
 	{

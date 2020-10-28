@@ -6,15 +6,15 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 00:03:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/26 17:02:13 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/27 23:32:30 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	print_lst_sprite(t_sprite_list **list)
+void	print_lst_sprite(t_sinfo_lst **list)
 {
-	t_sprite_list *temp;
+	t_sinfo_lst *temp;
 
 	temp = *list;
 	printf("%d\n", ft_lstsize(temp));
@@ -38,6 +38,30 @@ void	print_lst(t_list **maplist)
 	}
 }
 
+void	print_lstmap(t_list **spritelist, t_parse *data)
+{
+	t_list *temp;
+	int		x;
+
+	x = 0;
+	temp = *spritelist;
+	printf("size: %d\n", ft_lstsize(temp));
+	while (temp)
+	{
+		printf("x:%d| y:%d\n", ((t_spritem*)temp->content)->x, ((t_spritem*)temp->content)->y);
+		print_spritei(((t_spritem*)temp->content)->s_info);
+		temp = temp->next;
+	}
+	printf("------------------\n");
+	printf("size:%d\n", data->nbsprite);
+	while (x < data->nbsprite)
+	{
+		printf("x: %d| y: %d\n", data->s_map[x].x, data->s_map[x].y);
+		print_spritei(data->s_map[x].s_info);
+		x++;
+	}
+}
+
 void	print_tab(char **tab)
 {
 	int x;
@@ -50,12 +74,14 @@ void	print_tab(char **tab)
 	}
 }
 
-void	print_spritei(t_spritei info)
+void	print_spritei(t_spritei s_info)
 {
-	printf("sprite: %d\n", info.nsprite);
-	print_tab(info.xpm_sprite);
+	printf("sprite: %d\n", s_info.nsprite);
+	printf("sign: %c\n", s_info.c);
+	print_tab(s_info.xpm_sprite);
 }
-void	ft_printdata(t_parse data, t_list **maplist, t_sprite_list **sprite)
+
+void	ft_printdata(t_parse data, t_list **maplist, t_sinfo_lst **sprite)
 {
 	int		x;
 
@@ -66,9 +92,11 @@ void	ft_printdata(t_parse data, t_list **maplist, t_sprite_list **sprite)
 	printf("south: %s\n", data.xpm[SO]);
 	printf("east: %s\n", data.xpm[EA]);
 	printf("west: %s\n", data.xpm[WE]);
-	printf("sprite: %s\n", data.sprite);
 	printf("ceiling: %d\n", data.ceiling.color);
+	printf("ceiling: %s\n", data.ceiling.xpm);
 	printf("floor: %d\n", data.floor.color);
+	printf("floor: %s\n", data.floor.xpm);
+	printf("symbol: %s\n", data.symbol);
 	printf("---------------------------------------\n");
 	print_lst(maplist);
 	printf("---------------------------------------\n");
@@ -78,11 +106,12 @@ void	ft_printdata(t_parse data, t_list **maplist, t_sprite_list **sprite)
 	printf("---------------------------------------\n");
 	print_lst_sprite(sprite);
 	printf("---------------------------------------\n");
-	printf("nbsprite: %d\n", data.nbsprite);
-	while (x < data.nbsprite)
+	printf("nbspritei: %d\n", data.nbspritei);
+	while (x < data.nbspritei)
 	{
-		print_spritei(data.info[x]);
+		print_spritei(data.s_info[x]);
 		printf("-------------\n");
 		x++;
 	}
+	printf("---------------------------------------\n");
 }
