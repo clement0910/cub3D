@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:19:10 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 21:57:24 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/29 00:46:25 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ t_spritem	*malloc_smap(double x, double y, t_spritei s_info)
 	return (s_map);
 }
 
+int			find_sprite_info(char c, t_parse *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->nbspritei)
+	{
+		if (data->s_info[i].c == c)
+			return(i);
+		i++;
+	}
+	return (i);
+}
 void		free_lst_sinfo(t_sinfo_lst **s_info)
 {
 	t_list		*temp;

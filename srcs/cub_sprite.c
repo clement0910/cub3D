@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:09:26 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 19:15:12 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/29 00:47:06 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_sprite		**create_sprite_tab(void *mlx, t_spritem *s_map, int size)
 
 	x = 0;
 	if (!s_map) //tablen?
-		return (return_message("Invalid Sprite Info", NULL));
+		return (return_message("Invalid S_MAP", NULL));
 	if (!(sprite = malloc((size + 1) * sizeof(t_sprite*))))
 		return (NULL);
 	while (x < size)

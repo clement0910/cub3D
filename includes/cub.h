@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 12:42:03 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 23:39:49 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,5 @@ void				print_lstmap(t_list **spritelist, t_parse *data);
 void				print_error(char *error, bool warn);
 void				*return_message(char *error, char *details);
 int					return_message_int(char *error, char *details, int err);
-
+int					return_message_int_c(char *error, char c, int err);
 #endif

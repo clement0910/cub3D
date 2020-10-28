@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 19:10:48 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/29 00:17:00 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int				fill_map(t_parse *data, t_list **maplist);
 */
 int				fill_sprite(t_parse *data, t_list **sprite_list);
 int				fill_symbol(t_parse *data);
-int				check_pos_sprite(t_parse *data, char c, int x, int y,
-				t_list **s_map);
+int				check_pos_sprite(t_parse *data, int x, int y, t_list **s_map);
+int				find_sprite_info(char c, t_parse *data);
 
 /*
 **				GLOBAL PARSE

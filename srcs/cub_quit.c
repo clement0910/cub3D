@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:19:21 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 14:34:11 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/29 00:46:49 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,22 @@ int		return_message_int(char *error, char *details, int err)
 		ft_putstr_fd(error, 1);
 		if (details)
 			ft_putendl_fd(details, 1);
+		else
+			write(1, "\n", 1);
+	}
+	return (err);
+}
+
+int		return_message_int_c(char *error, char c, int err)
+{
+	if (error)
+	{
+		ft_putstr_fd(error, 1);
+		if (c != 0)
+		{
+			write(1, &c, 1);
+			write(1, "\n", 1);
+		}
 		else
 			write(1, "\n", 1);
 	}
