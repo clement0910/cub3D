@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 00:03:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/27 23:32:30 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 19:14:43 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	print_lstmap(t_list **spritelist, t_parse *data)
 	printf("size: %d\n", ft_lstsize(temp));
 	while (temp)
 	{
-		printf("x:%d| y:%d\n", ((t_spritem*)temp->content)->x, ((t_spritem*)temp->content)->y);
+		printf("x:%f| y:%f\n", ((t_spritem*)temp->content)->x, ((t_spritem*)temp->content)->y);
 		print_spritei(((t_spritem*)temp->content)->s_info);
 		temp = temp->next;
 	}
@@ -56,7 +56,7 @@ void	print_lstmap(t_list **spritelist, t_parse *data)
 	printf("size:%d\n", data->nbsprite);
 	while (x < data->nbsprite)
 	{
-		printf("x: %d| y: %d\n", data->s_map[x].x, data->s_map[x].y);
+		printf("x: %f| y: %f\n", data->s_map[x].x, data->s_map[x].y);
 		print_spritei(data->s_map[x].s_info);
 		x++;
 	}

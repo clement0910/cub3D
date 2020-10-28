@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:52:05 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 14:22:41 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 16:02:04 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ int		parse_textures(char *line, char **textures, const char *dir)
 	if (line[x] == '.' && line[x + 1] == '/')
 	{
 		y = x;
-		while ((line[y] <= 9 || line[y] >= 13) && line[y] != 32 && line[y] !=
-		'\0')
+		while ((line[y] <= 9 || line[y] >= 13) && line[y] != '\0')
 			y++;
 		if (!(*textures = ft_substr(line, x, y - x)))
 		{
@@ -86,9 +85,13 @@ int		parse_xpmcolor(char *line, t_colorxpm *color, const char *details)
 	r = ft_atoi_index(line, &x);
 	while ((line[x] >= 9 && line[x] <= 13) || line[x] == 32 || line[x] == ',')
 		x++;
+	if (line[x] == '\0')
+		return(return_message_int((char*)details, " invalid.", 1));
 	g = ft_atoi_index(line, &x);
 	while ((line[x] >= 9 && line[x] <= 13) || line[x] == 32 || line[x] == ',')
 		x++;
+	if (line[x] == '\0')
+		return(return_message_int((char*)details, " invalid.", 1));
 	b = ft_atoi_index(line, &x);
 	if (r > 255 || b > 255 || g > 255)
 	{

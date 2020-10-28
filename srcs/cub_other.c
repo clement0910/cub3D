@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 14:53:53 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 15:42:04 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	control_events(t_parse *data, t_raycast *rc, t_keys events, t_optis *op)
 {
 	float	speedtmp;
 
-	speedtmp = data->speed;
+	speedtmp = 0.08;
 	if (get_key(KEY_SHIFT_LEFT, &events))
 		speedtmp *= 2;
 	if (get_key(KEY_W, &events))
@@ -117,9 +117,9 @@ void	control_events(t_parse *data, t_raycast *rc, t_keys events, t_optis *op)
 	if (get_key(KEY_RIGHT, &events))
 		rotate(rc, -0.06);
 	if (events.key_on[KEY_T]) //?
-		op->texture = true;
-	else
 		op->texture = false;
+	else
+		op->texture = true;
 }
 
 int		check_parse(t_parse *data, t_optis *op)

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 18:53:17 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 14:34:48 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 22:38:48 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int		check_player(t_parse *data, int x, int y)
 {
 	if (check_around(*data, x, y))
 		return (1);
-	if (data->orientation > 78)
+	if (data->orientation > 68)
 		return (1);
 	data->orientation = data->map[y][x];
-	data->player.x = x;
-	data->player.y = y;
+	data->player.x = y + 0.5f;
+	data->player.y = x + 0.5f;
 	return (0);
 }
 
@@ -83,7 +83,36 @@ int	check_pos_sprite(t_parse *data, char c, int x, int y, t_list **s_map)
 	return (0);
 }
 
+// int		valid_sprite_player(t_parse *data, int x, int y, t_list **s_map)
+// {
+// 	if (data->map[y][x] == '0' || ft_chrcmp(data->symbol, data->map[y][x]) == 0)
+// 	{
+// 		if (ft_chrcmp(data->symbol, data->map[y][x]) == 0)
+// 			check_pos_sprite(data, data->map[y][x], x, y, &s_map);
+// 		if (check_around(*data, x, y))
+// 		{
+// 			ft_lstclear(s_map, &free);
+// 			return (1);
+// 		}
+// 	}
+// 	else if (data->map[y][x] == ' ')
+// 		;
+// 	else if (data->map[y][x] == 'N' || data->map[y][x] == 'E' ||
+// 			data->map[y][x] == 'W' || data->map[y][x] == 'S')
+// 	{
+// 		if (check_player(data, x, y))
+// 		{
+// 			ft_lstclear(&s_map, &free);
+// 			return (1);
+// 		}
+// 	}
+// 	else
+// 	{
+// 		ft_lstclear(&s_map, &free);
+// 		return (1);
+// 	}
 
+// }
 int		check_validmap(t_parse *data)
 {
 	int			x;
@@ -112,7 +141,7 @@ int		check_validmap(t_parse *data)
 			else if (data->map[y][x] == '0' || ft_chrcmp(data->symbol, data->map[y][x]) == 0)
 			{
 				if (ft_chrcmp(data->symbol, data->map[y][x]) == 0)
-					check_pos_sprite(data, data->map[y][x], y, x, &s_map);	
+					check_pos_sprite(data, data->map[y][x], x, y, &s_map);	
 				if (check_around(*data, x, y))
 				{
 					ft_lstclear(&s_map, &free);
@@ -121,8 +150,8 @@ int		check_validmap(t_parse *data)
 			}
 			else if (data->map[y][x] == ' ')
 				;
-			else if (data->map[y][x] == 'N' || data->map[y][x] == 'O' ||
-			data->map[y][x] == 'W' || data->map[y][x] == 'S')
+			else if (data->map[y][x] == 'N' || data->map[y][x] == 'E' ||
+					data->map[y][x] == 'W' || data->map[y][x] == 'S')
 			{
 				if (check_player(data, x, y))
 				{

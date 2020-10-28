@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 14:51:50 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 19:10:48 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 typedef	t_list	t_sinfo_lst;
 typedef	t_list	t_smap_lst;
 
-typedef	struct		s_sprite_desc
+typedef	struct	s_sprite_desc
 {
-	char			c;
-	t_list			*textures;
-}					t_sprite_desc;
+	char		c;
+	t_list		*textures;
+}				t_sprite_desc;
 
 typedef struct	s_spritei
 {
@@ -34,8 +34,8 @@ typedef struct	s_spritei
 
 typedef	struct	s_spritem
 {
-	int			x;
-	int			y;
+	float		x;
+	float		y;
 	t_spritei	s_info;
 }				t_spritem;
 
@@ -63,8 +63,6 @@ typedef struct	s_parse
 	t_vec2f		player;
 	int			nbsprite;
 	int			nbspritei;
-	float		speed;
-
 }				t_parse;
 
 /*
@@ -84,7 +82,7 @@ int				new_spritesinfo(char *line, t_sinfo_lst **s_info);
 int				addback_spritesinfo(char *line, t_sinfo_lst **s_info,
 				int x, int y);
 int				textures_of_sprites(char *line, t_sinfo_lst **s_info);
-t_spritem		*malloc_smap(int x, int y, t_spritei s_info);
+t_spritem		*malloc_smap(double x, double y, t_spritei s_info);
 t_list			*malloc_texlist(char *line, int x, int y);
 t_sprite_desc	*malloc_sdesc(char *line, int x, int y);
 int				fill_spriteinfo(t_parse *data, t_sinfo_lst **s_info);

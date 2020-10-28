@@ -35,7 +35,7 @@ FLAGS =  -Werror -Wall -Wextra -O3
 
 MLX = minilibx/libmlx.dylib
 
-FW = -L minilibx -lmlx -framework OpenGL -framework AppKit
+FW = -L minilibx -lmlx -framework OpenGL -lm -framework AppKit
 
 LIBFT = libft/libft.a
 

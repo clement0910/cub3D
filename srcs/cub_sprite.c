@@ -6,13 +6,13 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:09:26 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 11:33:35 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/28 19:15:12 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-t_sprite		*create_sprite(void *mlx, t_spritei s_info, int x, int y)
+t_sprite		*create_sprite(void *mlx, t_spritei s_info, double x, double y)
 {
 	t_sprite	*sprite;
 
