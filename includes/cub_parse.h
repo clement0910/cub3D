@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/29 00:17:00 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 22:11:46 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef struct	s_parse
 int				parse_xpmcolor(char *line, t_colorxpm *color,
 				const char *details);
 int				parse_textures(char *line, char **textures, const char *dir);
-int				parse_resolution(char *line, void *mlx, int *x, int *y);
-int				check_line(char *line, void *mlx, t_parse *data);
+int				parse_resolution(char *line, int *x, int *y);
+int				check_line(char *line, t_parse *data);
 
 /*
 **				PARSE SPRITESINFO
@@ -108,7 +108,7 @@ int				find_sprite_info(char c, t_parse *data);
 /*
 **				GLOBAL PARSE
 */
-int				cub_parse(int fd, t_parse *data, void *mlx);
+int				cub_parse(int fd, t_parse *data);
 int				cub_parse_error(char *line, t_sinfo_lst **s_info,
 				t_list **maplist, int *error);
 int				cub_parse_clear(t_parse *data, t_list **maplist,
@@ -117,4 +117,6 @@ int				cub_parse_clear(t_parse *data, t_list **maplist,
 int				check_parse(t_parse *data, t_optis *op);
 void			free_parsing(t_parse *data);
 
+int				ft_atoi_resolution(char *str, int *x);
+int	ft_atoi_color(char *str, int *x);
 #endif

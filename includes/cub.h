@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 23:39:49 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/10/29 01:07:34 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void				init_ray_ea_we(t_parse data, t_game *game);
 void				init_precalculated_rc(t_parse data, t_game *game);
 void				print_lstmap(t_list **spritelist, t_parse *data);
 void				ft_free_static_tab(char **tab, int size);
-
+void				init_parse_struct(t_parse *data);
 /*
 **					INIT FUNC
 */

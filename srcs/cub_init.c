@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 15:21:32 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 17:44:59 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,14 @@ void	init_game(t_global *env)
 		init_bonus(env);
 }
 
+void	init_parse_struct(t_parse *data)
+{
+	data->floor.xpm = NULL;
+	data->ceiling.xpm = NULL;
+	data->floor.color = -1;
+	data->ceiling.color = -1;
+}
+
 void	init_parse(t_global *env, int ac, char **av)
 {
 	int	fd;
@@ -93,13 +101,12 @@ void	init_parse(t_global *env, int ac, char **av)
 		error_cub("Memory", env);
 	}
 	ft_bzero(&env->data, sizeof(t_parse));
-	env->data.floor.xpm = NULL; //?
-	env->data.ceiling.xpm = NULL;
-	env->data.floor.color = -1;
-	env->data.ceiling.color = -1;
-	if (cub_parse(fd, &env->data, env->win.mlx) == 1)
+	init_parse_struct(&env->data);
+	if (cub_parse(fd, &env->data) == 1)
 		error_cub("Parse", env);
 	if (check_parse(&env->data, &env->op) == 1)
+		error_cub("Parse", env);
+	if (check_validmap(&env->data) == 1)
 		error_cub("Parse", env);
 	if (close(fd) == -1)
 	{

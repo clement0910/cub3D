@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:09:26 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/29 00:47:06 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 14:38:01 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ t_sprite		*create_sprite(void *mlx, t_spritei s_info, double x, double y)
 		return (NULL);
 	if (!(sprite->sprite = create_tab_xpm(mlx, s_info.nsprite,
 		s_info.xpm_sprite)))
+	{
+		free(sprite);
 		return (NULL);
+	}
 	sprite->x = x;
 	sprite->y = y;
 	sprite->nsprite = s_info.nsprite;

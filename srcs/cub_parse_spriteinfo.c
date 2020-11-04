@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 00:00:54 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 14:00:50 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 18:27:15 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int				new_spritesinfo(char *line, t_sinfo_lst **s_info)
 			|| !(*s_info = ft_lstnew(desc)))
 		{
 			free(desc);
-			return (return_message_int("Allocation Error", NULL, 4));
+			return (return_message_int("Allocation Problem", NULL, 4));
 		}
 	}
 	else
@@ -85,7 +85,7 @@ int				addback_spritesinfo(char *line, t_sinfo_lst **s_info,
 		|| !(temp = ft_lstnew(desc)))
 	{
 		free(desc);
-		return (return_message_int("Allocation Error", NULL, 4));
+		return (return_message_int("Allocation Problem", NULL, 4));
 	}
 	ft_lstadd_back(s_info, temp);
 	return (3);
@@ -101,8 +101,8 @@ int				textures_of_sprites(char *line, t_sinfo_lst **s_info)
 	y = x;
 	while ((line[y] <= 9 || line[y] >= 13) && line[y] != '\0')
 		y++;
-	if (!(temp = malloc_texlist(line, x, y)))
-		return (return_message_int("Allocation Error", NULL, 4));
+	if (!(temp = malloc_texlist(line, x, y)) && line[x] != '\0')
+		return (return_message_int("Allocation Problem", NULL, 4));
 	ft_lstadd_back(&((t_sprite_desc*)ft_lstlast(*s_info)->content)->textures,
 	temp);
 	return (3);

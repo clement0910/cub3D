@@ -6,13 +6,13 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 18:35:56 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 17:17:35 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int		check_line(char *line, void *mlx, t_parse *data)
+int		check_line(char *line, t_parse *data)
 {
 	int		x;
 
@@ -20,7 +20,7 @@ int		check_line(char *line, void *mlx, t_parse *data)
 	while ((line[x] >= 9 && line[x] <= 13) || line[x] == 32)
 		x++;
 	if (line[x] == 'R')
-		return (parse_resolution(line + x, mlx, &data->resx, &data->resy));
+		return (parse_resolution(line + x, &data->resx, &data->resy));
 	else if (line[x] == 'N' && line[x + 1] == 'O')
 		return (parse_textures(line + x, &data->xpm[NO], "NORTH"));
 	else if (line[x] == 'S' && line[x + 1] == 'O')
@@ -58,29 +58,22 @@ int		cub_parse_error(char *line, t_sinfo_lst **s_info, t_list **maplist,
 
 int		cub_parse_clear(t_parse *data, t_list **maplist, t_sinfo_lst **s_info)
 {
-	if (fill_map(data, maplist) || fill_spriteinfo(data, s_info)
+	if (fill_map(data, maplist) || fill_spriteinfo(data, s_info) //?
 	|| fill_symbol(data))
-	{
-		ft_lstclear(maplist, &free);
-		free_lst_sinfo(s_info);
-		ft_lstclear(s_info, &free);
-		return (1);		
-	}
-	if (check_validmap(data) == 1)
 	{
 		ft_lstclear(maplist, &free);
 		free_lst_sinfo(s_info);
 		ft_lstclear(s_info, &free);
 		return (1);
 	}
-	ft_printdata(*data, maplist, s_info);
+	//ft_printdata(*data, maplist, s_info);
 	ft_lstclear(maplist, &free);
 	free_lst_sinfo(s_info);
 	ft_lstclear(s_info, &free);
 	return (0);
 }
 
-int		cub_parse(int fd, t_parse *data, void *mlx)
+int		cub_parse(int fd, t_parse *data)
 {
 	int				error;
 	int				read;
@@ -96,7 +89,7 @@ int		cub_parse(int fd, t_parse *data, void *mlx)
 	{
 		read = get_next_line(fd, &line);
 		if (error != 2)
-			error = check_line(line, mlx, data);
+			error = check_line(line, data);
 		if (cub_parse_error(line, &s_info, &maplist, &error))
 			return (1);
 		free(line);

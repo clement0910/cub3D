@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 15:42:04 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 22:05:01 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	control_events(t_parse *data, t_raycast *rc, t_keys events, t_optis *op)
 
 int		check_parse(t_parse *data, t_optis *op)
 {
-	if (data->resx == 0 || data->resy == 0)
+	if (data->resx <= 0 || data->resy <= 0)
 		return(return_message_int("Resolution Error", NULL, 1));
 	if (data->floor.xpm == NULL && data->floor.color == -1)
 		return(return_message_int("Floor Error | Put texture or int", NULL, 1));
@@ -151,6 +151,68 @@ int		check_parse(t_parse *data, t_optis *op)
 	if (data->floor.color == -1)
 		data->floor.color = GREEN; //change color
 	if (data->ceiling.color == -1)
-		data->ceiling.color = BLUE;
+		data->ceiling.color = CIAN;
 	return (0);
+}
+
+int		check_resolution(int *x, int *y, void *mlx)
+{
+	int		maxx;
+	int		maxy;
+
+	if (*x < 100 || *y < 100)
+	{
+		print_error("Resolution Too Low | Set to 100x100", true);
+		*x = 100;
+		*y = 100;
+		return (0);
+	}
+	mlx_get_screen_size(mlx, &maxx, &maxy);
+	if (*x > maxx || *y > maxy)
+	{
+		print_error("Resolution Too High | Set to ur screen size", true);
+		*x = maxx;
+		*y = maxy;
+		return (0);
+	}
+	return (1);	
+}
+
+int	ft_atoi_resolution(char *str, int *x)
+{
+	size_t resultat;
+
+	resultat = 0;
+	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
+		(*x)++;
+	while (str[*x] >= '0' && str[*x] <= '9')
+	{
+		resultat = resultat * 10 + (str[*x] - 48);
+		(*x)++;
+	}
+	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
+		(*x)++;
+	if ((str[*x] != '\0')
+	&& (ft_isdigit(str[*x]) == 0 || resultat <= 0 || resultat > 2147483647))
+		return (-2);
+	return ((int)resultat);
+}
+
+int	ft_atoi_color(char *str, int *x)
+{
+	size_t resultat;
+
+	resultat = 0;
+	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
+		(*x)++;
+	while (str[*x] >= '0' && str[*x] <= '9')
+	{
+		resultat = resultat * 10 + (str[*x] - 48);
+		(*x)++;
+	}
+	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
+		(*x)++;
+	if (resultat < 0 || resultat > 2147483647)
+		return (256);
+	return ((int)resultat);	
 }

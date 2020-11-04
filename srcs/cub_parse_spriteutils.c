@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:19:10 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/29 00:46:25 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 18:31:13 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int			check_spritesinfo(char *line, t_sinfo_lst **s_info)
 			x++;
 		if (line[x] == '.' && line[x + 1] == '/')
 			return (new_spritesinfo(line + x, s_info));
+		else
+			return (return_message_int("No path find for ", "SPRITE", 1));
 	}
 	else if (line[x] == '-' && line[x + 1] == ' ')
 	{

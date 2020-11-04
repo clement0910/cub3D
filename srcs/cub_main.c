@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 13:34:26 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 16:47:31 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ int		main(int ac, char **av)
 
 	if (!(env = ft_calloc(1, sizeof(t_global))))
 		error_cub("Allocation", env);
-	env->win.mlx = mlx_init(); //?
 	init_parse(env, ac, av);
-	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
-	env->data.resy, "Cub3D");
+	env->win.mlx = mlx_init(); //?
 	init_game(env);
 	init_raystruct(env->data, env->game);
+	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
+	env->data.resy, "Cub3D");
 	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
 	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release,
 	&env->events);

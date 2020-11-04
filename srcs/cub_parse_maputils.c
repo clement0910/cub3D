@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:23:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 11:54:35 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 18:44:00 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ int			check_map(char *line, t_list **maplist)
 	while ((line[x] >= 9 && line[x] <= 13) || line[x] == 32)
 		x++;
 	if (line[x] == '0')
-	{
-		return_message("Invalid Map in line: ", line);
-		return (1);
-	}
+		return(return_message_int("Map need to be circled by 1.", NULL, 1));
 	else if (line[x] == '1')
 		return (malloc_map(line, maplist));
 	else

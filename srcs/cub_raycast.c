@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 12:06:04 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 21:46:44 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 21:00:29 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ void	draw_tex(t_game *g, t_parse data, int x)
 
 	d = 0;
 	if (g->rc.side == 1)
-		d = g->rc.ray.y < 0 ? SO : NO;
+		d = g->rc.ray.y < 0 ? WE : EA;
 	else
-		d = g->rc.ray.x < 0 ? EA : WE;
+		d = g->rc.ray.x < 0 ? NO : SO;
 	g->rc.tex.x = (int)(g->rc.wallx * (double)g->textures[d]->width);
 	if (g->rc.side == 0 && g->rc.ray.x > 0)
 		g->rc.tex.x = g->textures[d]->width - g->rc.tex.x - 1;
