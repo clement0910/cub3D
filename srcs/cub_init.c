@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 14:18:12 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 23:33:34 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	init_bonus(t_global *env)
 	if (!(env->main->menu = create_tab_xpm(env->win.mlx, 4, env->data.tex)))
 		error_cub("Allocation", env);
 	if (!(env->main->cur->img = create_xpm_image(env->win.mlx, "assets/ui/cursor/cursor.xpm")))
+		error_cub("Allocation", env);
+	if (!(env->main->map = create_xpm_image(env->win.mlx, "assets/ui/map/cardinal-point.xpm")))
 		error_cub("Allocation", env);
 	env->op.menu = true;
 	mlx_mouse_hide();

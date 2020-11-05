@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 14:44:38 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/06 00:02:24 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	write_rc(t_game *game, t_parse *data, t_optis op, int x)
 
 	y = -1;
 	if (op.ceilingandfloor == false)
-		while (y++ < game->rc.dstart)
+		while (y++ < game->rc.dstart - 1)
 			write_pixel(game->game, x, y, data->ceiling.color);
 	if (op.texture == false)
-		while (game->rc.dstart++ <= game->rc.dend)
+		while (game->rc.dstart++ < game->rc.dend - 1)
 			write_pixel(game->game, x, game->rc.dstart, game->rc.color);
-	y = game->rc.dend;
+	y = game->rc.dend - 1;
 	if (op.ceilingandfloor == false)
 		while (y++ < data->resy - 1)
 			write_pixel(game->game, x, y, data->floor.color);
@@ -119,6 +119,10 @@ void	control_events(t_parse *data, t_raycast *rc, t_keys events, t_optis *op)
 		op->texture = false;
 	else
 		op->texture = true;
+	if (events.key[KEY_TAB]) //?
+		op->minimap = true;
+	else
+		op->minimap = false;
 }
 
 int		check_parse(t_parse *data, t_optis *op)
@@ -176,6 +180,12 @@ void	check_resolution(int *x, int *y, void *mlx)
 		*y = 100;
 	}
 	mlx_get_screen_size(mlx, &maxx, &maxy);
+	if (*x < 500 || *y < 500)
+		print_error("Low resolution ! Map and FPS is displayed from the\ 
+resolution 500x500", true);
+	if (*x != 1440 || *y != 900)
+		print_error("Low resolution ! To display the bonus game,\
+put the resolution 1440x900 in your .cub file", true);
 	if (*x > maxx || *y > maxy)
 	{
 		print_error("Resolution Too High | Set to your screen size", true); //?

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 14:20:21 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 23:35:59 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		loop(t_global *env)
 		main_floor(env->game, &env->data);
 	main_raycast(env->game, &env->data, env->op);
 	main_sprite(env->game, &env->data);
+	if (env->op.minimap)
+		main_map(&env->data, env->game->game);
 	control_events(&env->data, &env->game->rc, env->events, &env->op);
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 	, 0, 0);
@@ -49,11 +51,25 @@ int		loop_bonus(t_global *env)
 		menu_game(env);
 	if (env->op.game)
 	{
+		if (env->op.ceilflooron) //?
+		{
+			if (env->events.key_on[KEY_F])
+			env->op.ceilingandfloor = false;
+			else
+			env->op.ceilingandfloor = true;
+		}
+		if (env->op.ceilingandfloor)
+			main_floor(env->game, &env->data);
 		main_raycast(env->game, &env->data, env->op);
 		main_sprite(env->game, &env->data);
+		if (env->op.minimap)
+			main_map(&env->data, env->game->game);
 		control_events(&env->data, &env->game->rc, env->events, &env->op);
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 		, 0, 0);
+		if (env->op.minimap)
+			mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->map->img,
+			0, 0);
 		xpm_to_gif(env->game, &env->data);
 	}
 	mlx_do_sync(env->win.mlx);

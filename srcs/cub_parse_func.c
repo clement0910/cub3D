@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:52:05 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 13:47:28 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 15:00:05 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ int		parse_textures(char *line, char **textures, const char *dir)
 		while ((line[y] <= 9 || line[y] >= 13) && line[y] != '\0')
 			y++;
 		if (!(*textures = ft_substr(line, x, y - x)))
-		{
-			//error here
-			return (1);
-		}
+			return(return_message_int(
+			"Allocation Problem in: ", (char*)dir, 1));
 	}
 	else
 		return(return_message_int("No path find for ", (char*)dir, 1));

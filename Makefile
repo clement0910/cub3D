@@ -22,6 +22,7 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_sprite.c \
 		srcs/cub_print_sprite.c \
 		srcs/cub_print_floor.c \
+		srcs/cub_print_map.c \
 		srcs/cub_parse_map.c \
 		srcs/cub_init_ray.c \
 		srcs/cub_parse_maputils.c \

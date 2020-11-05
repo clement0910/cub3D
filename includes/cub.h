@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:22:58 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 22:19:19 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,11 @@ int					return_message_int_c(char *error, char c, int err);
 
 void				check_resolution(int *x, int *y, void *mlx);
 void				check_ceilingandfloor(t_parse *data, t_optis *op);
+
+void				main_map(t_parse *data, t_img *img);
+void				print_map(t_parse *data, t_img *img, int ratio, t_vec2i mapwrite);
+void				print_player(t_parse *data, t_img *img, int ratio, t_vec2i mapwrite);
+void				print_block_map(t_img *img, int color, t_vec2i mapwrite,
+						int	ratio);
+void				calcul_mapsize(t_parse *data, t_vec2i *mapwrite, int *ratio);
 #endif
