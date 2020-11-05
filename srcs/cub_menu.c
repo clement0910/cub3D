@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:06:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:15:44 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 14:24:27 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	menu_game(t_global *env)
 	env->main->cur->img->img, env->main->cur->pos.x, env->main->cur->pos.y);
 }
 
-void	start_game(t_global *env, int x, int y) //? params
+void	start_game(t_global *env, int x, int y)
 {
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[1]->
 	img, 0, 0);
@@ -41,7 +41,9 @@ void	start_game(t_global *env, int x, int y) //? params
 	{
 		env->op.game = true;
 		env->op.menu = false;
-		//free menu?
+		//free menu
+		free_image_tab(4, env->main->menu, env->win.mlx);
+		env->main->menu = NULL;
 	}
 	mlx_put_image_to_window(env->win.mlx, env->win.win,
 	env->main->cur->img->img, x, y);

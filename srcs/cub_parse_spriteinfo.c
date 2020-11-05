@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 00:00:54 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/04 18:27:15 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 14:25:52 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_sprite_desc	*malloc_sdesc(char *line, int x, int y)
 		free(desc);
 		return (return_message("Cannot allocate memory", NULL));
 	}
-	if (line[y] != 9 || line[y + 1] == '\0') //Check symbol
+	if (line[y] != 9 || line[y + 1] == '\0')
 	{
 		ft_lstclear(&desc->textures, &free);
 		free(desc);

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 18:53:17 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:19:11 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 14:19:25 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,7 @@ int		check_validmap(t_parse *data)
 	}
 	fill_sprite(data, &s_map);
 	ft_lstclear(&s_map, &free);
+	if (err == 0 && data->orientation == 0)
+		return_message_int("Player not found.", NULL, 1);
 	return (err);
 }

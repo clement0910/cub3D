@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 13:35:12 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 14:44:38 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ void	write_rc(t_game *game, t_parse *data, t_optis op, int x)
 	if (op.ceilingandfloor == false)
 		while (y++ < game->rc.dstart)
 			write_pixel(game->game, x, y, data->ceiling.color);
-	game->rc.dstart -= 1;
 	if (op.texture == false)
-		while (game->rc.dstart++ < game->rc.dend)
+		while (game->rc.dstart++ <= game->rc.dend)
 			write_pixel(game->game, x, game->rc.dstart, game->rc.color);
 	y = game->rc.dend;
 	if (op.ceilingandfloor == false)
@@ -54,7 +53,7 @@ void	write_rc(t_game *game, t_parse *data, t_optis op, int x)
 void	write_pixel(t_img *image, int x, int y, int color)
 {
     int		*dst;
-	//Protect value and check if x and y are in image.
+
 	dst = image->addr + (y * (image->line_length / 4) + x);
 	*dst = color;
 }
@@ -179,7 +178,7 @@ void	check_resolution(int *x, int *y, void *mlx)
 	mlx_get_screen_size(mlx, &maxx, &maxy);
 	if (*x > maxx || *y > maxy)
 	{
-		print_error("Resolution Too High | Set to ur screen size", true); //?
+		print_error("Resolution Too High | Set to your screen size", true); //?
 		*x = maxx;
 		*y = maxy;
 	}

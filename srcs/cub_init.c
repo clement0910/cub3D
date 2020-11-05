@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 13:05:12 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 14:18:12 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	init_bonus(t_global *env)
 
 void	init_game(t_global *env)
 {
+	check_resolution(&env->data.resx, &env->data.resy, env->win.mlx);
 	if (!(env->game = ft_calloc(1, sizeof(t_game))))
 		error_cub("Allocation", env);
 	if (!(env->game->game = create_image(env->win.mlx, env->data.resx,
@@ -110,7 +111,7 @@ void	init_parse(t_global *env, int ac, char **av)
 		error_cub("Parse", env);
 	if (check_validmap(&env->data) == 1)
 		error_cub("Parse", env);
-	if (env->data.orientation == 0) //?
+	if (env->data.orientation == 0)
 	{
 		return_message_int("Player not found.", NULL, 1);
 		error_cub("Parse", env);

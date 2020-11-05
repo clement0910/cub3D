@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:24:56 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 14:20:21 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int		main(int ac, char **av)
 		error_cub("Allocation", env);
 	init_parse(env, ac, av);
 	env->win.mlx = mlx_init();
-	check_resolution(&env->data.resx, &env->data.resy, env->win.mlx); //?
 	init_game(env);
 	init_raystruct(&env->data, env->game);
 	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,

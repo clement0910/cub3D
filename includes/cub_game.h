@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:22:30 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 14:15:29 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct		s_raycast
 	int				pre5;
 	int				pre6;
 	float			pre7;
-	int				d; //change name
+	int				d;
 
 	t_vec2f			ray0;
 	t_vec2f			ray1;

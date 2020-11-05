@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 13:49:11 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 14:27:15 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		cub_parse_error(char *line, t_sinfo_lst **s_info, t_list **maplist,
 
 int		cub_parse_clear(t_parse *data, t_list **maplist, t_sinfo_lst **s_info)
 {
-	if (fill_map(data, maplist) || fill_spriteinfo(data, s_info) //?
+	if (fill_map(data, maplist) || fill_spriteinfo(data, s_info)
 	|| fill_symbol(data))
 	{
 		ft_lstclear(maplist, &free);
