@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/04 17:17:35 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 13:49:11 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int		check_line(char *line, t_parse *data)
 	if (line[x] == 'R')
 		return (parse_resolution(line + x, &data->resx, &data->resy));
 	else if (line[x] == 'N' && line[x + 1] == 'O')
-		return (parse_textures(line + x, &data->xpm[NO], "NORTH"));
+		return (parse_textures(line + (x + 2), &data->xpm[NO], "NORTH"));
 	else if (line[x] == 'S' && line[x + 1] == 'O')
-		return (parse_textures(line + x, &data->xpm[SO], "SOUTH"));
+		return (parse_textures(line + (x + 2), &data->xpm[SO], "SOUTH"));
 	else if (line[x] == 'W' && line[x + 1] == 'E')
-		return (parse_textures(line + x, &data->xpm[WE], "WEST"));
+		return (parse_textures(line + (x + 2), &data->xpm[WE], "WEST"));
 	else if (line[x] == 'E' && line[x + 1] == 'A')
-		return (parse_textures(line + x, &data->xpm[EA], "EAST"));
+		return (parse_textures(line + (x + 2), &data->xpm[EA], "EAST"));
 	else if (line[x] == 'C')
 		return (parse_xpmcolor(line + x, &data->ceiling, "CEILING"));
 	else if (line[x] == 'F')

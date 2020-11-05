@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:16:27 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 13:35:12 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	control_events(t_parse *data, t_raycast *rc, t_keys events, t_optis *op)
 
 int		check_parse(t_parse *data, t_optis *op)
 {
-	if (data->resx <= 0 || data->resy <= 0)
+	if (data->resx < 0 || data->resy < 0)
 		return(return_message_int("Resolution not found.", NULL, 1));
 	if (data->floor.xpm == NULL && data->floor.color == -1)
 		return(return_message_int(
@@ -192,6 +192,8 @@ int	ft_atoi_parse(char *str, int *x)
 	resultat = 0;
 	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
 		(*x)++;
+	if (ft_isdigit(str[*x]) == 0)
+		return (-1);
 	while (str[*x] >= '0' && str[*x] <= '9')
 	{
 		resultat = resultat * 10 + (str[*x] - 48);
@@ -199,7 +201,7 @@ int	ft_atoi_parse(char *str, int *x)
 	}
 	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
 		(*x)++;
-	if (resultat < 0 || resultat > 2147483647)
-		return (-1);
+	if (resultat > 2147483647)
+		return (2147483646);
 	return ((int)resultat);	
 }

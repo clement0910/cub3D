@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:03:38 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 13:05:12 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	init_parse_struct(t_parse *data)
 	data->ceiling.xpm = NULL;
 	data->floor.color = -1;
 	data->ceiling.color = -1;
+	data->resx = -1;
+	data->resy = -1;
 }
 
 void	init_parse(t_global *env, int ac, char **av)

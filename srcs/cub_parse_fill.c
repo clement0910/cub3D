@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:41:11 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 23:40:05 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 13:45:20 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,12 @@ int				fill_symbol(t_parse *data)
 		if (ft_chrcmp(data->symbol, data->s_info[x].c) == 0)
 		{
 			return(return_message_int_c("Same symbol in two sprites: ",
+			data->s_info[x].c, 1));
+		}
+		else if (ft_chrcmp("10NWES", data->s_info[x].c) == 0)
+		{
+			return(return_message_int_c(
+			"You cannot have a symbol that represents a character in the map: ",
 			data->s_info[x].c, 1));
 		}
 		data->symbol[x] = data->s_info[x].c;
