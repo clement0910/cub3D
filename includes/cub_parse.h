@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/04 22:11:46 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/04 22:40:33 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,5 @@ int				cub_parse_clear(t_parse *data, t_list **maplist,
 int				check_parse(t_parse *data, t_optis *op);
 void			free_parsing(t_parse *data);
 
-int				ft_atoi_resolution(char *str, int *x);
-int	ft_atoi_color(char *str, int *x);
+int				ft_atoi_parse(char *str, int *x);
 #endif

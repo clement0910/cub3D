@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/04 22:05:01 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 10:59:57 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,37 +125,47 @@ void	control_events(t_parse *data, t_raycast *rc, t_keys events, t_optis *op)
 int		check_parse(t_parse *data, t_optis *op)
 {
 	if (data->resx <= 0 || data->resy <= 0)
-		return(return_message_int("Resolution Error", NULL, 1));
+		return(return_message_int("Resolution not found.", NULL, 1));
 	if (data->floor.xpm == NULL && data->floor.color == -1)
-		return(return_message_int("Floor Error | Put texture or int", NULL, 1));
+		return(return_message_int(
+		"Floor not found | Fill in a with texture or int.", NULL, 1));
 	if (data->ceiling.xpm == NULL && data->ceiling.color == -1)
-		return(return_message_int("Ceiling Error | Put texture or int", NULL, 1));
+		return(return_message_int(
+		"Ceiling not found | Fill in with a texture or int.", NULL, 1));
 	if (data->xpm[NO] == NULL)
-		return(return_message_int("NO Texture not found", NULL, 1));
+		return(return_message_int("NO texture not found.", NULL, 1));
 	if (data->xpm[SO] == NULL)
-		return(return_message_int("SO Texture not found", NULL, 1));
+		return(return_message_int("SO texture not found.", NULL, 1));
 	if (data->xpm[EA] == NULL)
-		return(return_message_int("EA Texture not found", NULL, 1));
+		return(return_message_int("EA texture not found.", NULL, 1));
 	if (data->xpm[WE] == NULL)
-		return(return_message_int("WE Texture not found", NULL, 1));
+		return(return_message_int("WE texture not found.", NULL, 1));
 	if (data->map == NULL)
-		return(return_message_int("Map not found", NULL, 1));
+		return(return_message_int("Map not found.", NULL, 1));
 	if (data->nbspritei == 0)
-		return(return_message_int("Sprite Error | 1 is mandatory", NULL, 1));
-	if (data->floor.xpm && data->ceiling.xpm)
-		op->ceilflooron = true;
-	if (data->floor.xpm && data->ceiling.xpm == NULL)
-		print_error("Need ceiling to display the floor and ceiling.", true);
-	if (data->floor.xpm == NULL && data->ceiling.xpm)
-		print_error("Need floor to display the floor and ceiling.", true);
-	if (data->floor.color == -1)
-		data->floor.color = GREEN; //change color
-	if (data->ceiling.color == -1)
-		data->ceiling.color = CIAN;
+		return(return_message_int(
+		"Sprite not found | 1 is mandatory.", NULL, 1));
+	check_ceilingandfloor(data, op);
 	return (0);
 }
 
-int		check_resolution(int *x, int *y, void *mlx)
+void	check_ceilingandfloor(t_parse *data, t_optis *op)
+{
+	if (data->floor.xpm && data->ceiling.xpm)
+		op->ceilflooron = true;
+	if (data->floor.xpm && data->ceiling.xpm == NULL)
+		print_error(
+		"Need ceiling texture to display the floor and ceiling.", true);
+	if (data->floor.xpm == NULL && data->ceiling.xpm)
+		print_error(
+		"Need floor texture to display the floor and ceiling.", true);
+	if (data->floor.color == -1)
+		data->floor.color = GREEN;
+	if (data->ceiling.color == -1)
+		data->ceiling.color = CIAN;
+}
+
+void	check_resolution(int *x, int *y, void *mlx)
 {
 	int		maxx;
 	int		maxy;
@@ -165,40 +175,17 @@ int		check_resolution(int *x, int *y, void *mlx)
 		print_error("Resolution Too Low | Set to 100x100", true);
 		*x = 100;
 		*y = 100;
-		return (0);
 	}
 	mlx_get_screen_size(mlx, &maxx, &maxy);
 	if (*x > maxx || *y > maxy)
 	{
-		print_error("Resolution Too High | Set to ur screen size", true);
+		print_error("Resolution Too High | Set to ur screen size", true); //?
 		*x = maxx;
 		*y = maxy;
-		return (0);
 	}
-	return (1);	
 }
 
-int	ft_atoi_resolution(char *str, int *x)
-{
-	size_t resultat;
-
-	resultat = 0;
-	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
-		(*x)++;
-	while (str[*x] >= '0' && str[*x] <= '9')
-	{
-		resultat = resultat * 10 + (str[*x] - 48);
-		(*x)++;
-	}
-	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
-		(*x)++;
-	if ((str[*x] != '\0')
-	&& (ft_isdigit(str[*x]) == 0 || resultat <= 0 || resultat > 2147483647))
-		return (-2);
-	return ((int)resultat);
-}
-
-int	ft_atoi_color(char *str, int *x)
+int	ft_atoi_parse(char *str, int *x)
 {
 	size_t resultat;
 
@@ -213,6 +200,6 @@ int	ft_atoi_color(char *str, int *x)
 	while ((str[*x] >= 9 && str[*x] <= 13) || str[*x] == ' ')
 		(*x)++;
 	if (resultat < 0 || resultat > 2147483647)
-		return (256);
+		return (-1);
 	return ((int)resultat);	
 }

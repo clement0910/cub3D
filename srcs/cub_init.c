@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/04 17:44:59 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 11:03:38 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,11 @@ void	init_parse(t_global *env, int ac, char **av)
 		error_cub("Parse", env);
 	if (check_validmap(&env->data) == 1)
 		error_cub("Parse", env);
+	if (env->data.orientation == 0) //?
+	{
+		return_message_int("Player not found.", NULL, 1);
+		error_cub("Parse", env);
+	}
 	if (close(fd) == -1)
 	{
 		perror(av[1]);

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/29 01:07:34 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 10:59:02 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,7 @@ void				print_error(char *error, bool warn);
 void				*return_message(char *error, char *details);
 int					return_message_int(char *error, char *details, int err);
 int					return_message_int_c(char *error, char c, int err);
+
+void				check_resolution(int *x, int *y, void *mlx);
+void				check_ceilingandfloor(t_parse *data, t_optis *op);
 #endif
