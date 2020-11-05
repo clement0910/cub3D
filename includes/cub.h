@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 10:59:02 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 11:22:58 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ typedef struct		s_global
 }					t_global;
 
 void				init_text(t_global *env);
-void				init_raystruct(t_parse data, t_game *game);
-void				init_ray_so_no(t_parse data, t_game *game);
-void				init_ray_ea_we(t_parse data, t_game *game);
-void				init_precalculated_rc(t_parse data, t_game *game);
+void				init_raystruct(t_parse *data, t_game *game);
+void				init_ray_so_no(t_parse *data, t_game *game);
+void				init_ray_ea_we(t_parse *data, t_game *game);
+void				init_precalculated_rc(t_parse *data, t_game *game);
 void				print_lstmap(t_list **spritelist, t_parse *data);
 void				ft_free_static_tab(char **tab, int size);
 void				init_parse_struct(t_parse *data);
@@ -85,7 +85,7 @@ void				free_spritei(t_spritei *s_info, int x);
 **					DEBUG
 */
 void				print_tab(char **tab); //review
-void				ft_printdata(t_parse data, t_list **maplist,
+void				ft_printdata(t_parse *data, t_list **maplist,
 					t_sinfo_lst **s_info);
 void				print_lst(t_list **maplist);
 void				print_lst_sprite(t_sinfo_lst **s_info);

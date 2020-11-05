@@ -3,3 +3,7 @@ a.out
 .DS_Store
 a.out.dSYM/Contents/Info.plist
 *.o
+Cub3D.dSYM/Contents/Info.plist
+minilibx/mlx_image.swiftsourceinfo
+minilibx/mlx_window.swiftsourceinfo
+minilibx/mlx_init.swiftsourceinfo

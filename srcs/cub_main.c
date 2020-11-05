@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 10:57:13 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 11:24:56 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int		loop(t_global *env)
 			env->op.ceilingandfloor = true;
 	}
 	if (env->op.ceilingandfloor)
-		main_floor(env->game, env->data);
-	main_raycast(env->game, env->data, env->op);
-	main_sprite(env->game, env->data);
+		main_floor(env->game, &env->data);
+	main_raycast(env->game, &env->data, env->op);
+	main_sprite(env->game, &env->data);
 	control_events(&env->data, &env->game->rc, env->events, &env->op);
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 	, 0, 0);
-	xpm_to_gif(env->game, env->data);
+	xpm_to_gif(env->game, &env->data);
 	mlx_do_sync(env->win.mlx);
 	return (0);
 }
@@ -49,12 +49,12 @@ int		loop_bonus(t_global *env)
 		menu_game(env);
 	if (env->op.game)
 	{
-		main_raycast(env->game, env->data, env->op);
-		main_sprite(env->game, env->data);
+		main_raycast(env->game, &env->data, env->op);
+		main_sprite(env->game, &env->data);
 		control_events(&env->data, &env->game->rc, env->events, &env->op);
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 		, 0, 0);
-		xpm_to_gif(env->game, env->data);
+		xpm_to_gif(env->game, &env->data);
 	}
 	mlx_do_sync(env->win.mlx);
 	return (0);
@@ -70,7 +70,7 @@ int		main(int ac, char **av)
 	env->win.mlx = mlx_init();
 	check_resolution(&env->data.resx, &env->data.resy, env->win.mlx); //?
 	init_game(env);
-	init_raystruct(env->data, env->game);
+	init_raystruct(&env->data, env->game);
 	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
 	env->data.resy, "Cub3D");
 	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);

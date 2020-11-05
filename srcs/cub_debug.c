@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 00:03:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/29 00:25:07 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 11:23:22 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,35 +81,35 @@ void	print_spritei(t_spritei s_info)
 	print_tab(s_info.xpm_sprite);
 }
 
-void	ft_printdata(t_parse data, t_list **maplist, t_sinfo_lst **sprite)
+void	ft_printdata(t_parse *data, t_list **maplist, t_sinfo_lst **sprite)
 {
 	int		x;
 
 	x = 0;
 	printf("--------------------------------------\n");
-	printf("X: %d | Y: %d\n", data.resx, data.resy);
-	printf("north: %s\n", data.xpm[NO]);
-	printf("south: %s\n", data.xpm[SO]);
-	printf("east: %s\n", data.xpm[EA]);
-	printf("west: %s\n", data.xpm[WE]);
-	printf("ceiling: %d\n", data.ceiling.color);
-	printf("ceiling: %s\n", data.ceiling.xpm);
-	printf("floor: %d\n", data.floor.color);
-	printf("floor: %s\n", data.floor.xpm);
-	printf("symbol: %s\n", data.symbol);
+	printf("X: %d | Y: %d\n", data->resx, data->resy);
+	printf("north: %s\n", data->xpm[NO]);
+	printf("south: %s\n", data->xpm[SO]);
+	printf("east: %s\n", data->xpm[EA]);
+	printf("west: %s\n", data->xpm[WE]);
+	printf("ceiling: %d\n", data->ceiling.color);
+	printf("ceiling: %s\n", data->ceiling.xpm);
+	printf("floor: %d\n", data->floor.color);
+	printf("floor: %s\n", data->floor.xpm);
+	printf("symbol: %s\n", data->symbol);
 	printf("---------------------------------------\n");
 	print_lst(maplist);
 	printf("---------------------------------------\n");
-	print_tab(data.map);
+	print_tab(data->map);
 	printf("---------------------------------------\n");
-	printf("XMAP: %d | YMAP: %d\n", data.xmap, data.ymap);
+	printf("XMAP: %d | YMAP: %d\n", data->xmap, data->ymap);
 	printf("---------------------------------------\n");
 	print_lst_sprite(sprite);
 	printf("---------------------------------------\n");
-	printf("nbspritei: %d\n", data.nbspritei);
-	while (x < data.nbspritei)
+	printf("nbspritei: %d\n", data->nbspritei);
+	while (x < data->nbspritei)
 	{
-		print_spritei(data.s_info[x]);
+		print_spritei(data->s_info[x]);
 		printf("-------------\n");
 		x++;
 	}

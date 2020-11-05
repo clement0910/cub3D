@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/04 22:40:33 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 11:19:04 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char			**fill_tab(t_list **list);
 */
 int				check_map(char *line, t_list **maplist);
 int				malloc_map(char *line, t_list **maplist);
-int				check_around(t_parse data, int x, int y);
+int				check_around(t_parse *data, int x, int y);
 int				check_validmap(t_parse *data);
 int				fill_map(t_parse *data, t_list **maplist);
 

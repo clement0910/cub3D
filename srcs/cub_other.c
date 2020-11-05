@@ -6,18 +6,18 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 10:59:57 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/11/05 11:16:27 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	main_raycast(t_game *game, t_parse data, t_optis op)
+void	main_raycast(t_game *game, t_parse *data, t_optis op)
 {
 	int x;
 
 	x = 0;
-	while (x < data.resx)
+	while (x < data->resx)
 	{
 		init_ray(&game->rc, data, x);
 		init_dist(&game->rc, data);
@@ -31,22 +31,22 @@ void	main_raycast(t_game *game, t_parse data, t_optis op)
 	}
 }
 
-void	write_rc(t_game *game, t_parse data, t_optis op, int x)
+void	write_rc(t_game *game, t_parse *data, t_optis op, int x)
 {
 	int y;
 
 	y = -1;
 	if (op.ceilingandfloor == false)
 		while (y++ < game->rc.dstart)
-			write_pixel(game->game, x, y, data.ceiling.color);
+			write_pixel(game->game, x, y, data->ceiling.color);
 	game->rc.dstart -= 1;
 	if (op.texture == false)
 		while (game->rc.dstart++ < game->rc.dend)
 			write_pixel(game->game, x, game->rc.dstart, game->rc.color);
 	y = game->rc.dend;
 	if (op.ceilingandfloor == false)
-		while (y++ < data.resy - 1)
-			write_pixel(game->game, x, y, data.floor.color);
+		while (y++ < data->resy - 1)
+			write_pixel(game->game, x, y, data->floor.color);
 	//rc->dstart =- 1; GIANT MODE;
 	//Check this func
 }
@@ -82,12 +82,12 @@ void	ft_free_static_tab(char **tab, int size)
 	}
 }
 
-void	xpm_to_gif(t_game *game, t_parse data)
+void	xpm_to_gif(t_game *game, t_parse *data)
 {
 	int x;
 
 	x = 0;
-	while (x < data.nbsprite)
+	while (x < data->nbsprite)
 	{
 		if (game->sprite[x]->xpm == (game->sprite[x]->nsprite - 1))
 			game->sprite[x]->xpm = 0;
