@@ -6,38 +6,35 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 23:35:59 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/28 17:05:37 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	init_text(t_global *env)
-{
-	env->data.tex = malloc(5 * sizeof(char*));
-	env->data.tex[0] = ft_strdup("./assets/ui/menu/menu.xpm");
-	env->data.tex[1] = ft_strdup("./assets/ui/menu/menu_p.xpm");
-	env->data.tex[2] = ft_strdup("./assets/ui/menu/menu_s.xpm");
-	env->data.tex[3] = ft_strdup("./assets/ui/menu/menu_q.xpm");
-	env->data.tex[4] = NULL;
-}
-
 int		loop(t_global *env)
 {
-	if (env->op.ceilflooron) //?
+	poll_events(&env->events);
+	if (get_key(KEY_ESCAPE, &env->events))
+		free_cub(env, 0);
+	if (env->op.ceilflooron)
 	{
-		if (env->events.key_on[KEY_F])
-			env->op.ceilingandfloor = false;
-		else
-			env->op.ceilingandfloor = true;
+		if (get_key_press(KEY_F, &env->events))
+			env->op.ceilingandfloor = !env->op.ceilingandfloor;
 	}
 	if (env->op.ceilingandfloor)
 		main_floor(env->game, &env->data);
 	main_raycast(env->game, &env->data, env->op);
 	main_sprite(env->game, &env->data);
+	if (get_key_press(KEY_J, &env->events))
+	{
+		init_bmp(env);
+		printf("SAVE DEPUIS J\n");
+	}
 	if (env->op.minimap)
-		main_map(&env->data, env->game->game);
-	control_events(&env->data, &env->game->rc, env->events, &env->op);
+		main_map(&env->data, env->game->game, &env->game->rc);
+	move_player(&env->data, &env->game->rc, &env->events);
+	control_events(&env->events, &env->op);
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 	, 0, 0);
 	xpm_to_gif(env->game, &env->data);
@@ -45,33 +42,78 @@ int		loop(t_global *env)
 	return (0);
 }
 
+void	check_options(int ac, char **av, t_global *env)
+{
+	if (ac > 3 || ac < 2)
+	{
+		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
+		error_cub("Command", env);
+	}
+	if (ft_strncmp(av[1], "--help", 6) == 0)
+	{
+		ft_putendl_fd("Message", 1);
+		error_cub("Command", env);
+	}
+	if (!av[2])
+		return ;
+	if (ft_strncmp(av[2], "--debug", 7) == 0)
+		env->op.debug = true;
+	else if (ft_strncmp(av[2], "--save", 6) == 0)
+		env->op.save = true;
+	else if (ft_strncmp(av[2], "--ignore", 8) == 0)
+		env->op.ignore = true;
+	else
+	{
+		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
+		error_cub("Command", env);
+	}
+}
+
+void	write_pixel(t_img *image, int x, int y, int color)
+{
+    int		*dst;
+
+	dst = image->addr + (y * (image->line_length / 4) + x);
+	*dst = color;
+}
+
 int		loop_bonus(t_global *env)
 {
+	poll_events(&env->events);
 	if (env->op.menu)
 		menu_game(env);
 	if (env->op.game)
 	{
-		if (env->op.ceilflooron) //?
+		if (env->op.ceilflooron)
 		{
-			if (env->events.key_on[KEY_F])
-			env->op.ceilingandfloor = false;
-			else
-			env->op.ceilingandfloor = true;
+			if (get_key_press(KEY_F, &env->events))
+				env->op.ceilingandfloor = !env->op.ceilingandfloor;
 		}
 		if (env->op.ceilingandfloor)
 			main_floor(env->game, &env->data);
 		main_raycast(env->game, &env->data, env->op);
 		main_sprite(env->game, &env->data);
 		if (env->op.minimap)
-			main_map(&env->data, env->game->game);
-		control_events(&env->data, &env->game->rc, env->events, &env->op);
+			main_map(&env->data, env->game->game, &env->game->rc);
+		if (!env->op.resume && !env->op.settings)
+			move_player(&env->data, &env->game->rc, &env->events);
+		control_events(&env->events, &env->op);
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 		, 0, 0);
+		if (get_key_press(KEY_J, &env->events))
+		{
+			init_bmp(env);
+			printf("SAVE DEPUIS J\n");
+		}
 		if (env->op.minimap)
 			mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->map->img,
 			0, 0);
 		xpm_to_gif(env->game, &env->data);
 	}
+	if (env->op.resume)
+		resume_game(env);
+	if (env->op.settings)
+		settings_menu(env);
 	mlx_do_sync(env->win.mlx);
 	return (0);
 }
@@ -88,6 +130,8 @@ int		main(int ac, char **av)
 	init_raystruct(&env->data, env->game);
 	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
 	env->data.resy, "Cub3D");
+	env->op.texture = true;
+	env->op.ceilingandfloor = true;
 	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
 	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release,
 	&env->events);

@@ -1,23 +1,23 @@
-R  500 500
-NO 					./assets/textures/Coal.xpm
-SO ./assets/textures/Bricks.xpm
-WE ./assets/textures/bark.xpm
-EA ./assets/textures/bookshelf.xpm
+R 1441 900
+
+NO ./assets/textures/Coal.xpm
+SO./assets/textures/Bricks.xpm
+WE./assets/textures/bark.xpm
+EA./assets/textures/bookshelf.xpm
 
 
 F ./assets/textures/ceilingandfloor/wood.xpm
-C 100,100,200 
+C ./assets/textures/ceilingandfloor/greystone.xpm
 
-S ./assets/textures/sprites/greenlight.xpm	7
+S ./assets/textures/sprites/greenlight.xpm	u
 
-S ./assets/textures/sprites/pika/1.xpm	t
-- ./assets/textures/sprites/pika/2.xpm	e
+S ./assets/textures/sprites/pika/1.xpm	2
+- ./assets/textures/sprites/pika/2.xpm
 - ./assets/textures/sprites/pika/3.xpm
 - ./assets/textures/sprites/pika/4.xpm
 - ./assets/textures/sprites/pika/5.xpm
 - ./assets/textures/sprites/pika/6.xpm
 - ./assets/textures/sprites/pika/7.xpm
-
 - ./assets/textures/sprites/pika/8.xpm
 - ./assets/textures/sprites/pika/9.xpm
 - ./assets/textures/sprites/pika/10.xpm
@@ -28,7 +28,10 @@ S ./assets/textures/sprites/pika/1.xpm	t
 - ./assets/textures/sprites/pika/15.xpm
 - ./assets/textures/sprites/pika/16.xpm
 
-1111111111111111111
-110t00000000000011111
-1000000N0000000001
-11111111111111111111
+1111111
+10010011
+101 10001
+12010011
+1000N01
+10uuuu1
+1111111

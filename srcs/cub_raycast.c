@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 12:06:04 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:22:24 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/28 13:06:41 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	draw_tex(t_game *g, t_parse *data, int x)
 	g->rc.texpos = (g->rc.dstart - data->resy / 2.0 + g->rc.lineh / 2.0)
 	* g->rc.step;
 	y = g->rc.dstart;
-	while (y < g->rc.dend)
+	while (y <= g->rc.dend)
 	{
 		g->rc.tex.y = (int)g->rc.texpos;
 		g->rc.texpos += g->rc.step;

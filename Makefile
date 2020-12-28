@@ -23,11 +23,21 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_print_sprite.c \
 		srcs/cub_print_floor.c \
 		srcs/cub_print_map.c \
+		srcs/cub_print_line.c \
 		srcs/cub_parse_map.c \
 		srcs/cub_init_ray.c \
 		srcs/cub_parse_maputils.c \
 		srcs/cub_parse_spriteinfo.c \
 		srcs/cub_parse_spriteutils.c \
+		srcs/cub_bmp.c \
+		srcs/cub_settings.c \
+		srcs/cub_resume.c \
+		srcs/cub_check_data.c \
+		srcs/cub_events.c \
+		srcs/cub_print_raycast.c \
+		srcs/cub_init_xpm.c \
+		srcs/cub_malloc_xpm.c \
+		srcs/cub_print_error.c \
 
 
 HEADER = -I libft/ -I minilibx/ -I includes/ 

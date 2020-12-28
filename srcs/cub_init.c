@@ -6,38 +6,11 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 23:33:34 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/27 21:02:54 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-void	check_options(int ac, char **av, t_global *env)
-{
-	if (ac > 3 || ac < 2)
-	{
-		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
-		error_cub("Command", env);
-	}
-	if (ft_strncmp(av[1], "--help", 6) == 0)
-	{
-		ft_putendl_fd("Message", 1);
-		error_cub("Command", env);
-	}
-	if (!av[2])
-		return ;
-	if (ft_strncmp(av[2], "--debug", 7) == 0)
-		env->op.debug = true;
-	else if (ft_strncmp(av[2], "--save", 6) == 0)
-		env->op.save = true;
-	else if (ft_strncmp(av[2], "--ignore", 8) == 0)
-		env->op.ignore = true;
-	else
-	{
-		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
-		error_cub("Command", env);
-	}
-}
 
 void	init_bonus(t_global *env)
 {
@@ -46,12 +19,9 @@ void	init_bonus(t_global *env)
 	env->op.on = true;
 	if (!(env->main->cur = ft_calloc(1, sizeof(t_cursor))))
 		error_cub("Allocation", env);
-	init_text(env);
-	if (!(env->main->menu = create_tab_xpm(env->win.mlx, 4, env->data.tex)))
+	if (init_xpm(&env->data))
 		error_cub("Allocation", env);
-	if (!(env->main->cur->img = create_xpm_image(env->win.mlx, "assets/ui/cursor/cursor.xpm")))
-		error_cub("Allocation", env);
-	if (!(env->main->map = create_xpm_image(env->win.mlx, "assets/ui/map/cardinal-point.xpm")))
+	if (create_xpm_bonus(env))
 		error_cub("Allocation", env);
 	env->op.menu = true;
 	mlx_mouse_hide();
@@ -113,11 +83,6 @@ void	init_parse(t_global *env, int ac, char **av)
 		error_cub("Parse", env);
 	if (check_validmap(&env->data) == 1)
 		error_cub("Parse", env);
-	if (env->data.orientation == 0)
-	{
-		return_message_int("Player not found.", NULL, 1);
-		error_cub("Parse", env);
-	}
 	if (close(fd) == -1)
 	{
 		perror(av[1]);

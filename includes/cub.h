@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 22:19:19 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/28 16:52:00 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct		s_global
 	t_game			*game;
 }					t_global;
 
-void				init_text(t_global *env);
+int					init_xpm(t_parse *data);
 void				init_raystruct(t_parse *data, t_game *game);
 void				init_ray_so_no(t_parse *data, t_game *game);
 void				init_ray_ea_we(t_parse *data, t_game *game);
@@ -69,7 +69,7 @@ int					loop_bonus(t_global *env);
 
 int					close_window(t_global *env);
 
-void				start_game(t_global *env, int x, int y);
+void				start_button(t_global *env, int x, int y);
 void				menu_game(t_global *env);
 void				quit_button(t_global *env, int x, int y);
 
@@ -96,16 +96,51 @@ void				print_lstmap(t_list **spritelist, t_parse *data);
 */
 void				print_error(char *error, bool warn);
 void				*return_message(char *error, char *details);
-int					return_message_int(char *error, char *details, int err);
-int					return_message_int_c(char *error, char c, int err);
+int					return_message_i(char *error, char *details, int err);
+int					return_message_c(char *error, char c, int err);
 
 void				check_resolution(int *x, int *y, void *mlx);
 void				check_ceilingandfloor(t_parse *data, t_optis *op);
 
-void				main_map(t_parse *data, t_img *img);
+void				init_bmp(t_global *env);
+int					*int_to_bmp(t_global *env);
+void				start_bmp(t_global *env);
+void				main_map(t_parse *data, t_img *img, t_raycast *rc);
 void				print_map(t_parse *data, t_img *img, int ratio, t_vec2i mapwrite);
 void				print_player(t_parse *data, t_img *img, int ratio, t_vec2i mapwrite);
-void				print_block_map(t_img *img, int color, t_vec2i mapwrite,
+void				print_square(t_img *img, int color, t_vec2i mapwrite,
 						int	ratio);
 void				calcul_mapsize(t_parse *data, t_vec2i *mapwrite, int *ratio);
+
+void				print_line(t_vec2i start, t_vec2i end, t_img *img);
+void				print_line_high(t_vec2i start, t_vec2i end, t_img *img);
+void				print_line_low(t_vec2i start, t_vec2i end, t_img *img);
+
+void				resume_game(t_global *env);
+void				screen_button(t_global *env, int x, int y);
+void				settings_button(t_global *env, int x, int y);
+void				settings_menu(t_global *env);
+void				return_settings(t_global *env);
+void				lowcub_settings(t_global *env);
+
+void				move_player(t_parse *data, t_raycast *rc, t_keys *events);
+void				fill_header(t_bmpfileheader *bfh, t_bmpinfoheader *bih, t_parse *data);
+
+void				init_line_low(t_vec2i *line, t_vec2i start, t_vec2i end, int *yi);
+void				init_line_high(t_vec2i *line, t_vec2i start, t_vec2i end, int *xi);
+
+int					check_textures(t_parse *data);
+
+void				check_options(int ac, char **av, t_global *env);
+
+int					init_menu(t_parse *data);
+int					init_resume(t_parse *data);
+int					init_settings(t_parse *data);
+
+int					create_xpm_bonus(t_global *env);
+int					check_circled_map(t_parse *data, int x, int y);
+
+int					check_details_map(t_parse *data, int x, int y, t_list **s_map);
+
+void				calcul_print_map(t_vec2i *mapw, t_vec2i *coord, int xtmp, int ratio);
 #endif

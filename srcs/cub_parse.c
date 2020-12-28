@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 14:27:15 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/28 16:46:29 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,35 @@ int		cub_parse_clear(t_parse *data, t_list **maplist, t_sinfo_lst **s_info)
 	return (0);
 }
 
+int		check_validmap(t_parse *data)
+{
+	int				x;
+	int				y;
+	int				err;
+	t_smap_lst		*s_map;
+
+	s_map = NULL;
+	err = 0;
+	x = 0;
+	y = 0;
+	while (data->map[y] != NULL)
+	{
+		while (data->map[y][x] != '\0')
+		{
+			if (err != 1)
+				err = check_details_map(data, x, y, &s_map);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	fill_sprite(data, &s_map);
+	ft_lstclear(&s_map, &free);
+	if (err == 0 && data->orientation == 0)
+		return (return_message_i("Player not found.", NULL, 1));
+	return (err);
+}
+
 int		cub_parse(int fd, t_parse *data)
 {
 	int				error;
@@ -94,5 +123,5 @@ int		cub_parse(int fd, t_parse *data)
 			return (1);
 		free(line);
 	}
-	return(cub_parse_clear(data, &maplist, &s_info));
+	return (cub_parse_clear(data, &maplist, &s_info));
 }

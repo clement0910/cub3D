@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 23:28:35 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/28 16:44:16 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct		s_menu
 	t_img			**logo;
 	t_cursor		*cur;
 	t_img			*map;
+	t_img			*on;
 }					t_menu;
 
 /*
@@ -142,6 +143,5 @@ void				calcul_floor(t_game *game);
 void				calcul_floor_step(t_game *game, t_parse *data, int y);
 
 void				xpm_to_gif(t_game *game, t_parse *data);
-void				control_events(t_parse *data, t_raycast *rc, t_keys events,
-					t_optis *op);
+void				control_events(t_keys *events, t_optis *op);
 #endif

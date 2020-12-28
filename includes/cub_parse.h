@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 22:05:36 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/24 14:21:45 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct	s_parse
 	t_spritem	*s_map;
 	char		**map;
 	char		**tex; //in other struct (bonus)
+	char		**resume;
+	char		**settings;
 	char		*symbol;
 	t_vec2f		player;
 	int			nbsprite;

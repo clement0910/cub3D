@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 21:09:26 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 14:26:52 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/27 16:19:18 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_sprite		**create_sprite_tab(void *mlx, t_spritem *s_map, int size)
 	return (sprite);
 }
 
-void		free_sprite(t_sprite *sprite, void *mlx)
+void			free_sprite(t_sprite *sprite, void *mlx)
 {
 	if (sprite)
 	{
@@ -65,7 +65,7 @@ void		free_sprite(t_sprite *sprite, void *mlx)
 	}
 }
 
-void		free_sprite_tab(t_sprite **sprite, void *mlx, int size)
+void			free_sprite_tab(t_sprite **sprite, void *mlx, int size)
 {
 	int		x;
 
