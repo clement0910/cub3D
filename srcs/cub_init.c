@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 17:55:45 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 21:41:30 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ void	init_parse_struct(t_parse *data)
 	data->resy = -1;
 }
 
+int		check_filename(char *str)
+{
+	char	*file;
+
+	if (ft_strlen((char*)str) <= 4)
+	{
+		ft_printf("Invalid file name, put .cub file.\n");
+		return (1);
+	}
+	file = ft_strrchr((char*)str, '.');
+	if (ft_strncmp(file, ".cub", 4) != 0 || file[4] != '\0')
+	{
+		ft_printf("Invalid file name, put .cub file.\n");
+		return (1);
+	}
+	return (0);
+}
+
 void	init_parse(t_global *env, int ac, char **av)
 {
 	int	fd;
@@ -76,6 +94,8 @@ void	init_parse(t_global *env, int ac, char **av)
 		perror(av[1]);
 		error_cub("Memory", env);
 	}
+	if (check_filename(av[1])) //need to close ?
+		error_cub("Parse", env);
 	ft_bzero(&env->data, sizeof(t_parse));
 	init_parse_struct(&env->data);
 	if (cub_parse(fd, &env->data, &env->op) == 1)

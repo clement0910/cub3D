@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 20:52:36 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 21:25:04 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void			check_ceilingandfloor(t_parse *data, t_optis *op);
 int				check_circled_map(t_parse *data, int x, int y);
 int				check_details_map(t_parse *data, int x, int y, t_list **s_map);
 int				check_options(int ac, char **av, t_optis *op);
-
+int				check_filename(char *str);
 /*
 **				PRINT DATA
 */
