@@ -7,3 +7,9 @@ Cub3D.dSYM/Contents/Info.plist
 minilibx/mlx_image.swiftsourceinfo
 minilibx/mlx_window.swiftsourceinfo
 minilibx/mlx_init.swiftsourceinfo
+Cub3D
+save.bmp
+.gitignore
+.vscode/settings.json
+.gitignore
+libft/ft_putunsignednbr_fd.c
