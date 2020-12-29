@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/28 16:46:29 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 14:12:09 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		cub_parse_clear(t_parse *data, t_list **maplist, t_sinfo_lst **s_info)
 		ft_lstclear(s_info, &free);
 		return (1);
 	}
-	//ft_printdata(*data, maplist, s_info);
+	//ft_printdata(data, maplist, s_info);
 	ft_lstclear(maplist, &free);
 	free_lst_sinfo(s_info);
 	ft_lstclear(s_info, &free);

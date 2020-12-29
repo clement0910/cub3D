@@ -46,8 +46,7 @@ MLX = minilibx/libmlx.dylib
 
 FW = -L minilibx -lmlx -framework OpenGL -lm -framework AppKit
 
-LIBFT = libft/libft.a
-
+LIBFT = ft_printf/libftprintf.a
 
 OBJ = $(SRCS:.c=.o) 
 

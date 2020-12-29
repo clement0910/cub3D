@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 10:22:58 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 14:00:57 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_game(t_global *env)
 	if (!(env->game->sprite = create_sprite_tab(env->win.mlx,
 	env->data.s_map, env->data.nbsprite)))
 		error_cub("Allocation", env);
-	if (env->data.resx == 1440 && env->data.resy == 900)
+	if (env->data.resx == 1440 && env->data.resy == 900 && !env->op.save)
 		init_bonus(env);
 }
 

@@ -6,14 +6,14 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 12:50:51 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 14:58:05 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
-# include "libft.h"
+# include "../ft_printf/includes/libftprintf.h"
 # include "mlx.h"
 # include "mlx_keys.h"
 # include "cub_image.h"

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 10:28:29 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 15:04:19 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,11 @@ int		main(int ac, char **av)
 	mlx_hook(env->win.win, BUTTON_RELEASE, BUTTON_RELEASE_MASK, button_release,
 	&env->events);
 	mlx_hook(env->win.win, 17, 0, close_window, env);
+	if (env->op.save)
+	{
+		start_bmp(env);
+		return (0);
+	}
 	if (env->op.on)
 		mlx_loop_hook(env->win.mlx, loop_bonus, env);
 	else
