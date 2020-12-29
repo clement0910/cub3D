@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 18:31:25 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 20:40:42 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 22:18:31 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	check_resolution(int *x, int *y, void *mlx, t_optis *op)
 	if (*x < 500 || *y < 500)
 	{
 		if (!op->ignore)
-			print_error("Low resolution ! Map and FPS is displayed from the\
+			print_error("Low resolution ! Map and FPS is displayed from the \
 resolution 500x500", true);
 	}
 	check_screen_size(x, y, mlx, op);

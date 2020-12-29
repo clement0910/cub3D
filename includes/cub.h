@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 20:57:44 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 22:37:25 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "cub_mlx.h"
 # include "cub_game.h"
 # include "cub_bmp.h"
+# include "cub_timer.h"
 
 # include <stdio.h>
 # include <sys/time.h>
@@ -47,6 +48,7 @@ typedef struct		s_global
 	t_optis			op;
 	t_parse			data;
 	t_game			*game;
+	t_frame			frame;
 }					t_global;
 
 int					init_xpm(t_parse *data);
@@ -117,5 +119,6 @@ void				return_settings(t_global *env);
 void				lowcub_settings(t_global *env);
 
 int					create_xpm_bonus(t_global *env);
+void				main_fps(t_global *env, int x, int y, int color);
 
 #endif

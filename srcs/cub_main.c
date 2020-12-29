@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 20:21:00 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 22:37:44 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		loop(t_global *env)
 {
+	env->frame.fps++;
 	poll_events(&env->events);
 	if (get_key(KEY_ESCAPE, &env->events))
 		free_cub(env, 0);
@@ -38,44 +39,9 @@ int		loop(t_global *env)
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 	, 0, 0);
 	xpm_to_gif(env->game, &env->data);
+	main_fps(env, 100, 100, RED);
 	mlx_do_sync(env->win.mlx);
 	return (0);
-}
-
-int		check_options(int ac, char **av, t_optis *op)
-{
-	if (ac > 3 || ac < 2)
-	{
-		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
-		return (1);
-	}
-	if (ft_strncmp(av[1], "--help", 6) == 0)
-	{
-		ft_putendl_fd("Message", 1);
-		return (1);
-	}
-	if (!av[2])
-		return (0);
-	if (ft_strncmp(av[2], "--data", 6) == 0)
-		op->data = true;
-	else if (ft_strncmp(av[2], "--save", 6) == 0)
-		op->save = true;
-	else if (ft_strncmp(av[2], "--ignore", 8) == 0)
-		op->ignore = true;
-	else
-	{
-		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
-		return (1);
-	}
-	return (0);
-}
-
-void	write_pixel(t_img *image, int x, int y, int color)
-{
-    int		*dst;
-
-	dst = image->addr + (y * (image->line_length / 4) + x);
-	*dst = color;
 }
 
 int		loop_bonus(t_global *env)
@@ -119,6 +85,43 @@ int		loop_bonus(t_global *env)
 	return (0);
 }
 
+int		check_options(int ac, char **av, t_optis *op)
+{
+	if (ac > 3 || ac < 2)
+	{
+		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
+		return (1);
+	}
+	if (ft_strncmp(av[1], "--help", 6) == 0)
+	{
+		ft_putendl_fd("Message", 1);
+		return (1);
+	}
+	if (!av[2])
+		return (0);
+	if (ft_strncmp(av[2], "--data", 6) == 0)
+		op->data = true;
+	else if (ft_strncmp(av[2], "--save", 6) == 0)
+		op->save = true;
+	else if (ft_strncmp(av[2], "--ignore", 8) == 0)
+		op->ignore = true;
+	else
+	{
+		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
+		return (1);
+	}
+	return (0);
+}
+
+void	write_pixel(t_img *image, int x, int y, int color)
+{
+    int		*dst;
+
+	dst = image->addr + (y * (image->line_length / 4) + x);
+	*dst = color;
+}
+
+
 int		main(int ac, char **av)
 {
 	t_global	*env;
@@ -140,6 +143,7 @@ int		main(int ac, char **av)
 	mlx_hook(env->win.win, BUTTON_RELEASE, BUTTON_RELEASE_MASK, button_release,
 	&env->events);
 	mlx_hook(env->win.win, 17, 0, close_window, env);
+	timer_restart(&env->frame.timer);
 	if (env->op.save)
 	{
 		start_bmp(env);

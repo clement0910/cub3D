@@ -36,6 +36,8 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_init_xpm.c \
 		srcs/cub_malloc_xpm.c \
 		srcs/cub_print_error.c \
+		srcs/cub_timer.c \
+		srcs/cub_frame.c \
 
 
 HEADER = -I libft/ -I minilibx/ -I includes/ 
