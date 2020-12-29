@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/27 21:02:54 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 10:22:58 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	init_parse(t_global *env, int ac, char **av)
 {
 	int	fd;
 
-	check_options(ac, av, env);
+	if (check_options(ac, av, &env->op))
+		error_cub("Command", env);
 	if ((fd = open(av[1], O_RDONLY)) == -1)
 	{
 		perror(av[1]);

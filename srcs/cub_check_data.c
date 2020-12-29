@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 18:31:25 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/27 18:46:49 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/28 17:57:35 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,15 @@ void	check_resolution(int *x, int *y, void *mlx)
 		print_error("Low resolution ! Map and FPS is displayed from the\
 resolution 500x500", true);
 	}
-	if (*x != 1440 || *y != 900)
-	{
-		print_error("Low resolution ! To display the bonus game, \
-put the resolution 1440x900 in your .cub file", true);
-	}
 	if (*x > maxres.x || *y > maxres.y)
 	{
 		print_error("Resolution Too High | Set to your screen size", true); //?
 		*x = maxres.x;
 		*y = maxres.y;
+	}
+	if (*x != 1440 || *y != 900)
+	{
+		print_error("Low resolution ! To display the bonus game, \
+put the resolution 1440x900 in your .cub file", true);
 	}
 }

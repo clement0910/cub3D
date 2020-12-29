@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/28 17:05:37 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 10:28:29 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,32 @@ int		loop(t_global *env)
 	return (0);
 }
 
-void	check_options(int ac, char **av, t_global *env)
+int		check_options(int ac, char **av, t_optis *op)
 {
 	if (ac > 3 || ac < 2)
 	{
 		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
-		error_cub("Command", env);
+		return (1);
 	}
 	if (ft_strncmp(av[1], "--help", 6) == 0)
 	{
 		ft_putendl_fd("Message", 1);
-		error_cub("Command", env);
+		return (1);
 	}
 	if (!av[2])
-		return ;
+		return (0);
 	if (ft_strncmp(av[2], "--debug", 7) == 0)
-		env->op.debug = true;
+		op->debug = true;
 	else if (ft_strncmp(av[2], "--save", 6) == 0)
-		env->op.save = true;
+		op->save = true;
 	else if (ft_strncmp(av[2], "--ignore", 8) == 0)
-		env->op.ignore = true;
+		op->ignore = true;
 	else
 	{
 		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
-		error_cub("Command", env);
+		return (1);
 	}
+	return (0);
 }
 
 void	write_pixel(t_img *image, int x, int y, int color)
@@ -131,7 +132,6 @@ int		main(int ac, char **av)
 	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
 	env->data.resy, "Cub3D");
 	env->op.texture = true;
-	env->op.ceilingandfloor = true;
 	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
 	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release,
 	&env->events);

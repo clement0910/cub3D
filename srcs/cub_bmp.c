@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 17:43:36 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/28 17:12:29 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 10:07:58 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	fill_header(t_bmpfileheader *bfh, t_bmpinfoheader *bih, t_parse *data)
 	bih->alpha_mask = 0xFF000000;
 }
 
-int		*int_to_bmp(t_global *env)
+int		*int_to_bmp(t_parse *data, t_img *img)
 {
 	int		*bmp;
 	int		x;
@@ -56,15 +56,15 @@ int		*int_to_bmp(t_global *env)
 
 	x = 0;
 	y = 0;
-	if (!(bmp = malloc(sizeof(int) * env->data.resx * env->data.resy)))
+	if (!(bmp = malloc(sizeof(int) * data->resx * data->resy)))
 		return (NULL);
-	while (y < env->data.resy)
+	while (y < data->resy)
 	{
 		x = 0;
-		while (x < env->data.resx)
+		while (x < data->resx)
 		{
-			bmp[(env->data.resy - 1 - y) * env->data.resx + x] =
-			env->game->game->addr[y * env->game->game->line_length_i + x] |
+			bmp[(data->resy - 1 - y) * data->resx + x] =
+			img->addr[y * img->line_length_i + x] |
 			0xFF000000;
 			x++;
 		}
@@ -84,9 +84,9 @@ void	init_bmp(t_global *env)
 	fd = open("save.bmp", O_WRONLY | O_CREAT, 0644);
 	if (fd < 0)
 		error_cub("FD", env);
-	write(fd, &bfh, 14);
+	write(fd, &bfh, 14); //proteger write ?
 	write(fd, &bih, bih.header_size);
-	if (!(bmp = int_to_bmp(env)))
+	if (!(bmp = int_to_bmp(&env->data, env->game->game)))
 		error_cub("Allocation", env);
 	write(fd, bmp, bih.image_size);
 	free(bmp);

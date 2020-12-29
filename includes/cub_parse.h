@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/24 14:21:45 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 11:12:06 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct	s_parse
 	t_spritei	*s_info;
 	t_spritem	*s_map;
 	char		**map;
-	char		**tex; //in other struct (bonus)
+	char		**tex;
 	char		**resume;
 	char		**settings;
 	char		*symbol;
@@ -72,9 +72,12 @@ typedef struct	s_parse
 */
 int				parse_xpmcolor(char *line, t_colorxpm *color,
 				const char *details);
+int				parse_color_rgb(char *line, t_colorxpm *color,
+				const char *details);
 int				parse_textures(char *line, char **textures, const char *dir);
 int				parse_resolution(char *line, int *x, int *y);
 int				check_line(char *line, t_parse *data);
+int				ft_atoi_parse(char *str, int *x);
 
 /*
 **				PARSE SPRITESINFO
@@ -97,6 +100,7 @@ int				check_map(char *line, t_list **maplist);
 int				malloc_map(char *line, t_list **maplist);
 int				check_around(t_parse *data, int x, int y);
 int				check_validmap(t_parse *data);
+int				check_player(t_parse *data, int x, int y);
 int				fill_map(t_parse *data, t_list **maplist);
 
 /*
@@ -116,8 +120,15 @@ int				cub_parse_error(char *line, t_sinfo_lst **s_info,
 int				cub_parse_clear(t_parse *data, t_list **maplist,
 				t_sinfo_lst **s_info);
 
+/*
+**				CHECK_PARSE
+*/
 int				check_parse(t_parse *data, t_optis *op);
-void			free_parsing(t_parse *data);
+void			check_resolution(int *x, int *y, void *mlx);
+int				check_textures(t_parse *data);
+void			check_ceilingandfloor(t_parse *data, t_optis *op);
+int				check_circled_map(t_parse *data, int x, int y);
+int				check_details_map(t_parse *data, int x, int y, t_list **s_map);
+int				check_options(int ac, char **av, t_optis *op);
 
-int				ft_atoi_parse(char *str, int *x);
 #endif

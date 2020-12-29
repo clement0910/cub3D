@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:25:37 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 23:33:39 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 11:10:09 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct		s_options
 	bool			debug;
 	bool			ignore;
 	bool			save;
-	////////////////////
 	bool			menu;
 	bool			resume;
 	bool			settings;

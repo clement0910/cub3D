@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/28 16:44:16 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 11:12:23 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void				move_forward(t_parse *data, t_raycast *rc, double speed);
 void				move_backward(t_parse *data, t_raycast *rc, double speed);
 void				move_left(t_parse *data, t_raycast *rc, double speed);
 void				move_right(t_parse *data, t_raycast *rc, double speed);
-
+void				move_player(t_parse *data, t_raycast *rc, t_keys *events);
 /*
 **					CALCULATION RAYCAST
 */
@@ -141,7 +141,33 @@ void				write_sprite(t_game *game, t_parse *data, int i,
 void				main_floor(t_game *game, t_parse *data);
 void				calcul_floor(t_game *game);
 void				calcul_floor_step(t_game *game, t_parse *data, int y);
-
 void				xpm_to_gif(t_game *game, t_parse *data);
 void				control_events(t_keys *events, t_optis *op);
+
+/*
+**					CALCULATION & PRINT MAP
+*/
+void				main_map(t_parse *data, t_img *img, t_raycast *rc);
+void				print_map(t_parse *data, t_img *img, int ratio,
+					t_vec2i mapwrite);
+void				print_player(t_parse *data, t_img *img, int ratio,
+					t_vec2i mapwrite);
+void				print_square(t_img *img, int color, t_vec2i mapwrite,
+					int	ratio);
+void				calcul_print_map(t_vec2i *mapw, t_vec2i *coord, int xtmp,
+					int ratio);
+void				calcul_mapsize(t_parse *data, t_vec2i *mapwrite,
+					int *ratio);
+
+/*
+**					BRESENHAM’S ALGORITHM
+*/
+void				init_line_low(t_vec2i *line, t_vec2i start, t_vec2i end,
+					int *yi);
+void				init_line_high(t_vec2i *line, t_vec2i start, t_vec2i end,
+					int *xi);
+void				print_line(t_vec2i start, t_vec2i end, t_img *img);
+void				print_line_high(t_vec2i start, t_vec2i end, t_img *img);
+void				print_line_low(t_vec2i start, t_vec2i end, t_img *img);
+
 #endif
