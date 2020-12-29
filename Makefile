@@ -11,7 +11,7 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_parse.c \
 		srcs/cub_parse_fill.c \
 		srcs/cub_parse_func.c \
-		srcs/cub_debug.c \
+		srcs/cub_print_data.c \
 		srcs/cub_raycast.c \
 		srcs/cub_raycast_player.c \
 		srcs/cub_init.c \

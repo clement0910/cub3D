@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 14:58:05 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 20:57:44 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define RED_ERROR "\033[1;31m"
 # define RESET_ERROR "\033[0m"
 # define ORANGE_ERROR "\033[01;33m"
+# define GREEN_DEBUG  "\x1B[32m"
 
 # define NO 0
 # define SO 1
@@ -53,7 +54,6 @@ void				init_raystruct(t_parse *data, t_game *game);
 void				init_ray_so_no(t_parse *data, t_game *game);
 void				init_ray_ea_we(t_parse *data, t_game *game);
 void				init_precalculated_rc(t_parse *data, t_game *game);
-void				print_lstmap(t_list **spritelist, t_parse *data);
 void				ft_free_static_tab(char **tab, int size);
 void				init_parse_struct(t_parse *data);
 /*
@@ -85,10 +85,8 @@ void				free_parsing(t_parse *data);
 /*
 **					DEBUG
 */
-void				print_tab(char **tab); //review
 void				ft_printdata(t_parse *data, t_list **maplist,
 					t_sinfo_lst **s_info);
-void				print_lst(t_list **maplist);
 void				print_lst_sprite(t_sinfo_lst **s_info);
 void				print_spritei(t_spritei s_info);
 void				print_lstmap(t_list **spritelist, t_parse *data);
@@ -119,4 +117,5 @@ void				return_settings(t_global *env);
 void				lowcub_settings(t_global *env);
 
 int					create_xpm_bonus(t_global *env);
+
 #endif

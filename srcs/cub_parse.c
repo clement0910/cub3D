@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 14:12:09 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 20:19:21 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		cub_parse_error(char *line, t_sinfo_lst **s_info, t_list **maplist,
 	return (0);
 }
 
-int		cub_parse_clear(t_parse *data, t_list **maplist, t_sinfo_lst **s_info)
+int		cub_parse_clear(t_parse *data, t_list **maplist, t_sinfo_lst **s_info,
+		t_optis *op)
 {
 	if (fill_map(data, maplist) || fill_spriteinfo(data, s_info)
 	|| fill_symbol(data))
@@ -66,7 +67,8 @@ int		cub_parse_clear(t_parse *data, t_list **maplist, t_sinfo_lst **s_info)
 		ft_lstclear(s_info, &free);
 		return (1);
 	}
-	//ft_printdata(data, maplist, s_info);
+	if (op->data)
+		printdata(data, maplist, s_info);
 	ft_lstclear(maplist, &free);
 	free_lst_sinfo(s_info);
 	ft_lstclear(s_info, &free);
@@ -102,7 +104,7 @@ int		check_validmap(t_parse *data)
 	return (err);
 }
 
-int		cub_parse(int fd, t_parse *data)
+int		cub_parse(int fd, t_parse *data, t_optis *op)
 {
 	int				error;
 	int				read;
@@ -123,5 +125,5 @@ int		cub_parse(int fd, t_parse *data)
 			return (1);
 		free(line);
 	}
-	return (cub_parse_clear(data, &maplist, &s_info));
+	return (cub_parse_clear(data, &maplist, &s_info, op));
 }

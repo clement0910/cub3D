@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 15:04:19 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 20:21:00 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int		check_options(int ac, char **av, t_optis *op)
 	}
 	if (!av[2])
 		return (0);
-	if (ft_strncmp(av[2], "--debug", 7) == 0)
-		op->debug = true;
+	if (ft_strncmp(av[2], "--data", 6) == 0)
+		op->data = true;
 	else if (ft_strncmp(av[2], "--save", 6) == 0)
 		op->save = true;
 	else if (ft_strncmp(av[2], "--ignore", 8) == 0)

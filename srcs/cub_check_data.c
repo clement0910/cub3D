@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 18:31:25 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/28 17:57:35 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 20:40:42 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@ void	check_ceilingandfloor(t_parse *data, t_optis *op)
 		op->ceilflooron = true;
 	if (data->floor.xpm && data->ceiling.xpm == NULL)
 	{
-		print_error(
-		"Need ceiling texture to display the floor and ceiling.", true);
+		if (!op->ignore)
+			print_error(
+			"Need ceiling texture to display the floor and ceiling.", true);
 	}
 	if (data->floor.xpm == NULL && data->ceiling.xpm)
 	{
-		print_error(
-		"Need floor texture to display the floor and ceiling.", true);
+		if (!op->ignore)
+			print_error(
+			"Need floor texture to display the floor and ceiling.", true);
 	}
 	if (data->floor.color == -1)
 		data->floor.color = GREEN;
@@ -72,31 +74,47 @@ int		check_textures(t_parse *data)
 	return (0);
 }
 
-void	check_resolution(int *x, int *y, void *mlx)
+void	check_resolution(int *x, int *y, void *mlx, t_optis *op)
 {
-	t_vec2i maxres;
-
 	if (*x < 100 || *y < 100)
 	{
-		print_error("Resolution Too Low | Set to 100x100", true);
+		if (!op->ignore)
+			print_error("Resolution Too Low | Set to 100x100", true);
 		*x = 100;
 		*y = 100;
 	}
-	mlx_get_screen_size(mlx, &maxres.x, &maxres.y);
 	if (*x < 500 || *y < 500)
 	{
-		print_error("Low resolution ! Map and FPS is displayed from the\
+		if (!op->ignore)
+			print_error("Low resolution ! Map and FPS is displayed from the\
 resolution 500x500", true);
 	}
-	if (*x > maxres.x || *y > maxres.y)
-	{
-		print_error("Resolution Too High | Set to your screen size", true); //?
-		*x = maxres.x;
-		*y = maxres.y;
-	}
+	check_screen_size(x, y, mlx, op);
 	if (*x != 1440 || *y != 900)
 	{
-		print_error("Low resolution ! To display the bonus game, \
+		if (!op->ignore)
+			print_error("Bad resolution ! To display the bonus game, \
 put the resolution 1440x900 in your .cub file", true);
+	}
+}
+
+void	check_screen_size(int *x, int *y, void *mlx, t_optis *op)
+{
+	t_vec2i maxres;
+
+	mlx_get_screen_size(mlx, &maxres.x, &maxres.y);
+	if (*x > maxres.x || *y > maxres.y)
+	{
+		*x = maxres.x;
+		*y = maxres.y;
+		if (!op->ignore)
+		{
+			ft_putstr_fd(ORANGE_ERROR, 1);
+			ft_putendl_fd("WARNING !", 1);
+			ft_printf("Resolution Too High | Set to your screen size: %dx%d\n"
+			, *x, *y);
+			ft_putendl_fd("-", 1);
+			ft_putstr_fd(RESET_ERROR, 1);
+		}
 	}
 }

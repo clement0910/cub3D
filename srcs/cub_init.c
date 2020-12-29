@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 14:00:57 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 17:55:45 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_bonus(t_global *env)
 
 void	init_game(t_global *env)
 {
-	check_resolution(&env->data.resx, &env->data.resy, env->win.mlx);
+	check_resolution(&env->data.resx, &env->data.resy, env->win.mlx, &env->op);
 	if (!(env->game = ft_calloc(1, sizeof(t_game))))
 		error_cub("Allocation", env);
 	if (!(env->game->game = create_image(env->win.mlx, env->data.resx,
@@ -78,7 +78,7 @@ void	init_parse(t_global *env, int ac, char **av)
 	}
 	ft_bzero(&env->data, sizeof(t_parse));
 	init_parse_struct(&env->data);
-	if (cub_parse(fd, &env->data) == 1)
+	if (cub_parse(fd, &env->data, &env->op) == 1)
 		error_cub("Parse", env);
 	if (check_parse(&env->data, &env->op) == 1)
 		error_cub("Parse", env);

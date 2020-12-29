@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 11:12:06 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 20:52:36 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,21 +114,30 @@ int				find_sprite_info(char c, t_parse *data);
 /*
 **				GLOBAL PARSE
 */
-int				cub_parse(int fd, t_parse *data);
+int				cub_parse(int fd, t_parse *data, t_optis *op);
 int				cub_parse_error(char *line, t_sinfo_lst **s_info,
 				t_list **maplist, int *error);
 int				cub_parse_clear(t_parse *data, t_list **maplist,
-				t_sinfo_lst **s_info);
+				t_sinfo_lst **s_info, t_optis *op);
 
 /*
 **				CHECK_PARSE
 */
 int				check_parse(t_parse *data, t_optis *op);
-void			check_resolution(int *x, int *y, void *mlx);
+void			check_resolution(int *x, int *y, void *mlx, t_optis *op);
+void			check_screen_size(int *x, int *y, void *mlx, t_optis *op);
 int				check_textures(t_parse *data);
 void			check_ceilingandfloor(t_parse *data, t_optis *op);
 int				check_circled_map(t_parse *data, int x, int y);
 int				check_details_map(t_parse *data, int x, int y, t_list **s_map);
 int				check_options(int ac, char **av, t_optis *op);
+
+/*
+**				PRINT DATA
+*/
+void			printdata(t_parse *data, t_list **maplist,
+				t_sinfo_lst **sprite);
+void			printdata_map(t_parse *data, t_list **maplist);
+void			printdata_sprite(t_parse *data, t_sinfo_lst **sprite);
 
 #endif

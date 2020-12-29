@@ -45,6 +45,8 @@ SRCS	=	ft_atoi.c				\
 			get_next_line.c			\
 			get_next_line_utils.c	\
 			ft_putunsignednbr_fd.c	\
+			print_lst.c				\
+			print_tab.c				\
 
 BONUS	=	ft_lstnew_bonus.c		\
 			ft_lstadd_front_bonus.c	\

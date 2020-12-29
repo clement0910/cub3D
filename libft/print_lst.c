@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_options.h                                      :+:      :+:    :+:   */
+/*   print_lst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 17:25:37 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 20:19:32 by csapt            ###   ########lyon.fr   */
+/*   Created: 2020/12/29 20:07:57 by csapt             #+#    #+#             */
+/*   Updated: 2020/12/29 20:08:16 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_OPTIONS_H
-# define CUB_OPTIONS_H
+#include "libft.h"
 
-# include <stdbool.h>
-
-typedef struct		s_options
+void	print_lst(t_list **maplist)
 {
-	bool			minimap;
-	bool			ceilingandfloor;
-	bool			ceilflooron;
-	bool			texture;
-	bool			fps;
-	bool			game;
-	bool			data;
-	bool			ignore;
-	bool			save;
-	bool			menu;
-	bool			resume;
-	bool			settings;
-	bool			ui;
-	bool			on;
-}					t_optis;
+	t_list *temp;
 
-#endif
+	temp = *maplist;
+	while (temp)
+	{
+		ft_putendl_fd(temp->content, 1);
+		temp = temp->next;
+	}
+}

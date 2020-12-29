@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 22:05:08 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/27 22:08:34 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 20:36:55 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	print_error(char *error, bool warn)
 		ft_putstr_fd(ORANGE_ERROR, 1);
 		ft_putendl_fd("WARNING !", 1);
 		ft_putendl_fd(error, 1);
+		ft_putendl_fd("-", 1);
 		ft_putstr_fd(RESET_ERROR, 1);
 	}
 	else

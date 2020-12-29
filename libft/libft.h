@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 20:18:44 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 14:54:08 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 20:11:01 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 				void (*del)(void *));
 int				ft_lstmaxlen(t_list **maplist);
 void			ft_putunsignednbr_fd(unsigned int x, int fd);
+void			print_tab(char **tab);
+void			print_lst(t_list **maplist);
 
 int				ft_check_index(char *buf);
 int				get_next_zero(char **str, char *buf);

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 17:43:36 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 10:07:58 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 20:48:10 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,14 @@ void	init_bmp(t_global *env)
 	fd = open("save.bmp", O_WRONLY | O_CREAT, 0644);
 	if (fd < 0)
 		error_cub("FD", env);
-	write(fd, &bfh, 14); //proteger write ?
-	write(fd, &bih, bih.header_size);
+	if (write(fd, &bfh, 14) == -1)
+		error_cub("Write", env);
+	if (write(fd, &bih, bih.header_size) == -1)
+		error_cub("Write", env);
 	if (!(bmp = int_to_bmp(&env->data, env->game->game)))
 		error_cub("Allocation", env);
-	write(fd, bmp, bih.image_size);
+	if (write(fd, bmp, bih.image_size) == -1)
+		error_cub("Write", env);
 	free(bmp);
 	close(fd);
 }
