@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 11:10:46 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 12:50:51 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CUB_H
 
 # include "libft.h"
-# include "get_next_line.h"
 # include "mlx.h"
 # include "mlx_keys.h"
 # include "cub_image.h"

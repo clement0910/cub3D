@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/02 10:52:30 by csapt             #+#    #+#             */
-/*   Updated: 2020/06/16 15:43:15 by csapt            ###   ########lyon.fr   */
+/*   Created: 2020/05/22 20:28:37 by csapt             #+#    #+#             */
+/*   Updated: 2020/12/29 13:00:08 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "libft.h"
 
 int		ft_check_index(char *buf)
 {
@@ -78,7 +78,7 @@ int		get_next_line(int fd, char **line)
 		if (error < 0)
 			return (-1);
 	}
-	*line = ft_strdup_gnl(str);
+	*line = ft_strdup(str);
 	free(str);
 	return ((error == 0) ? 0 : 1);
 }

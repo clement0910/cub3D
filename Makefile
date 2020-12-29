@@ -8,8 +8,6 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_other.c \
 		srcs/cub_hook_key.c \
 		srcs/cub_hook_button.c \
-		gnl/get_next_line.c \
-		gnl/get_next_line_utils.c \
 		srcs/cub_parse.c \
 		srcs/cub_parse_fill.c \
 		srcs/cub_parse_func.c \

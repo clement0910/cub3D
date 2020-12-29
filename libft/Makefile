@@ -42,6 +42,8 @@ SRCS	=	ft_atoi.c				\
 			ft_strrev.c				\
 			ft_tablen.c				\
 			ft_lstmaxlen.c 			\
+			get_next_line.c			\
+			get_next_line_utils.c	\
 
 BONUS	=	ft_lstnew_bonus.c		\
 			ft_lstadd_front_bonus.c	\

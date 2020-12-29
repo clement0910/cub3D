@@ -6,15 +6,22 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/22 20:18:44 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/26 13:38:14 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 12:59:13 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFFER_SIZE 32
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 typedef struct	s_list
 {
@@ -91,4 +98,13 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 				void (*del)(void *));
 int				ft_lstmaxlen(t_list **maplist);
 
+int				ft_check_index(char *buf);
+int				get_next_zero(char **str, char *buf);
+int				get_next_backn(char **str, char *buf, int fd, long *error);
+int				get_next_line(int fd, char **line);
+size_t			ft_strlen_gnl(char *str);
+char			*ft_strcpy(char *src, char *dst);
+char			*ft_strjoin_cpy(char *s1);
+char			*ft_strjoin_gnl(char *s1, char *s2);
+char			*ft_strdup_gnl(const char *s1);
 #endif
