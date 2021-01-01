@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 21:41:30 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/01 23:54:02 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	init_game(t_global *env)
 	if (!(env->game->rc.zbuffer = malloc(env->data.resx * sizeof(double))))
 		error_cub("Allocation", env);
 	if (!(env->game->textures = create_tab_xpm(env->win.mlx, 4, env->data.xpm)))
+		error_cub("Allocation", env);
+	if (!(env->game->spriteorder = malloc(env->data.nbsprite * sizeof(int))))
 		error_cub("Allocation", env);
 	if (!(env->game->sprite = create_sprite_tab(env->win.mlx,
 	env->data.s_map, env->data.nbsprite)))
@@ -94,7 +96,7 @@ void	init_parse(t_global *env, int ac, char **av)
 		perror(av[1]);
 		error_cub("Memory", env);
 	}
-	if (check_filename(av[1])) //need to close ?
+	if (check_filename(av[1]))
 		error_cub("Parse", env);
 	ft_bzero(&env->data, sizeof(t_parse));
 	init_parse_struct(&env->data);

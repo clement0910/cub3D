@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 16:54:15 by csapt             #+#    #+#             */
-/*   Updated: 2020/10/28 19:03:24 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/01 23:35:18 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef	struct		s_sprite
 {
 	double			x;
 	double			y;
-	int				spriteo;
 	double			spritedis;
 	t_img			**sprite;
 	int				nsprite;

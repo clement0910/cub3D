@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 13:10:19 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:21:20 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/01 23:49:05 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sprite_matrix(t_game *game, t_parse *data, int i)
 {
-	game->rc.sprite.x = game->sprite[i]->x - data->player.x;
-	game->rc.sprite.y = game->sprite[i]->y - data->player.y;
+	game->rc.sprite.x = game->sprite[game->spriteorder[i]]->x - data->player.x;
+	game->rc.sprite.y = game->sprite[game->spriteorder[i]]->y - data->player.y;
 	game->rc.invdet = 1.0 / (game->rc.plane.x * game->rc.dir.y - game->rc.dir.x
 	* game->rc.plane.y);
 	game->rc.transform.x = game->rc.invdet * (game->rc.dir.y * game->rc.sprite.x
@@ -38,11 +38,11 @@ void	sort_sprite(t_parse *data, t_game *game)
 		if (game->sprite[x]->spritedis > game->sprite[x + 1]->spritedis)
 		{
 			tmp = game->sprite[x]->spritedis;
-			tmporder = game->sprite[x]->spriteo;
+			tmporder = game->spriteorder[x];
 			game->sprite[x]->spritedis = game->sprite[x + 1]->spritedis;
-			game->sprite[x]->spriteo = game->sprite[x + 1]->spriteo;
+			game->spriteorder[x] = game->spriteorder[x + 1];
 			game->sprite[x + 1]->spritedis = tmp;
-			game->sprite[x + 1]->spriteo = tmporder;
+			game->spriteorder[x + 1] = tmporder;
 			x = 0;
 		}
 		else
@@ -104,12 +104,12 @@ void	main_sprite(t_game *game, t_parse *data)
 	int		i;
 
 	i = 0;
-	while (i < data->nbsprite) //bug to fix
+	while (i < data->nbsprite)
 	{
-		game->sprite[i]->spriteo = i;
-		game->sprite[i]->spritedis = ((data->player.x - game->sprite[i]->x) *
+		game->spriteorder[i] = i;
+		game->sprite[i]->spritedis = fabs(((data->player.x - game->sprite[i]->x) *
 		(data->player.x - game->sprite[i]->x) + (data->player.y -
-		game->sprite[i]->y) * (data->player.y * game->sprite[i]->y));
+		game->sprite[i]->y) * (data->player.y * game->sprite[i]->y)));
 		i++;
 	}
 	i = data->nbsprite - 1;

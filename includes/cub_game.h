@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 11:12:23 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/01 23:49:23 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct		s_game
 	t_sprite		**sprite;
 	t_img			*ceiling;
 	t_img			*floor;
+	int				*spriteorder;
 }					t_game;
 
 typedef struct		s_cursor
