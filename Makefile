@@ -68,7 +68,7 @@ $(LIBFT):
 
 $(NAME): $(OBJ) 
 	$(C) $(FLAGS) $(LIBFT) $(FW) $(OBJ) -o $(NAME)
-	mv minilibx/libmlx.dylib .
+	cp minilibx/libmlx.dylib .
 
 bonus: all
 
