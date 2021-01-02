@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:29:43 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 14:14:19 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 19:50:59 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,18 +147,5 @@
 # define MOUSE_LEFT				1
 # define MOUSE_MIDDLE			3
 # define MOUSE_RIGHT			2
-
-# define KEY_PRESS				2
-# define KEY_RELEASE			3
-# define BUTTON_PRESS			4
-# define BUTTON_RELEASE			5
-# define MOTION_NOTIFY			6
-
-# define NO_EVENT_MASK			0L
-# define KEY_PRESS_MASK			(1L<<0)
-# define KEY_RELEASE_MASK		(1L<<1)
-# define BUTTON_PRESS_MASK		(1L<<2)
-# define BUTTON_RELEASE_MASK	(1L<<3)
-# define MOTION_NOTIFY_MASK		(1L<<6)
 
 #endif
