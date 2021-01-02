@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/28 10:20:02 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 15:33:01 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,18 @@ int		ft_atoi_parse(char *str, int *x)
 	if (resultat > 2147483647)
 		return (2147483646);
 	return ((int)resultat);
+}
+
+void	ft_strcpy_cub(char *src, char *dst)
+{
+	size_t	x;
+
+	x = 0;
+	if (!src || !dst)
+		return ;
+	while (src[x] != '\0')
+	{
+		dst[x] = src[x];
+		x++;
+	}
 }

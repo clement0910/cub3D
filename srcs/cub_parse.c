@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:42:00 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 20:19:21 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 13:09:41 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,8 @@ int		cub_parse(int fd, t_parse *data, t_optis *op)
 	s_info = NULL;
 	while (read != 0)
 	{
-		read = get_next_line(fd, &line);
+		if ((read = get_next_line(fd, &line)) == -1)
+			return (1);
 		if (error != 2)
 			error = check_line(line, data);
 		if (cub_parse_error(line, &s_info, &maplist, &error))

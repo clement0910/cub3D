@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 19:10:41 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 21:25:04 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2020/12/29 23:50:28 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct	s_parse
 	t_vec2f		player;
 	int			nbsprite;
 	int			nbspritei;
+	char		**debug;
 }				t_parse;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 18:55:42 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/28 16:45:01 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 15:56:15 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,20 @@ void	print_square(t_img *img, int color, t_vec2i mapwrite, int ratio)
 		i++;
 		mapwrite.y++;
 	}
+}
+
+void	color_sprite(t_game *game, int i)
+{
+	game->rc.color = game->sprite[game->spriteorder[i]]->
+	sprite[game->sprite[game->spriteorder[i]]->xpm]->addr
+	[game->rc.tex.y * game->sprite[game->spriteorder[i]]->sprite
+	[game->sprite[game->spriteorder[i]]->xpm]->line_length_i + game->rc.tex.x];
+}
+
+void	write_pixel(t_img *image, int x, int y, int color)
+{
+    int		*dst;
+
+	dst = image->addr + (y * (image->line_length / 4) + x);
+	*dst = color;
 }

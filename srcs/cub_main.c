@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 22:37:44 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 15:56:32 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ int		loop(t_global *env)
 	main_raycast(env->game, &env->data, env->op);
 	main_sprite(env->game, &env->data);
 	if (get_key_press(KEY_J, &env->events))
-	{
 		init_bmp(env);
-		printf("SAVE DEPUIS J\n");
-	}
 	if (env->op.minimap)
 		main_map(&env->data, env->game->game, &env->game->rc);
 	move_player(&env->data, &env->game->rc, &env->events);
@@ -46,6 +43,7 @@ int		loop(t_global *env)
 
 int		loop_bonus(t_global *env)
 {
+	env->frame.fps++;
 	poll_events(&env->events);
 	if (env->op.menu)
 		menu_game(env);
@@ -68,13 +66,12 @@ int		loop_bonus(t_global *env)
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 		, 0, 0);
 		if (get_key_press(KEY_J, &env->events))
-		{
 			init_bmp(env);
-			printf("SAVE DEPUIS J\n");
-		}
 		if (env->op.minimap)
 			mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->map->img,
 			0, 0);
+		if (env->op.fps)
+			main_debug(env, RED);
 		xpm_to_gif(env->game, &env->data);
 	}
 	if (env->op.resume)
@@ -85,56 +82,18 @@ int		loop_bonus(t_global *env)
 	return (0);
 }
 
-int		check_options(int ac, char **av, t_optis *op)
-{
-	if (ac > 3 || ac < 2)
-	{
-		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
-		return (1);
-	}
-	if (ft_strncmp(av[1], "--help", 6) == 0)
-	{
-		ft_putendl_fd("Message", 1);
-		return (1);
-	}
-	if (!av[2])
-		return (0);
-	if (ft_strncmp(av[2], "--data", 6) == 0)
-		op->data = true;
-	else if (ft_strncmp(av[2], "--save", 6) == 0)
-		op->save = true;
-	else if (ft_strncmp(av[2], "--ignore", 8) == 0)
-		op->ignore = true;
-	else
-	{
-		ft_putendl_fd("Use ./Cub3D --help for more info.", 1);
-		return (1);
-	}
-	return (0);
-}
-
-void	write_pixel(t_img *image, int x, int y, int color)
-{
-    int		*dst;
-
-	dst = image->addr + (y * (image->line_length / 4) + x);
-	*dst = color;
-}
-
-
 int		main(int ac, char **av)
 {
 	t_global	*env;
 
 	if (!(env = ft_calloc(1, sizeof(t_global))))
 		error_cub("Allocation", env);
-	init_parse(env, ac, av);
+	if (init_parse(env, ac, av))
+		return (0);
 	env->win.mlx = mlx_init();
 	init_game(env);
-	init_raystruct(&env->data, env->game);
 	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
 	env->data.resy, "Cub3D");
-	env->op.texture = true;
 	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
 	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release,
 	&env->events);
@@ -145,10 +104,7 @@ int		main(int ac, char **av)
 	mlx_hook(env->win.win, 17, 0, close_window, env);
 	timer_restart(&env->frame.timer);
 	if (env->op.save)
-	{
-		start_bmp(env);
-		return (0);
-	}
+		return (start_bmp(env));
 	if (env->op.on)
 		mlx_loop_hook(env->win.mlx, loop_bonus, env);
 	else

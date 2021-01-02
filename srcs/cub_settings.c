@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 13:14:53 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 10:13:17 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 11:39:28 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	settings_menu(t_global *env)
 		mlx_put_image_to_window(env->win.mlx, env->win.win,
 		env->main->settings[0]->img, 0, 0);
 	lowcub_settings(env);
+	debug_settings(env);
 	mlx_put_image_to_window(env->win.mlx, env->win.win,
 	env->main->cur->img->img, env->main->cur->pos.x, env->main->cur->pos.y);
 }
@@ -47,13 +48,21 @@ void	lowcub_settings(t_global *env)
 	env->main->cur->pos.y > 672 && env->main->cur->pos.y < 744)
 	{
 		if (get_button(MOUSE_LEFT, 0, 0, &env->events))
+		{
+			if (env->op.ceilflooron)
+				env->op.ceilingandfloor = true;
 			env->op.texture = true;
+		}
 	}
 	if (env->main->cur->pos.x > 946 && env->main->cur->pos.x < 1018 &&
 	env->main->cur->pos.y > 672 && env->main->cur->pos.y < 744)
 	{
 		if (get_button(MOUSE_LEFT, 0, 0, &env->events))
+		{
+			if (env->op.ceilflooron)
+				env->op.ceilingandfloor = false;
 			env->op.texture = false;
+		}
 	}
 	if (env->op.texture == true)
 		mlx_put_image_to_window(env->win.mlx, env->win.win,
@@ -61,4 +70,26 @@ void	lowcub_settings(t_global *env)
 	else
 		mlx_put_image_to_window(env->win.mlx, env->win.win,
 		env->main->on->img, 976, 729);
+}
+
+void	debug_settings(t_global *env)
+{
+	if (env->main->cur->pos.x > 872 && env->main->cur->pos.x < 945 &&
+	env->main->cur->pos.y > 495 && env->main->cur->pos.y < 567)
+	{
+		if (get_button(MOUSE_LEFT, 0, 0, &env->events))
+			env->op.fps = true;
+	}
+	if (env->main->cur->pos.x > 946 && env->main->cur->pos.x < 1018 &&
+	env->main->cur->pos.y > 495 && env->main->cur->pos.y < 567)
+	{
+		if (get_button(MOUSE_LEFT, 0, 0, &env->events))
+			env->op.fps = false;
+	}
+	if (env->op.fps == true)
+		mlx_put_image_to_window(env->win.mlx, env->win.win,
+		env->main->on->img, 904, 552);
+	else
+		mlx_put_image_to_window(env->win.mlx, env->win.win,
+		env->main->on->img, 976, 552);	
 }

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:19:21 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/01 23:51:52 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 02:19:56 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_parsing(t_parse *data)
 {
 	if (!data)
 		return ;
+	ft_free_tab(data->debug);
 	free_spritei(data->s_info, data->nbspritei);
 	ft_free_static_tab(data->xpm, 4);
 	free(data->floor.xpm);

@@ -6,13 +6,13 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 17:43:36 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 20:48:10 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 13:43:30 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	start_bmp(t_global *env)
+int		start_bmp(t_global *env)
 {
 	ft_bzero(env->game->game->addr, env->data.resy *
 	env->game->game->line_length);
@@ -21,6 +21,7 @@ void	start_bmp(t_global *env)
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 	, 0, 0);
 	init_bmp(env);
+	return (0);
 }
 
 void	fill_header(t_bmpfileheader *bfh, t_bmpinfoheader *bih, t_parse *data)
@@ -93,5 +94,8 @@ void	init_bmp(t_global *env)
 	if (write(fd, bmp, bih.image_size) == -1)
 		error_cub("Write", env);
 	free(bmp);
+	ft_putstr_fd(GREEN_DEBUG, 1);
+	ft_printf("Screenshot 📸\n");
+	ft_putstr_fd(RESET_ERROR, 1);
 	close(fd);
 }

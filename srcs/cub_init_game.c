@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_init.c                                         :+:      :+:    :+:   */
+/*   cub_init_game.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/01 23:54:02 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 15:54:53 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,32 @@ void	init_bonus(t_global *env)
 		error_cub("Allocation", env);
 	if (create_xpm_bonus(env))
 		error_cub("Allocation", env);
+	if ((init_debugstr(&env->data)))
+		error_cub("Allocation", env);
 	env->op.menu = true;
 	mlx_mouse_hide();
+}
+
+int		create_xpm_bonus(t_global *env)
+{
+	if (!(env->main->menu = create_tab_xpm(env->win.mlx, 4, env->data.tex)))
+		return (1);
+	if (!(env->main->resume = create_tab_xpm(env->win.mlx, 5,
+	env->data.resume)))
+		return (1);
+	if (!(env->main->settings = create_tab_xpm(env->win.mlx, 2,
+	env->data.settings)))
+		return (1);
+	if (!(env->main->cur->img = create_xpm_image(env->win.mlx,
+	"assets/ui/cursor/cursor.xpm")))
+		return (1);
+	if (!(env->main->map = create_xpm_image(env->win.mlx,
+	"assets/ui/map/cardinal-point.xpm")))
+		return (1);
+	if (!(env->main->on = create_xpm_image(env->win.mlx,
+	"assets/ui/settings/whitepixel.xpm")))
+		return (1);
+	return (0);
 }
 
 void	init_game(t_global *env)
@@ -44,71 +68,24 @@ void	init_game(t_global *env)
 		env->data.ceiling.xpm)))
 			error_cub("Allocation", env);
 	ft_bzero(&env->game->rc, sizeof(env->game->rc));
-	if (!(env->game->rc.zbuffer = malloc(env->data.resx * sizeof(double))))
-		error_cub("Allocation", env);
 	if (!(env->game->textures = create_tab_xpm(env->win.mlx, 4, env->data.xpm)))
+		error_cub("Allocation", env);
+	init_sprites(env);
+	if (env->data.resx == 1440 && env->data.resy == 900 && !env->op.save)
+		init_bonus(env);
+	init_raystruct(&env->data, env->game);
+	env->op.texture = true;
+	if (env->op.ceilflooron)
+		env->op.ceilingandfloor = true;
+}
+
+void	init_sprites(t_global *env)
+{
+	if (!(env->game->rc.zbuffer = malloc(env->data.resx * sizeof(double))))
 		error_cub("Allocation", env);
 	if (!(env->game->spriteorder = malloc(env->data.nbsprite * sizeof(int))))
 		error_cub("Allocation", env);
 	if (!(env->game->sprite = create_sprite_tab(env->win.mlx,
 	env->data.s_map, env->data.nbsprite)))
 		error_cub("Allocation", env);
-	if (env->data.resx == 1440 && env->data.resy == 900 && !env->op.save)
-		init_bonus(env);
-}
-
-void	init_parse_struct(t_parse *data)
-{
-	data->floor.xpm = NULL;
-	data->ceiling.xpm = NULL;
-	data->floor.color = -1;
-	data->ceiling.color = -1;
-	data->resx = -1;
-	data->resy = -1;
-}
-
-int		check_filename(char *str)
-{
-	char	*file;
-
-	if (ft_strlen((char*)str) <= 4)
-	{
-		ft_printf("Invalid file name, put .cub file.\n");
-		return (1);
-	}
-	file = ft_strrchr((char*)str, '.');
-	if (ft_strncmp(file, ".cub", 4) != 0 || file[4] != '\0')
-	{
-		ft_printf("Invalid file name, put .cub file.\n");
-		return (1);
-	}
-	return (0);
-}
-
-void	init_parse(t_global *env, int ac, char **av)
-{
-	int	fd;
-
-	if (check_options(ac, av, &env->op))
-		error_cub("Command", env);
-	if ((fd = open(av[1], O_RDONLY)) == -1)
-	{
-		perror(av[1]);
-		error_cub("Memory", env);
-	}
-	if (check_filename(av[1]))
-		error_cub("Parse", env);
-	ft_bzero(&env->data, sizeof(t_parse));
-	init_parse_struct(&env->data);
-	if (cub_parse(fd, &env->data, &env->op) == 1)
-		error_cub("Parse", env);
-	if (check_parse(&env->data, &env->op) == 1)
-		error_cub("Parse", env);
-	if (check_validmap(&env->data) == 1)
-		error_cub("Parse", env);
-	if (close(fd) == -1)
-	{
-		perror(av[1]);
-		error_cub("Memory", env);
-	}
 }

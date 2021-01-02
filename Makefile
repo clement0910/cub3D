@@ -14,7 +14,7 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_print_data.c \
 		srcs/cub_raycast.c \
 		srcs/cub_raycast_player.c \
-		srcs/cub_init.c \
+		srcs/cub_init_game.c \
 		srcs/cub_menu.c \
 		srcs/cub_quit.c \
 		srcs/cub_sprite.c \
@@ -37,7 +37,10 @@ SRCS =	srcs/cub_main.c \
 		srcs/cub_malloc_xpm.c \
 		srcs/cub_print_error.c \
 		srcs/cub_timer.c \
-		srcs/cub_frame.c \
+		srcs/cub_print_debug.c \
+		srcs/cub_print_message.c \
+		srcs/cub_init_parse.c \
+		srcs/cub_init_debug.c \
 
 
 HEADER = -I libft/ -I minilibx/ -I includes/ 

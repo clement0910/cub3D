@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:25:37 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 20:19:32 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 12:55:43 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_options
 	bool			settings;
 	bool			ui;
 	bool			on;
+	bool			help;
 }					t_optis;
 
 #endif

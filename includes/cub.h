@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/29 22:37:25 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 15:17:37 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ void				init_parse_struct(t_parse *data);
 /*
 **					INIT FUNC
 */
-void				init_parse(t_global *env, int ac, char **av);
+int					init_parse(t_global *env, int ac, char **av);
 void				init_bonus(t_global *env);
 void				init_game(t_global *env);
 int					init_menu(t_parse *data);
 int					init_resume(t_parse *data);
 int					init_settings(t_parse *data);
 void				init_bmp(t_global *env);
-void				start_bmp(t_global *env);
+int					start_bmp(t_global *env);
 
 int					loop(t_global *env);
 int					loop_bonus(t_global *env);
@@ -120,5 +120,25 @@ void				lowcub_settings(t_global *env);
 
 int					create_xpm_bonus(t_global *env);
 void				main_fps(t_global *env, int x, int y, int color);
+void				main_debug(t_global *env, int color);
 
+char				*str_from_int(int x, int y, char *desc);
+
+void				ft_strcpy_cub(char *src, char *dst);
+
+int					init_debugstr(t_parse *data);
+void	debug_settings(t_global *env);
+
+void				credits_message(bool *help);
+void				help_message(bool *help);
+
+void				start_parse(t_global *env, int fd, char **av);
+void				init_sprites(t_global *env);
+void				color_sprite(t_game *game, int i);
+void				print_debug_tex(t_global *env, int color);
+int					init_debugstr_colorxpm(t_parse *data);
+int					init_debugstr_tex(t_parse *data);
+char				*init_str_from_int(t_vec2i *len, int *lenstr, char *desc, t_vec2i coord);
+void				print_debug_fps(t_global *env, int color);
+void				print_debug_floorceiling(t_global *env, int color);
 #endif

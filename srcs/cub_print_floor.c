@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 00:31:02 by csapt             #+#    #+#             */
-/*   Updated: 2020/11/05 11:20:16 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 15:31:27 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ void	main_floor(t_game *game, t_parse *data)
 		{
 			calcul_floor(game);
 			write_pixel(game->game, x, y, game->floor->addr
-			[game->rc.ty * (game->floor->line_length_i) + game->rc.tx]);
+			[game->rc.ty * (game->floor->line_length_i) + game->rc.tx]
+			& 0x00FFFFFF);
 			write_pixel(game->game, x, data->resy - y - 1, game->ceiling->addr
-			[game->rc.ty * (game->ceiling->line_length_i) + game->rc.tx]);
+			[game->rc.ty * (game->ceiling->line_length_i) + game->rc.tx]
+			& 0x00FFFFFF);
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 13:10:19 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/01 23:49:05 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 13:50:16 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void	write_sprite(t_game *game, t_parse *data, int i, int *stripe)
 	while (*stripe < game->rc.dend_s.x)
 	{
 		game->rc.tex.x = (int)((256 * (*stripe - (-game->rc.spritesize.x / 2 +
-		game->rc.spritesx)) * game->sprite[i]->sprite[game->sprite[i]->xpm]
-		->width / game->rc.spritesize.x) / 256);
+		game->rc.spritesx)) * game->sprite[game->spriteorder[i]]
+		->sprite[game->sprite[game->spriteorder[i]]->xpm]->width /
+		game->rc.spritesize.x) / 256);
 		if (game->rc.transform.y > 0 && *stripe > 0 && *stripe < data->resx &&
 		game->rc.transform.y < game->rc.zbuffer[*stripe])
 		{
@@ -86,9 +87,7 @@ void	write_sprite(t_game *game, t_parse *data, int i, int *stripe)
 			{
 				game->rc.d = y * 256 - game->rc.pre1 + game->rc.pre6;
 				game->rc.tex.y = (float)game->rc.d * game->rc.pre7;
-				game->rc.color = game->sprite[i]->sprite[game->sprite[i]->xpm]->
-				addr[game->rc.tex.y * game->sprite[i]->sprite
-				[game->sprite[i]->xpm]->line_length_i + game->rc.tex.x];
+				color_sprite(game, i);
 				if ((game->rc.color & 0x00FFFFFF) != 0)
 					write_pixel(game->game, *stripe, y, game->rc.color);
 				y++;
@@ -107,8 +106,8 @@ void	main_sprite(t_game *game, t_parse *data)
 	while (i < data->nbsprite)
 	{
 		game->spriteorder[i] = i;
-		game->sprite[i]->spritedis = fabs(((data->player.x - game->sprite[i]->x) *
-		(data->player.x - game->sprite[i]->x) + (data->player.y -
+		game->sprite[i]->spritedis = fabs(((data->player.x - game->sprite[i]->x)
+		* (data->player.x - game->sprite[i]->x) + (data->player.y -
 		game->sprite[i]->y) * (data->player.y * game->sprite[i]->y)));
 		i++;
 	}
@@ -119,7 +118,8 @@ void	main_sprite(t_game *game, t_parse *data)
 		sprite_matrix(game, data, i);
 		calcul_sprite_xy(game, data, &stripe);
 		game->rc.pre6 = game->rc.spritesize.y * 128;
-		game->rc.pre7 = (float)game->sprite[i]->sprite[game->sprite[i]->xpm]->
+		game->rc.pre7 = (float)game->sprite[game->spriteorder[i]]->
+		sprite[game->sprite[game->spriteorder[i]]->xpm]->
 		height / (float)game->rc.spritesize.x / 256.f;
 		write_sprite(game, data, i, &stripe);
 		i--;
