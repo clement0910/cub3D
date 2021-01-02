@@ -1,13 +1,12 @@
-R 1441 900
+R 1300 900
 
 NO ./assets/textures/Coal.xpm
 SO./assets/textures/Bricks.xpm
 WE./assets/textures/bark.xpm
 EA./assets/textures/bookshelf.xpm
 
-
 F ./assets/textures/ceilingandfloor/wood.xpm
-C ./assets/textures/ceilingandfloor/greystone.xpm
+C  ./assets/textures/ceilingandfloor/greystone.xpm
 
 S ./assets/textures/sprites/greenlight.xpm	u
 
