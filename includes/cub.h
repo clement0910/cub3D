@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 19:13:24 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 20:33:45 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int					init_resume(t_parse *data);
 int					init_settings(t_parse *data);
 void				init_bmp(t_global *env);
 int					start_bmp(t_global *env);
-
 int					create_xpm_bonus(t_global *env);
 
 /*
@@ -146,6 +145,7 @@ void				ft_free_static_tab(char **tab, int size);
 
 int					loop(t_global *env);
 int					loop_bonus(t_global *env);
+void				loop_game_bonus(t_global *env);
 int					close_window(t_global *env);
 
 #endif

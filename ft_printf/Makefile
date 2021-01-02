@@ -44,6 +44,6 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf $(LIB) 
+	rm -rf $(LIB)
 
 re: fclean all

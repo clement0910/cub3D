@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 19:06:12 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 20:39:33 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,35 +43,38 @@ int		loop_bonus(t_global *env)
 	if (env->op.menu)
 		menu_game(env);
 	if (env->op.game)
-	{
-		if (env->op.ceilflooron && env->op.ceilingandfloor)
-			main_floor(env->game, &env->data);
-		main_raycast(env->game, &env->data, env->op);
-		main_sprite(env->game, &env->data);
-		if (env->op.minimap)
-			main_map(&env->data, env->game->game, &env->game->rc);
-		if (!env->op.resume && !env->op.settings)
-			move_player(&env->data, &env->game->rc, &env->events);
-		control_events(&env->events, &env->op);
-		mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
-		, 0, 0);
-		if (get_key_press(KEY_J, &env->events))
-			init_bmp(env);
-		if (env->op.ui)
-			mlx_put_image_to_window(env->win.mlx, env->win.win,
-			env->main->hud->img, 0, 0);
-		if (env->op.minimap)
-			mlx_put_image_to_window(env->win.mlx, env->win.win,
-			env->main->map->img, 0, 0);
-		main_debug(env, RED);
-		xpm_to_gif(env->game, &env->data);
-	}
+		loop_game_bonus(env);
 	if (env->op.resume)
 		resume_game(env);
 	if (env->op.settings)
 		settings_menu(env);
 	mlx_do_sync(env->win.mlx);
 	return (0);
+}
+
+void	loop_game_bonus(t_global *env)
+{
+	if (env->op.ceilflooron && env->op.ceilingandfloor)
+		main_floor(env->game, &env->data);
+	main_raycast(env->game, &env->data, env->op);
+	main_sprite(env->game, &env->data);
+	if (env->op.minimap)
+		main_map(&env->data, env->game->game, &env->game->rc);
+	if (!env->op.resume && !env->op.settings)
+		move_player(&env->data, &env->game->rc, &env->events);
+	control_events(&env->events, &env->op);
+	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
+	, 0, 0);
+	if (get_key_press(KEY_J, &env->events))
+		init_bmp(env);
+	if (env->op.ui)
+		mlx_put_image_to_window(env->win.mlx, env->win.win,
+		env->main->hud->img, 0, 0);
+	if (env->op.minimap)
+		mlx_put_image_to_window(env->win.mlx, env->win.win,
+		env->main->map->img, 0, 0);
+	main_debug(env, RED);
+	xpm_to_gif(env->game, &env->data);
 }
 
 int		main(int ac, char **av)

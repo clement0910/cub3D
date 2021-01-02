@@ -68,6 +68,7 @@ $(LIBFT):
 
 $(NAME): $(OBJ) 
 	$(C) $(FLAGS) $(LIBFT) $(FW) $(OBJ) -o $(NAME)
+	mv minilibx/libmlx.dylib .
 
 bonus: all
 
@@ -75,9 +76,11 @@ clean:
 	rm -rf $(OBJ)
 	make clean -C minilibx/
 	make fclean -C ft_printf/
+	rm -rf libmlx.dylib
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf save.bmp
 
 re: fclean all
 

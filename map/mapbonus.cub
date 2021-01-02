@@ -1,4 +1,4 @@
-R 1300 900
+R 1440 900
 
 NO ./assets/textures/wall/Coal.xpm
 SO./assets/textures/wall/Bricks.xpm
@@ -6,7 +6,7 @@ WE./assets/textures/wall/bark.xpm
 EA./assets/textures/wall/bookshelf.xpm
 
 F ./assets/textures/ceilingandfloor/wood.xpm
-C  10,10,10
+C  ./assets/textures/ceilingandfloor/greystone.xpm
 
 S ./assets/textures/sprites/greenlight.xpm	u
 
@@ -31,6 +31,6 @@ S ./assets/textures/sprites/pika/1.xpm	2
 10010011
 101 10001
 12010011
-100uN01
+1000N01
 10uuuu1
 1111111

@@ -1,8 +1,8 @@
 R 900 900
-NO ./assets/textures/Coal.xpm
-SO ./assets/textures/Bricks.xpm
-WE ./assets/textures/bark.xpm
-EA ./assets/textures/bookshelf.xpm
+NO ./assets/textures/wall/Coal.xpm
+SO./assets/textures/wall/Bricks.xpm
+WE./assets/textures/wall/bark.xpm
+EA./assets/textures/wall/bookshelf.xpm
 
 S ./assets/textures/sprites/greenlight.xpm	2
 F 220,100,0

@@ -1,0 +1,68 @@
+R 900 600
+
+NO ./assets/textures/wall/Coal.xpm
+SO./assets/textures/wall/Bricks.xpm
+WE./assets/textures/wall/bark.xpm
+EA./assets/textures/wall/bookshelf.xpm
+
+F ./assets/textures/ceilingandfloor/wood.xpm
+C  ./assets/textures/ceilingandfloor/greystone.xpm
+
+S ./assets/textures/sprites/greenlight.xpm	u
+
+S ./assets/textures/sprites/pika/1.xpm	2
+- ./assets/textures/sprites/pika/2.xpm
+- ./assets/textures/sprites/pika/3.xpm
+- ./assets/textures/sprites/pika/4.xpm
+- ./assets/textures/sprites/pika/5.xpm
+- ./assets/textures/sprites/pika/6.xpm
+- ./assets/textures/sprites/pika/7.xpm
+- ./assets/textures/sprites/pika/8.xpm
+- ./assets/textures/sprites/pika/9.xpm
+- ./assets/textures/sprites/pika/10.xpm
+- ./assets/textures/sprites/pika/11.xpm
+- ./assets/textures/sprites/pika/12.xpm
+- ./assets/textures/sprites/pika/13.xpm
+- ./assets/textures/sprites/pika/14.xpm
+- ./assets/textures/sprites/pika/15.xpm
+- ./assets/textures/sprites/pika/16.xpm
+
+S ./assets/textures/sprites/thierry/thierry1.xpm	t
+- ./assets/textures/sprites/thierry/thierry2.xpm
+- ./assets/textures/sprites/thierry/thierry3.xpm
+- ./assets/textures/sprites/thierry/thierry4.xpm
+- ./assets/textures/sprites/thierry/thierry5.xpm
+- ./assets/textures/sprites/thierry/thierry6.xpm
+- ./assets/textures/sprites/thierry/thierry6.xpm
+- ./assets/textures/sprites/thierry/thierry8.xpm
+- ./assets/textures/sprites/thierry/thierry9.xpm
+- ./assets/textures/sprites/thierry/thierry10.xpm
+- ./assets/textures/sprites/thierry/thierry11.xpm
+- ./assets/textures/sprites/thierry/thierry12.xpm
+- ./assets/textures/sprites/thierry/thierry13.xpm
+- ./assets/textures/sprites/thierry/thierry14.xpm
+- ./assets/textures/sprites/thierry/thierry15.xpm
+- ./assets/textures/sprites/thierry/thierry16.xpm
+- ./assets/textures/sprites/thierry/thierry17.xpm
+- ./assets/textures/sprites/thierry/thierry18.xpm
+- ./assets/textures/sprites/thierry/thierry19.xpm
+- ./assets/textures/sprites/thierry/thierry20.xpm
+- ./assets/textures/sprites/thierry/thierry21.xpm
+- ./assets/textures/sprites/thierry/thierry22.xpm
+- ./assets/textures/sprites/thierry/thierry23.xpm
+- ./assets/textures/sprites/thierry/thierry24.xpm
+- ./assets/textures/sprites/thierry/thierry25.xpm
+- ./assets/textures/sprites/thierry/thierry26.xpm
+- ./assets/textures/sprites/thierry/thierry27.xpm
+- ./assets/textures/sprites/thierry/thierry28.xpm
+- ./assets/textures/sprites/thierry/thierry29.xpm
+- ./assets/textures/sprites/thierry/thierry30.xpm
+- ./assets/textures/sprites/thierry/thierry31.xpm
+
+1111111
+10010011
+101 10001
+12010011
+10t0N01
+10uuuu1
+1111111
