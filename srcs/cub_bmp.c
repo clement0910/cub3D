@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 17:43:36 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 13:43:30 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 16:58:01 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ int		start_bmp(t_global *env)
 	env->game->game->line_length);
 	main_raycast(env->game, &env->data, env->op);
 	main_sprite(env->game, &env->data);
+	if (env->op.ceilflooron)
+		main_floor(env->game, &env->data);
 	mlx_put_image_to_window(env->win.mlx, env->win.win, env->game->game->img
 	, 0, 0);
 	init_bmp(env);
+	free_cub(env, 0);
 	return (0);
 }
 

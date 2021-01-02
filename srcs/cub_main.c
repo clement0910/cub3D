@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 15:56:32 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 16:54:17 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		main(int ac, char **av)
 	if (!(env = ft_calloc(1, sizeof(t_global))))
 		error_cub("Allocation", env);
 	if (init_parse(env, ac, av))
-		return (0);
+		free_cub(env, 0);
 	env->win.mlx = mlx_init();
 	init_game(env);
 	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,

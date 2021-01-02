@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 15:17:37 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 16:41:27 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void				free_spritei(t_spritei *s_info, int x);
 void				free_parsing(t_parse *data);
 
 /*
-**					DEBUG
+**					DATA PRINT
 */
 void				ft_printdata(t_parse *data, t_list **maplist,
 					t_sinfo_lst **s_info);
@@ -100,6 +100,8 @@ void				print_error(char *error, bool warn);
 void				*return_message(char *error, char *details);
 int					return_message_i(char *error, char *details, int err);
 int					return_message_c(char *error, char c, int err);
+void				credits_message(bool *help);
+void				help_message(bool *help);
 
 /*
 **					MENU
@@ -123,22 +125,19 @@ void				main_fps(t_global *env, int x, int y, int color);
 void				main_debug(t_global *env, int color);
 
 char				*str_from_int(int x, int y, char *desc);
+char				*init_str_from_int(t_vec2i *len, int *lenstr, char *desc, t_vec2i coord);
 
 void				ft_strcpy_cub(char *src, char *dst);
 
 int					init_debugstr(t_parse *data);
-void	debug_settings(t_global *env);
-
-void				credits_message(bool *help);
-void				help_message(bool *help);
+void				debug_settings(t_global *env);
 
 void				start_parse(t_global *env, int fd, char **av);
 void				init_sprites(t_global *env);
-void				color_sprite(t_game *game, int i);
-void				print_debug_tex(t_global *env, int color);
 int					init_debugstr_colorxpm(t_parse *data);
 int					init_debugstr_tex(t_parse *data);
-char				*init_str_from_int(t_vec2i *len, int *lenstr, char *desc, t_vec2i coord);
+
 void				print_debug_fps(t_global *env, int color);
+void				print_debug_tex(t_global *env, int color);
 void				print_debug_floorceiling(t_global *env, int color);
 #endif

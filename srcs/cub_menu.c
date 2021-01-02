@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:06:49 by csapt             #+#    #+#             */
-/*   Updated: 2020/12/28 16:27:55 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 16:45:26 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	menu_game(t_global *env)
 	else
 		mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->menu[0]->
 		img, 0, 0);
+	mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->logo->img,
+	510, 100);
 	mlx_put_image_to_window(env->win.mlx, env->win.win,
 	env->main->cur->img->img, env->main->cur->pos.x, env->main->cur->pos.y);
 }

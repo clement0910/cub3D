@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/01 23:49:23 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 16:38:33 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct		s_menu
 	t_img			**menu;
 	t_img			**resume;
 	t_img			**settings;
-	t_img			**logo;
+	t_img			*logo;
 	t_cursor		*cur;
 	t_img			*map;
 	t_img			*on;
@@ -135,6 +135,7 @@ void				calcul_sprite_xy(t_game *game, t_parse *data,
 void				main_sprite(t_game *game, t_parse *data);
 void				write_sprite(t_game *game, t_parse *data, int i,
 					int *stripe);
+void				color_sprite(t_game *game, int i);
 
 /*
 **					CALCULATION & PRINT FLOOR

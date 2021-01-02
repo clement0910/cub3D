@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 14:04:17 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 15:39:31 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 17:02:46 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,16 @@ int		init_debugstr_colorxpm(t_parse *data)
 {
 	char *tmp;
 
-	if (!(data->debug[9] = ft_strjoin("Ceiling: ", data->ceiling.xpm)))
+	if (data->ceiling.xpm)
+	{
+		if (!(data->debug[9] = ft_strjoin("Ceiling: ", data->ceiling.xpm)))
+			return (1);
+	}
+	if (data->floor.xpm)
+	{
+		if (!(data->debug[10] = ft_strjoin("Floor: ", data->floor.xpm)))
 		return (1);
-	if (!(data->debug[10] = ft_strjoin("Floor: ", data->floor.xpm)))
-		return (1);
+	}
 	if (!(tmp = ft_itoa(data->ceiling.color)))
 		return (1);
 	if (!(data->debug[11] = ft_strjoin("Ceiling: ", tmp)))

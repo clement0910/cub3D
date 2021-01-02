@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 21:57:20 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 15:51:22 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 16:38:37 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	main_debug(t_global *env, int color)
 	if (env->op.fps)
 	{
 		print_debug_fps(env, color);
-		print_debug_tex(env, color);
+		//print_debug_tex(env, color);
 		mlx_string_put(env->win.mlx, env->win.win, 30, 130, color,
 		env->data.debug[8]);
 		if (!(tmp = str_from_int(env->data.player.x,
