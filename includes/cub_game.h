@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:30:08 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 16:38:33 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 19:12:57 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct		s_menu
 	t_cursor		*cur;
 	t_img			*map;
 	t_img			*on;
+	t_img			*hud;
 }					t_menu;
 
 /*

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 18:25:48 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 19:19:32 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_bonus(t_global *env)
 	if ((init_debugstr(&env->data)))
 		error_cub("Allocation", env);
 	env->op.menu = true;
+	env->op.ui = true;
 	mlx_mouse_hide();
 }
 

@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 18:31:22 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 19:13:24 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void				settings_menu(t_global *env);
 void				return_settings(t_global *env);
 void				lowcub_settings(t_global *env);
 void				debug_settings(t_global *env);
+void				hud_settings(t_global *env);
 
 /*
 **					DEBUG MODE

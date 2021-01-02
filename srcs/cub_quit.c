@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 18:19:21 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 18:31:56 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 19:06:44 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	free_image_bonus(t_global *env)
 	free_image(env->main->map, env->win.mlx);
 	free_image(env->main->on, env->win.mlx);
 	free_image(env->main->logo, env->win.mlx);
+	free_image(env->main->hud, env->win.mlx);
 }
 
 void	free_game_cub(t_global *env)

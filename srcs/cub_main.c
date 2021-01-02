@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 18:33:19 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 19:06:12 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ int		loop_bonus(t_global *env)
 		, 0, 0);
 		if (get_key_press(KEY_J, &env->events))
 			init_bmp(env);
+		if (env->op.ui)
+			mlx_put_image_to_window(env->win.mlx, env->win.win,
+			env->main->hud->img, 0, 0);
 		if (env->op.minimap)
 			mlx_put_image_to_window(env->win.mlx, env->win.win,
 			env->main->map->img, 0, 0);

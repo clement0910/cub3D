@@ -58,10 +58,13 @@ OBJ = $(SRCS:.c=.o)
 %.o:%.c
 	$(C) $(FLAGS) $(HEADER) -c -o $@ $<
 
-all: $(MLX) $(NAME)
+all: $(MLX) $(LIBFT) $(NAME)
 
 $(MLX):
 	make -C minilibx/
+
+$(LIBFT):
+	make -C ft_printf/
 
 $(NAME): $(OBJ) 
 	$(C) $(FLAGS) $(LIBFT) $(FW) $(OBJ) -o $(NAME)
@@ -70,6 +73,8 @@ bonus: all
 
 clean:
 	rm -rf $(OBJ)
+	make clean -C minilibx/
+	make fclean -C ft_printf/
 
 fclean: clean
 	rm -rf $(NAME)

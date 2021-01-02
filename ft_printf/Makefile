@@ -40,7 +40,7 @@ bonus: all
 
 clean:
 	rm -rf $(OBJ)
-	make clean -C libft/
+	make clean -C ../libft/
 
 fclean: clean
 	rm -rf $(NAME)

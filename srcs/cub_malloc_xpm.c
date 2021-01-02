@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 21:00:07 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 16:45:51 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 19:06:03 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int		create_xpm_bonus(t_global *env)
 		return (1);
 	if (!(env->main->logo = create_xpm_image(env->win.mlx,
 	"assets/ui/menu/logo.xpm")))
+		return (1);
+	if (!(env->main->hud = create_xpm_image(env->win.mlx,
+	"assets/ui/hud/hud.xpm")))
 		return (1);
 	return (0);
 }

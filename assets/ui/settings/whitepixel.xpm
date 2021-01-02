@@ -1,15 +1,19 @@
 /* XPM */
-static char *_53bf6adef89473ddcf6c05c9f73145fQLnX27Oa0tdqcfJP[] = {
+static char *_e77143d8a194e76a50c3ff521a3482fFY9nIBaXTzwtvtCm[] = {
 /* columns rows colors chars-per-pixel */
-"8 8 1 1 ",
-"  c white",
+"8 8 5 1 ",
+"  c #0B29FF",
+". c #2652FF",
+"X c #7B99FF",
+"o c #E4EBFF",
+"O c white",
 /* pixels */
-"        ",
-"        ",
-"        ",
-"        ",
-"        ",
-"        ",
-"        ",
-"        "
+"OOOOOOOO",
+"OoX..XoO",
+"OX    XO",
+"O.    .O",
+"O.    .O",
+"OX    XO",
+"OoX..XoO",
+"OOOOOOOO"
 };
