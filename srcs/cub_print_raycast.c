@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 18:55:42 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 15:56:15 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 17:57:00 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	color_sprite(t_game *game, int i)
 
 void	write_pixel(t_img *image, int x, int y, int color)
 {
-    int		*dst;
+	int		*dst;
 
 	dst = image->addr + (y * (image->line_length / 4) + x);
 	*dst = color;

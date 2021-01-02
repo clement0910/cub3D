@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 11:58:35 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 16:41:27 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 18:31:22 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,34 +51,37 @@ typedef struct		s_global
 	t_frame			frame;
 }					t_global;
 
+/*
+**					INIT FUNC
+*/
+int					init_parse(t_global *env, int ac, char **av);
 int					init_xpm(t_parse *data);
 void				init_raystruct(t_parse *data, t_game *game);
 void				init_ray_so_no(t_parse *data, t_game *game);
 void				init_ray_ea_we(t_parse *data, t_game *game);
 void				init_precalculated_rc(t_parse *data, t_game *game);
-void				ft_free_static_tab(char **tab, int size);
 void				init_parse_struct(t_parse *data);
-/*
-**					INIT FUNC
-*/
-int					init_parse(t_global *env, int ac, char **av);
+void				start_parse(t_global *env, int fd, char **av);
 void				init_bonus(t_global *env);
+int					init_debugstr(t_parse *data);
+int					init_debugstr_colorxpm(t_parse *data);
+int					init_debugstr_tex(t_parse *data);
 void				init_game(t_global *env);
+void				init_sprites(t_global *env);
 int					init_menu(t_parse *data);
 int					init_resume(t_parse *data);
 int					init_settings(t_parse *data);
 void				init_bmp(t_global *env);
 int					start_bmp(t_global *env);
 
-int					loop(t_global *env);
-int					loop_bonus(t_global *env);
-
-int					close_window(t_global *env);
+int					create_xpm_bonus(t_global *env);
 
 /*
 **					ERROR/QUIT
 */
 void				error_cub(char *error, t_global *env);
+void				free_image_bonus(t_global *env);
+void				free_game_cub(t_global *env);
 void				free_cub(t_global *env, int exit);
 void				free_lst_sinfo(t_sinfo_lst **s_info);
 void				free_spritei(t_spritei *s_info, int x);
@@ -119,25 +122,29 @@ void				quit_button(t_global *env, int x, int y);
 void				settings_menu(t_global *env);
 void				return_settings(t_global *env);
 void				lowcub_settings(t_global *env);
-
-int					create_xpm_bonus(t_global *env);
-void				main_fps(t_global *env, int x, int y, int color);
-void				main_debug(t_global *env, int color);
-
-char				*str_from_int(int x, int y, char *desc);
-char				*init_str_from_int(t_vec2i *len, int *lenstr, char *desc, t_vec2i coord);
-
-void				ft_strcpy_cub(char *src, char *dst);
-
-int					init_debugstr(t_parse *data);
 void				debug_settings(t_global *env);
 
-void				start_parse(t_global *env, int fd, char **av);
-void				init_sprites(t_global *env);
-int					init_debugstr_colorxpm(t_parse *data);
-int					init_debugstr_tex(t_parse *data);
-
+/*
+**					DEBUG MODE
+*/
+void				main_fps(t_global *env, int x, int y, int color);
+void				main_debug(t_global *env, int color);
 void				print_debug_fps(t_global *env, int color);
 void				print_debug_tex(t_global *env, int color);
 void				print_debug_floorceiling(t_global *env, int color);
+
+/*
+**					OTHERS
+*/
+char				*str_from_int(int x, int y, char *desc);
+char				*init_str_from_int(t_vec2i *len, int *lenstr, char *desc,
+					t_vec2i coord);
+void				ft_strcpy_cub(char *src, char *dst);
+int					freestr_return(char *str, int exit);
+void				ft_free_static_tab(char **tab, int size);
+
+int					loop(t_global *env);
+int					loop_bonus(t_global *env);
+int					close_window(t_global *env);
+
 #endif

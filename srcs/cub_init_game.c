@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 21:35:03 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 16:13:20 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 18:25:48 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_game(t_global *env)
 	env->op.texture = true;
 	if (env->op.ceilflooron)
 		env->op.ceilingandfloor = true;
+	timer_restart(&env->frame.timer);
 }
 
 void	init_sprites(t_global *env)

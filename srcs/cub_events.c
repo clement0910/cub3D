@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 18:51:19 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 11:44:03 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 18:16:02 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	control_events(t_keys *events, t_optis *op)
 		op->resume = !op->resume;
 	if (get_key_press(KEY_F3, events))
 		op->fps = !op->fps;
+	if (get_key_press(KEY_F, events))
+		op->ceilingandfloor = !op->ceilingandfloor;
 }
 
 int		close_window(t_global *env)

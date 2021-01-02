@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:33:49 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 16:54:17 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 18:33:19 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@ int		loop(t_global *env)
 	poll_events(&env->events);
 	if (get_key(KEY_ESCAPE, &env->events))
 		free_cub(env, 0);
-	if (env->op.ceilflooron)
-	{
-		if (get_key_press(KEY_F, &env->events))
-			env->op.ceilingandfloor = !env->op.ceilingandfloor;
-	}
-	if (env->op.ceilingandfloor)
+	if (env->op.ceilflooron && env->op.ceilingandfloor)
 		main_floor(env->game, &env->data);
 	main_raycast(env->game, &env->data, env->op);
 	main_sprite(env->game, &env->data);
@@ -49,12 +44,7 @@ int		loop_bonus(t_global *env)
 		menu_game(env);
 	if (env->op.game)
 	{
-		if (env->op.ceilflooron)
-		{
-			if (get_key_press(KEY_F, &env->events))
-				env->op.ceilingandfloor = !env->op.ceilingandfloor;
-		}
-		if (env->op.ceilingandfloor)
+		if (env->op.ceilflooron && env->op.ceilingandfloor)
 			main_floor(env->game, &env->data);
 		main_raycast(env->game, &env->data, env->op);
 		main_sprite(env->game, &env->data);
@@ -68,10 +58,9 @@ int		loop_bonus(t_global *env)
 		if (get_key_press(KEY_J, &env->events))
 			init_bmp(env);
 		if (env->op.minimap)
-			mlx_put_image_to_window(env->win.mlx, env->win.win, env->main->map->img,
-			0, 0);
-		if (env->op.fps)
-			main_debug(env, RED);
+			mlx_put_image_to_window(env->win.mlx, env->win.win,
+			env->main->map->img, 0, 0);
+		main_debug(env, RED);
 		xpm_to_gif(env->game, &env->data);
 	}
 	if (env->op.resume)
@@ -90,21 +79,19 @@ int		main(int ac, char **av)
 		error_cub("Allocation", env);
 	if (init_parse(env, ac, av))
 		free_cub(env, 0);
-	env->win.mlx = mlx_init();
+	if (!(env->win.mlx = mlx_init()))
+		error_cub("MLX", env);
 	init_game(env);
-	env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
-	env->data.resy, "Cub3D");
-	mlx_hook(env->win.win, KEY_PRESS, KEY_PRESS_MASK, key_press, &env->events);
-	mlx_hook(env->win.win, KEY_RELEASE, KEY_RELEASE_MASK, key_release,
-	&env->events);
-	mlx_hook(env->win.win, BUTTON_PRESS, BUTTON_PRESS_MASK, button_press,
-	&env->events);
-	mlx_hook(env->win.win, BUTTON_RELEASE, BUTTON_RELEASE_MASK, button_release,
-	&env->events);
+	if (!(env->win.win = mlx_new_window(env->win.mlx, env->data.resx,
+	env->data.resy, "Cub3D")))
+		error_cub("MLX", env);
+	mlx_hook(env->win.win, 2, (1L << 0), key_press, &env->events);
+	mlx_hook(env->win.win, 3, (1L << 1), key_release, &env->events);
+	mlx_hook(env->win.win, 4, (1L << 2), button_press, &env->events);
+	mlx_hook(env->win.win, 5, (1L << 3), button_release, &env->events);
 	mlx_hook(env->win.win, 17, 0, close_window, env);
-	timer_restart(&env->frame.timer);
 	if (env->op.save)
-		return (start_bmp(env));
+		start_bmp(env);
 	if (env->op.on)
 		mlx_loop_hook(env->win.mlx, loop_bonus, env);
 	else

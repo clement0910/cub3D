@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 13:14:53 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 11:39:28 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 18:32:39 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ void	lowcub_settings(t_global *env)
 	{
 		if (get_button(MOUSE_LEFT, 0, 0, &env->events))
 		{
-			if (env->op.ceilflooron)
-				env->op.ceilingandfloor = true;
+			env->op.ceilingandfloor = true;
 			env->op.texture = true;
 		}
 	}
@@ -59,8 +58,7 @@ void	lowcub_settings(t_global *env)
 	{
 		if (get_button(MOUSE_LEFT, 0, 0, &env->events))
 		{
-			if (env->op.ceilflooron)
-				env->op.ceilingandfloor = false;
+			env->op.ceilingandfloor = false;
 			env->op.texture = false;
 		}
 	}
@@ -91,5 +89,5 @@ void	debug_settings(t_global *env)
 		env->main->on->img, 904, 552);
 	else
 		mlx_put_image_to_window(env->win.mlx, env->win.win,
-		env->main->on->img, 976, 552);	
+		env->main->on->img, 976, 552);
 }

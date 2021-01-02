@@ -6,7 +6,7 @@
 /*   By: csapt <csapt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 14:59:51 by csapt             #+#    #+#             */
-/*   Updated: 2021/01/02 15:33:01 by csapt            ###   ########lyon.fr   */
+/*   Updated: 2021/01/02 17:56:27 by csapt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,10 @@ void	ft_strcpy_cub(char *src, char *dst)
 		dst[x] = src[x];
 		x++;
 	}
+}
+
+int		freestr_return(char *str, int exit)
+{
+	free(str);
+	return (exit);
 }
