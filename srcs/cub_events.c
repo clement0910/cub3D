@@ -45,8 +45,11 @@ void	control_events(t_keys *events, t_optis *op)
 		op->resume = !op->resume;
 	if (get_key_press(KEY_F3, events))
 		op->fps = !op->fps;
-	if (get_key_press(KEY_F, events))
-		op->ceilingandfloor = !op->ceilingandfloor;
+	if (op->ceilflooron)
+	{
+		if (get_key_press(KEY_F, events))
+			op->ceilingandfloor = !op->ceilingandfloor;
+	}
 	if (get_key_press(KEY_U, events))
 		op->ui = !op->ui;
 }

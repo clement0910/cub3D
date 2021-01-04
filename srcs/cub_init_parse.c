@@ -18,15 +18,15 @@ int		check_options(int ac, char **av, t_optis *op)
 		return (return_message_i("Use ./Cub3D --help for more info.", NULL, 1));
 	if (ft_strncmp(av[1], "--help", 6) == 0)
 		help_message(&op->help);
-	else if (ft_strncmp(av[1], "--credits", 9) == 0)
+	else if (ft_strcmp(av[1], "--credits") == 0)
 		credits_message(&op->help);
 	if (!av[2])
 		return (0);
-	if (ft_strncmp(av[2], "--data", 6) == 0)
+	if (ft_strcmp(av[2], "--data") == 0)
 		op->data = true;
-	else if (ft_strncmp(av[2], "--save", 6) == 0)
+	else if (ft_strcmp(av[2], "--save") == 0)
 		op->save = true;
-	else if (ft_strncmp(av[2], "--ignore", 8) == 0)
+	else if (ft_strcmp(av[2], "--ignore") == 0)
 		op->ignore = true;
 	else
 		return (return_message_i("Use ./Cub3D --help for more info.", NULL, 1));

@@ -142,6 +142,7 @@ char				*init_str_from_int(t_vec2i *len, int *lenstr, char *desc,
 void				ft_strcpy_cub(char *src, char *dst);
 int					freestr_return(char *str, int exit);
 void				ft_free_static_tab(char **tab, int size);
+int					ft_strcmp(char *s1, char *s2);
 
 int					loop(t_global *env);
 int					loop_bonus(t_global *env);
