@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/clement0910/cub3D">
-    <img src="https://zupimages.net/up/21/01/gru2.png" alt="Logo">
+    <img src="https://zupimages.net/up/21/01/wf8x.png" alt="Logo">
   </a>
 
 <h3 align="center">Cub3D</h3>
@@ -62,7 +62,7 @@ Here are the commands to follow to try the project.
 Maximal grade with bonus.
 ### List of bonuses
 
-* Multiples sprites
+* Animated sprites (Multiples files in one sprite)
 * Different sprites with advanced parsing system
 * FPS Counter
 * Debug Mode
