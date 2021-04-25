@@ -25,7 +25,7 @@
 
 In this project, we have to create a game with Raycasting technology, used in particular by the famous Doom game.
 
-This project has been coded in C with the minilibx from 42.
+This project has been coded in C with the minilibx from 42 with norminette v2.
 
 All the Menu, Button, ... were made by me using other softwares.
 
@@ -100,5 +100,5 @@ Maximal grade with bonus.
  
 ### Other Used Software
 
-* [Aseprite]() | Aseprite helped me to create the buttons
-* [Photoshop]() | Photoshop helped me to create the Menu, UI...
+* [Aseprite](https://www.aseprite.org/) | Aseprite helped me to create the buttons
+* [Photoshop](https://www.adobe.com/fr/products/photoshop.html) | Photoshop helped me to create the Menu, UI...
