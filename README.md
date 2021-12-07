@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="https://github.com/clement0910/cub3D">
-    <img src="https://zupimages.net/up/21/01/j2r5.png" alt="Logo2">
+    <img src="https://i.postimg.cc/tTbSvXzT/j2r5.png" alt="Logo2">
   </a>
 
 In this project, we have to create a game with Raycasting technology, used in particular by the famous Doom game.
